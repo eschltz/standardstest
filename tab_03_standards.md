@@ -101,7 +101,7 @@ function openStandardFromURL(evt) {
 	Literature Review
 	<ul>
 		<li><a id="CaseSurvey_b"             class="tablinks" href="#Display" onclick="openStandard(event, 'CaseSurvey')">Case Survey</a></li>
-		<li><a id="SystematicReviews_b"      class="tablinks" href="#Display" onclick="openStandard(event, 'SystematicReviews')">Systematic Reviews</a></li>
+		<li><a id="SystematicReviews_b"      class="tablinks" href="#Display" onclick="openStandard(event, 'SystematicReviews')">Systematic Review</a></li>
 	</ul>
   </li>
   <li>
