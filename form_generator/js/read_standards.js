@@ -84,7 +84,7 @@ function readSpecificEmpiricalStandard(standard_name){
 	var dir = loc.substring(0, loc.lastIndexOf('/'));
 	var dir = dir.substring(0, dir.lastIndexOf('/'));
 	var standard_file_name = standard_name.replaceAll("\"", "").replace(" ", "");
-	var standard_file_path = dir + "/docs/" + standard_file_name + ".md";
+	var standard_file_path = dir + "/docs/standards/" + standard_file_name + ".md";
 	var empirical_standard = "";
 	mdFile.open("GET", standard_file_path, false);
 	mdFile.onreadystatechange = function(){
@@ -1145,7 +1145,7 @@ function preparation_to_convert_MD_to_HTML(standardTagName, checklistTagName, ch
 	checklistText = convert_MD_tags_to_HTML_tags(checklistText);
 	//console.log(checklistText);
 	// Standard Files - Change from docs to link, change from .md file to nothing
-	checklistText = checklistText.replaceAll('https://github.com/acmsigsoft/EmpiricalStandards/blob/master/docs/', '../docs?standard=').replaceAll('.md', '');
+	checklistText = checklistText.replaceAll('https://github.com/eschltz/standardstest/blob/main/docs/standards', '../docs/standards?standard=').replaceAll('.md', '');
 
 	// Supplement Files - Change from docs to link, change from .md file to nothing
 	checklistText = checklistText.replaceAll('https://github.com/acmsigsoft/EmpiricalStandards/blob/master/Supplements/', '../Supplements?supplement=').replaceAll('.md', '');
