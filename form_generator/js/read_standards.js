@@ -1525,7 +1525,7 @@ function create_for_more_info_part(standard_keys){
 	var more_info_H2 = document.createElement("H2");
 	more_info_H2.innerHTML = "For more information, see:";
 	
-	var standards_path = "../docs?standard="
+	var standards_path = "../docs/standards?standard="
 	var more_info_UL = document.createElement("UL");
 
 	// Adding Standards as a list with a link to the correct page
