@@ -57,9 +57,7 @@ main .wrapper {
     display: block;
     float: left;
     width: 36px;
-    height: 26px;
-    line-height: 0;
-    padding-top: 10px;
+    padding-top: 6px;
     text-align: center;
   }
   
@@ -70,6 +68,8 @@ main .wrapper {
   .standards-list input ~ .tab {
     clear: both;
     display: none;
+	overflow: scroll;
+	max-height: 75vh;
   }
   
   .standards-list input:checked ~ .tab {
