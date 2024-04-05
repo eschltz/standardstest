@@ -43,6 +43,7 @@ main .wrapper {
   
   #Display {
 	flex: 100%;
+	word-break: break-word;
   }
   
   .standards-list label[for="toc-trigger"] {
