@@ -10,7 +10,7 @@ This standard applies to empirical research that meets the following
 conditions.
 
 -   Human participants take part in a simulated task, typically in a contrived or lab-based environment, alone or in groups
--   Researchers directly observe (and often record) participants taking part
+-   Researchers directly observe (and often record) participants taking part 
 -   Observations are analyzed using qualitative coding
 
 Protocol Analysis (AKA protocol studies) are a common type of Qualitative Simulation.
@@ -26,7 +26,9 @@ Protocol Analysis (AKA protocol studies) are a common type of Qualitative Simula
 <method>
 
 - [ ]   describes the environment in which the simulation took place
-- [ ]   describes the events, activities, tasks, or objects comprising the simulations    
+- [ ]   indicates whether partcipants complete the task alone or in groups
+- [ ]   describes the events, activities, tasks, or objects comprising the simulations
+- [ ]   describes any interference or prompting by the researcher during the simulation, or confirms there was none    
 - [ ]   describes the qualitative coding procedures
 
 <results>
@@ -43,8 +45,8 @@ Protocol Analysis (AKA protocol studies) are a common type of Qualitative Simula
 ### Desirable Attributes
 <checklist name="Desirable">
     
-- [ ]	  provides supplemental materials such as task materials, coding schemes, coding examples, decision rules, or extended chain-of-evidence tables
-- [ ]   includes debriefing sessions with participants 
+- [ ]	provides supplemental materials such as task materials, coding schemes, coding examples, decision rules, or extended chain-of-evidence tables
+- [ ]   includes debriefing sessions with participants
 - [ ]   cross-checks observations against statements made my participants during debriefing sessions
 - [ ]   describes how prior understandings of the phenomena were managed and/or influenced the research
 - [ ]   EITHER: evaluates an a priori theory (or model, framework, taxonomy, etc.) using deductive coding with an a priori coding scheme based on the prior theory    
@@ -55,25 +57,27 @@ Protocol Analysis (AKA protocol studies) are a common type of Qualitative Simula
 ### Extraordinary Attributes
 <checklist name="Extraordinary">
 
-- [ ]   uses a team-based approach; e.g., multiple raters with analysis of inter-rater reliability (see the [IRR/IRA Supplement](https://github.com/eschltz/standardstest/blob/main/docs/supplements/InterRaterReliabilityAndAgreement.md))
-- [ ]   published a protocol beforehand and made it publicly accessible (see the [Registered Reports Supplement](https://github.com/eschltz/standardstest/tree/main/docs/supplements)) 
+- [ ]   uses a team-based approach; e.g., multiple raters with analysis of inter-rater reliability (see the [IRR/IRA Supplement](https://github.com/acmsigsoft/EmpiricalStandards/blob/master/docs/supplements/InterRaterReliabilityAndAgreement.md))
+- [ ]   published a protocol beforehand and made it publicly accessible (see the [Registered Reports Supplement](https://github.com/acmsigsoft/EmpiricalStandards/tree/master/docs/supplements)) 
 </checklist>
+
     
 ## General Quality Criteria 
 
-Qualitative simulations should be evaluated using qualitative validity criteria
-such as credibility, multivocality, reflexivity, rigor and transferability (see **Glossary**).  
+As qualitative simulations are more consistent with critical realism, realist quality criteria including ontological appropriateness, contingent validity, trustworthiness, and analytic generalization should be used (see Healy and Perry 2000).  
 
 ## Antipatterns 
 
 -  Overstating the degree to which the simulation justifies inferences about participants' cognitive states or cognitive processes. The whole point of a qualitative simulation is often to get insight into cognitive states and processes, but these insights should be presented with caution.
--  Attempting a qualitative simulation from a positivist epistemological stance. There is no coherent positivist basis for qualitative research in an artificial context. Qualitative simulations make more sense from a realist or interpretivist epistemological stance.  
+-  Attempting a qualitative simulation from a positivist epistemological stance. There is no coherent positivist basis for qualitative research in an artificial context. Qualitative simulations make more sense from a realist or interpretivist epistemological stance.
+-  Describing the study's limitations using quantitative/positivist validity criteria.
                                                                                                                  
 ## Invalid Criticisms 
 
 -   Does not present quantitative data. That's why it's called a "qualitative" simulation.
 -   The task or environment are artificial. The whole point of a qualitative simulation is to study an artificial task in a controlled environment. 
--   Lack of internal validity. Internal validity is a positivist criterion.
+-   Lack of internal validity or objectivity. Those are positivist criteria.
+-   Is not reported as a positivist experiment/randomised controlled trial. 
 
 ## Suggested Readings 
 
@@ -81,6 +85,8 @@ Shaochun Xu and Václav Rajlich. 2005. Dialog-based protocol: an empirical resea
 
 Mathew Miles, A Michael Huberman and Saldana Johnny. 2014. *Qualitative
 data analysis: A methods sourcebook*. Sage.
+
+Healy, Marilyn, and Chad Perry. 2000. Comprehensive criteria to judge validity and reliability of qualitative research within the realism paradigm. _Qualitative Market Research_ 3,3, 118-126. DOI: [10.1108/13522750010333861](https://doi.org/10.1108/13522750010333861)
 
 Sarah J. Tracy. 2010. Qualitative Quality: Eight "Big-Tent" Criteria for
 Excellent Qualitative Research. *Qualitative Inquiry*. 16, 10,

@@ -63,7 +63,7 @@ Applies to studies that primarily analyze existing software phenomena using pred
 ### Extraordinary Attributes
 <checklist name="Extraordinary">
 
-- [ ] leverages temporal data via longitudinal analyses (see the [Longitudinal Studies Standard](https://github.com/eschltz/standardstest/blob/main/docs/standards/Longitudinal.md))
+- [ ] leverages temporal data via longitudinal analyses (see the [Longitudinal Studies Standard](https://github.com/acmsigsoft/EmpiricalStandards/blob/master/docs/standards/Longitudinal.md))
 - [ ] triangulates with qualitative data analysis of selected samples of the data 
 - [ ] triangulates with other data sources, such as surveys or interviews
 - [ ] shares findings with and solicits feedback from the creators of the (software) artifacts being studied
@@ -83,7 +83,7 @@ Applies to studies that primarily analyze existing software phenomena using pred
 - Using Bayesian statistics without motivating priors. 
 - Claiming causation without not only establishing covariaton and precedence but also eliminating third variable explanations and at least hypothesizing a generative mechanism.
 - Pre-processing changes training and test data; e.g. while it may be useful to adjust training data class distributions via (say) sub-sampling of majority classes, that adjustment should not applied to the test data (since it is important to assess the learner on the kinds of data that might be seen “in the wild”).
-- Unethical data collection or analysis (see the [Ethics (Secondary Data) supplement](https://github.com/eschltz/standardstest/blob/main/docs/supplements/EthicsSecondaryData.md))
+- Unethical data collection or analysis (see the [Ethics (Secondary Data) supplement](https://github.com/acmsigsoft/EmpiricalStandards/blob/master/docs/supplements/EthicsSecondaryData.md))
 - Significance tests without effect size tests; effect sizes without confidence intervals.
 - Reporting a median, without any indication of variance (e.g., a boxplot).
 - Conducting multiple trials without reporting variations between trials. 

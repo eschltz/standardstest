@@ -1145,10 +1145,10 @@ function preparation_to_convert_MD_to_HTML(standardTagName, checklistTagName, ch
 	checklistText = convert_MD_tags_to_HTML_tags(checklistText);
 	//console.log(checklistText);
 	// Standard Files - Change from docs to link, change from .md file to nothing
-	checklistText = checklistText.replaceAll('https://github.com/eschltz/standardstest/blob/main/docs/standards/', '../docs/standards?standard=').replaceAll('.md', '');
+	checklistText = checklistText.replaceAll('https://github.com/acmsigsoft/EmpiricalStandards/blob/master/docs/standards/', '../docs/standards?standard=').replaceAll('.md', '');
 
 	// Supplement Files - Change from docs to link, change from .md file to nothing
-	checklistText = checklistText.replaceAll('https://github.com/eschltz/standardstest/blob/main/docs/supplements/', '../docs/supplements?supplement=').replaceAll('.md', '');
+	checklistText = checklistText.replaceAll('https://github.com/acmsigsoft/EmpiricalStandards/blob/master/docs/supplements/', '../docs/supplements?supplement=').replaceAll('.md', '');
 
 	// Convert Markdown Checklists to HTML checklists
 	checklists = convert_MD_standard_checklists_to_html_standard_checklists(standardTagName, checklistTagName, checklistText, footnotes)

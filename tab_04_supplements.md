@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Supplements
-permalink: docs/supplements
+permalink: /docs/supplements
 ---   
 
 <html>

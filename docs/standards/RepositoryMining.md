@@ -35,7 +35,7 @@ If the study focuses on predictive modeling (e.g. machine learning) consider the
 - [ ] describes the procedure for the acquisition (e.g., first selecting repositories and then downloading, or all completed together)
 - [ ] if the data obtained is too large to be processed in its entirety
     - explains why (e.g., unfeasibility of a manual study, processing limitations, scope limitations)
-    - explains the sampling strategy (see the [Sampling Supplement](https://github.com/eschltz/standardstest/blob/main/docs/supplements/Sampling.md))
+    - explains the sampling strategy (see the [Sampling Supplement](https://github.com/acmsigsoft/EmpiricalStandards/blob/master/docs/supplements/Sampling.md))
 - [ ] describes dataset characteristics including size of the selected repositories, and dataset attributes relevant to the study at hand (e.g., number of commit messages) 
 - [ ] describes data preprocessing steps
 - [ ] if manual annotations are carried out:
@@ -46,7 +46,7 @@ If the study focuses on predictive modeling (e.g. machine learning) consider the
 - [ ] describes and justifies measures or metrics used
 - [ ] EITHER: uses previously validated measures, OR: assesses construct validity
 
-- [ ] if predictive modeling is used, complies with the [Data Science Standard](https://github.com/eschltz/standardstest/blob/main/docs/standards/DataScience.md)
+- [ ] if predictive modeling is used, complies with the [Data Science Standard](https://github.com/acmsigsoft/EmpiricalStandards/blob/master/docs/standards/DataScience.md)
 
 <results>
     
@@ -62,7 +62,7 @@ If the study focuses on predictive modeling (e.g. machine learning) consider the
 <checklist name="Desirable">
 
 - [ ] provides supplemental materials (e.g. complete dataset, tool(s) used to download, select, pre-process, and post-process the selected repositories)
-- [ ] uses probability sampling (see the [Sampling Supplement](https://github.com/eschltz/standardstest/blob/main/docs/supplements/Sampling.md))
+- [ ] uses probability sampling (see the [Sampling Supplement](https://github.com/acmsigsoft/EmpiricalStandards/blob/master/docs/supplements/Sampling.md))
 - [ ] suggests future work that validates or uses the same sample
 - [ ] quantitatively assess construct validity (e.g. using factor analysis)
 - [ ] triangulates across data sources, informants or researchers
