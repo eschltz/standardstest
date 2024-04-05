@@ -336,8 +336,6 @@ function openStandardFromURL(evt) {
 </div>
 
 <script>
-
-<script>
 function openStandard(evt, standardName) {
   var i, tabcontent, tablinks;
 
