@@ -11,7 +11,6 @@ permalink: /docs/standards
 main .wrapper {
   min-width: 100%;
   display: flex;
-  flex-flow: row wrap;
   padding: 0;
 }
 
