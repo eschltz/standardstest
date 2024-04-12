@@ -19,6 +19,8 @@ main .wrapper {
   align-self: flex-start;
   top: 30px;
   position: sticky;
+  padding-left: 30px;
+  text-indent: -30px;
 }
 
 #Display {
@@ -38,6 +40,8 @@ main .wrapper {
     text-align: left;
 	position: fixed;
 	top: 80px;
+	padding-left: 0;
+    text-indent: 0;
   }
   
   #Display {
@@ -155,19 +159,19 @@ function openSupplementFromURL(evt) {
     <li>
       <h3>Ethics</h3>
       <ul>
-	    <li><a id="EthicsEngineering_b" class="tablinks" href="#Display" onclick="openSupplement(event, 'EthicsEngineering')">Ethics (Engineering Research)</a></li>
-	    <li><a id="EthicsHumanParticipants_b" class="tablinks" href="#Display" onclick="openSupplement(event, 'EthicsHumanParticipants')">Ethics (Human Participants)</a></li>
-	    <li> <a id="EthicsSecondaryData_b" class="tablinks" href="#Display" onclick="openSupplement(event, 'EthicsSecondaryData')">Ethics (Secondary Data)</a></li>
+	    <li><a id="EthicsEngineering_b" class="tablinks" href="#" onclick="openSupplement(event, 'EthicsEngineering')">Ethics (Engineering Research)</a></li>
+	    <li><a id="EthicsHumanParticipants_b" class="tablinks" href="#" onclick="openSupplement(event, 'EthicsHumanParticipants')">Ethics (Human Participants)</a></li>
+	    <li> <a id="EthicsSecondaryData_b" class="tablinks" href="#" onclick="openSupplement(event, 'EthicsSecondaryData')">Ethics (Secondary Data)</a></li>
 	  </ul>
     </li>
     <li>
       <h3>Other</h3>
 	  <ul>
-	    <li><a id="InformationVisualization_b" class="tablinks" href="#Display" onclick="openSupplement(event, 'InformationVisualization')">Information Visualization</a></li>
-	    <li><a id="InterRaterReliabilityAndAgreement_b" class="tablinks" href="#Display" onclick="openSupplement(event, 'InterRaterReliabilityAndAgreement')">Inter-Rater Reliability and Agreement</a></li>
-	    <li><a id="OpenScience_b"	class="tablinks" href="#Display" onclick="openSupplement(event, 'OpenScience')">Open Science</a></li>
-	    <li><a id="RegisteredReports_b" class="tablinks" href="#Display" onclick="openSupplement(event, 'RegisteredReports')">Registered Reports</a></li>
-	    <li> <a id="Sampling_b" class="tablinks" href="#Display" onclick="openSupplement(event, 'Sampling')">Sampling</a></li>
+	    <li><a id="InformationVisualization_b" class="tablinks" href="#" onclick="openSupplement(event, 'InformationVisualization')">Information Visualization</a></li>
+	    <li><a id="InterRaterReliabilityAndAgreement_b" class="tablinks" href="#" onclick="openSupplement(event, 'InterRaterReliabilityAndAgreement')">Inter-Rater Reliability and Agreement</a></li>
+	    <li><a id="OpenScience_b"	class="tablinks" href="#" onclick="openSupplement(event, 'OpenScience')">Open Science</a></li>
+	    <li><a id="RegisteredReports_b" class="tablinks" href="#" onclick="openSupplement(event, 'RegisteredReports')">Registered Reports</a></li>
+	    <li> <a id="Sampling_b" class="tablinks" href="#" onclick="openSupplement(event, 'Sampling')">Sampling</a></li>
 	  </ul>
     </li>
   </ul>
