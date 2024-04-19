@@ -1,8 +1,8 @@
-# Inter-Rater Reliability and Agreement <sup>[1](#sdfootnote1anc)</sup>
-&quot;The extent to which different raters assign the same precise value for each item being rated&quot; (Inter-Rater Agreement; IRA) and &quot;the extent to which raters can consistently distinguish between different items on a measurement scale&quot; (Inter-Rater Reliability; IRR)<sup>[2](#sdfootnote2anc)</sup>
+# Inter-Rater Reliability and Agreement <sup>[1](#myfootnote1)</sup>
+&quot;The extent to which different raters assign the same precise value for each item being rated&quot; (Inter-Rater Agreement; IRA) and &quot;the extent to which raters can consistently distinguish between different items on a measurement scale&quot; (Inter-Rater Reliability; IRR)<sup>[2](#myfootnote2)</sup>
 ## Application
 
-Applies to studies in which one or more human raters (also called judges or coders) rate (or measure, label, judge, rank or categorize) one or more properties of one or more research objects.<sup>[3](#sdfootnote3anc)</sup>
+Applies to studies in which one or more human raters (also called judges or coders) rate (or measure, label, judge, rank or categorize) one or more properties of one or more research objects.<sup>[3](#myfootnote3)</sup>
 
 ## Are multiple raters needed?
 
@@ -19,19 +19,19 @@ There is no universal rule to determine when two or more raters are necessary. T
 - [ ] clearly states how many raters rated each property  
 
 EITHER: 
-  - [ ] provides reasonable justification for using a single rater<sup>[4](#sdfootnote4anc)</sup>
+  - [ ] provides reasonable justification for using a single rater<sup>[4](#myfootnote4)</sup>
 
 OR:  
   - [ ] describes the process by which two or more raters independently rated properties of research objects; AND  
   - [ ] describes how disagreements were resolved; AND  
   - [ ] indicates the variable type (nominal, ordinal, interval, ratio) of the ratings; AND  
-  - [ ] reports an appropriate statistical measure of IRR/IRA<sup>[5](#sdfootnote5anc)</sup>  
+  - [ ] reports an appropriate statistical measure of IRR/IRA<sup>[5](#myfootnote5)</sup>  
 
 ### Desirable Attributes
 - [ ] provides supplementary materials including: rating scheme(s), decision rules, example disagreements, IRR/IRA broken down by property or wave of analysis.
-- [ ] justifies the statistic used<sup>[6](#sdfootnote6anc)</sup>
+- [ ] justifies the statistic used<sup>[6](#myfootnote6)</sup>
 - [ ] reports established interpretations or thresholds for the statistics used
-- [ ] analyzes anomalous results<sup>[7](#sdfootnote7anc)</sup> in light of the properties of the statistic used (e.g. Cohen&#39;s kappa anomalies<sup>[8](#sdfootnote8anc)</sup>)
+- [ ] analyzes anomalous results<sup>[7](#myfootnote7)</sup> in light of the properties of the statistic used (e.g. Cohen&#39;s kappa anomalies<sup>[8](#myfootnote8)</sup>)
 - [ ] describes the raters&#39; training or experience in the research topic
 - [ ] resolves disagreements through discussion (rather than voting)
 
@@ -89,11 +89,11 @@ R. MOHANANI, B. TURHAN, P. RALPH, (in press) Requirements framing affects design
 ZAPF, A., CASTELL, S., MORAWIETZ, L., &amp; KARCH, A. 2016. Measuring inter-rater reliability for nominal data–which coefficients and confidence intervals are appropriate? _BMC medical research methodology_, 16, article 93  
 
 ---
-[1](#sdfootnote1anc) Assessing consistency among raters, where appropriate, promotes &quot;_systematicity, communicability and transparency of the coding process; reflexivity and dialogue within research teams; and helping to satisfy diverse audiences of the trustworthiness of the research_&quot; (O&#39;Connor &amp; Joffe 2020).  
-[2](#sdfootnote2anc) See Gisev, Bell, &amp; Chen (2013)  
-[3](#sdfootnote3anc) For example: (a) applying selection criteria in an SLR; (b) an experiment in which a dependent variable like code quality is scored by human; (c) deductive qualitative analysis with an a priori coding scheme in positivist case study.  
-[4](#sdfootnote4anc) e.g. the ratings are uncontroversial; multiple raters would be impractical; multiple raters are inconsistent with the philosophical perspective of the work  
-[5](#sdfootnote5anc) Such as Pearson&#39;s r, Kendall&#39;s tau, Spearman&#39;s rho, Cohen&#39;s Kappa, Fleiss Kappa, Krippendorff&#39;s Alpha or (rarely) percent agreement  
-[6](#sdfootnote6anc) E.g. is the absolute value for each item being rated (IRA) or the trend in ratings (IRR) important?  
-[7](#sdfootnote7anc) E.g. high value of the observed agreement, but low value of the statistic or vice versa  
-[8](#sdfootnote8anc) See FEINSTEIN, A. R., &amp; CICCHETTI, D. V.1990. High Agreement But Low Kappa: I. the Problems of Two Paradoxes\*. _J Clin Epidemiol_, 43(6), 543–549.
+<sup><a id="myfootnote1">1</a></sup> Assessing consistency among raters, where appropriate, promotes &quot;_systematicity, communicability and transparency of the coding process; reflexivity and dialogue within research teams; and helping to satisfy diverse audiences of the trustworthiness of the research_&quot; (O&#39;Connor &amp; Joffe 2020).  
+<sup><a id="myfootnote2">2</a></sup> See Gisev, Bell, &amp; Chen (2013)  
+<sup><a id="myfootnote3">3</a></sup> For example: (a) applying selection criteria in an SLR; (b) an experiment in which a dependent variable like code quality is scored by human; (c) deductive qualitative analysis with an a priori coding scheme in positivist case study.  
+<sup><a id="myfootnote4">4</a></sup> e.g. the ratings are uncontroversial; multiple raters would be impractical; multiple raters are inconsistent with the philosophical perspective of the work  
+<sup><a id="myfootnote5">5</a></sup> Such as Pearson&#39;s r, Kendall&#39;s tau, Spearman&#39;s rho, Cohen&#39;s Kappa, Fleiss Kappa, Krippendorff&#39;s Alpha or (rarely) percent agreement  
+<sup><a id="myfootnote6">6</a></sup> E.g. is the absolute value for each item being rated (IRA) or the trend in ratings (IRR) important?  
+<sup><a id="myfootnote7">7</a></sup> E.g. high value of the observed agreement, but low value of the statistic or vice versa  
+<sup><a id="myfootnote8">8</a></sup> See FEINSTEIN, A. R., &amp; CICCHETTI, D. V.1990. High Agreement But Low Kappa: I. the Problems of Two Paradoxes\*. _J Clin Epidemiol_, 43(6), 543–549.
