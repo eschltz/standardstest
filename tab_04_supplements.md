@@ -255,25 +255,21 @@ function openSupplement(evt, supplementName) {
   
   <!-- Dynamic footnote links -->
   let footnotes = document.getElementsByClassName("footnote");
-  console.log(footnotes);
   let footnoteCount = 0;
   for (i = 0; i < footnotes.length; i++) {
-	console.log("Footnote: " + i);
 	footnotes[i].removeAttribute("id");
 	footnotes[i].removeAttribute("href");
 	
 	if (footnotes[i].closest(".tabcontent").style.display === "block") {
-	  console.log("Active footnote:" + i)
 	  if (footnotes[i].classList.contains("footnote-text")) {
 	    footnotes[i].setAttribute("id", "footnote-text" + footnoteCount);
-		footnotes[i].setAttribute("href", "footnote-ref" + footnoteCount);
+		footnotes[i].setAttribute("href", "#footnote-ref" + footnoteCount);
 	  } else {
 	    footnotes[i].setAttribute("id", "footnote-ref" + footnoteCount);
-		footnotes[i].setAttribute("href", "footnote-text" + footnoteCount);
+		footnotes[i].setAttribute("href", "#footnote-text" + footnoteCount);
 	  }
 	  footnoteCount++;
 	}
   }
-  console.log("Active footnotes: " + footnoteCount)
 }
 </script>

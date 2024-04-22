@@ -32,9 +32,9 @@ This standard applies to positivist, confirmatory (i.e. hypothesis-testing) stud
 ### Desirable Attributes
 - [ ] presents preliminary data (e.g. from a pilot study) to justify the chosen approach (e.g. probability distributions).
 - [ ] includes a conditional structure (e.g. pre-specifying different tests for normal and non-normal distributions)
-- [ ] explains how the study will change based on the results of data analysis (i.e. conditional analysis)<sup><a class="footnote footnote-ref">1</a></sup>
+- [ ] explains how the study will change based on the results of data analysis (i.e. conditional analysis)<sup><a class="footnote footnote-ref">2</a></sup>
 
-## Specific Attributes (RR2)<sup><a class="footnote footnote-ref">1</a></sup>
+## Specific Attributes (RR2)<sup><a class="footnote footnote-ref">3</a></sup>
 ### Essential Attributes
 - [ ] meets all essential criteria in _The General Standard_ (no exceptions)
 - [ ] introduction, rationale and stated hypotheses are the same as the approved RR1 submission except for improvements based on feedback from RR1 reviews
