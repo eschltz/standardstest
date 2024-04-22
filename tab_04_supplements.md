@@ -248,6 +248,26 @@ function openSupplement(evt, supplementName) {
   for (i = 0; i < tablinks.length; i++) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
+  
+  <!-- Dynamic footnote links -->
+  let footnotes = document.getElementsByClassName("footnote");  
+  let footnoteCount = 1;
+  for (i = 0; i < footnotes.length; i++) {
+	footnotes[i].removeAttribute("id");
+	footnotes[i].removeAttribute("href");
+	
+	if (footnotes[i].offsetParent != null) {
+	  if (footnotes[i].classList.contains("footnote-text")) {
+	    footnotes[i].setAttribute("id", "footnote-text" + footnoteCount);
+		footnotes[i].setAttribute("href", "footnote-ref" + footnoteCount);
+	  } else {
+	    footnotes[i].setAttribute("id", "footnote-ref" + footnoteCount);
+		footnotes[i].setAttribute("href", "footnote-text" + footnoteCount);
+	  }
+	  footnoteCount++;
+	}
+  }
+  
   document.getElementById(supplementName).style.display = "block";
   evt.currentTarget.className += " active";
   window.history.replaceState('', '', '?supplement='+supplementName);
