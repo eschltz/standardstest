@@ -258,7 +258,7 @@ function openSupplement(evt, supplementName) {
 	footnotes[i].removeAttribute("id");
 	footnotes[i].removeAttribute("href");
 	
-	if (footnotes[i].closest("#" + supplementName).style.display === "block") {
+	if (footnotes[i].closest(".tabcontent").style.display === "block") {
 	  console.log("Active footnote:" + i)
 	  if (footnotes[i].classList.contains("footnote-text")) {
 	    footnotes[i].setAttribute("id", "footnote-text" + footnoteCount);
