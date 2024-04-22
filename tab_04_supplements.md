@@ -249,6 +249,10 @@ function openSupplement(evt, supplementName) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
   
+  document.getElementById(supplementName).style.display = "block";
+  evt.currentTarget.className += " active";
+  window.history.replaceState('', '', '?supplement='+supplementName);
+  
   <!-- Dynamic footnote links -->
   let footnotes = document.getElementsByClassName("footnote");
   console.log(footnotes);
@@ -271,9 +275,5 @@ function openSupplement(evt, supplementName) {
 	}
   }
   console.log("Active footnotes: " + footnoteCount)
-  
-  document.getElementById(supplementName).style.display = "block";
-  evt.currentTarget.className += " active";
-  window.history.replaceState('', '', '?supplement='+supplementName);
 }
 </script>
