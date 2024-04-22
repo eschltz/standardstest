@@ -255,20 +255,22 @@ function openSupplement(evt, supplementName) {
   
   <!-- Dynamic footnote links -->
   let footnotes = document.getElementsByClassName("footnote");
-  let footnoteCount = 0;
+  let textCount = 0;
+  let refCount = 0;
   for (i = 0; i < footnotes.length; i++) {
 	footnotes[i].removeAttribute("id");
 	footnotes[i].removeAttribute("href");
 	
 	if (footnotes[i].closest(".tabcontent").style.display === "block") {
 	  if (footnotes[i].classList.contains("footnote-text")) {
-	    footnotes[i].setAttribute("id", "footnote-text" + footnoteCount);
-		footnotes[i].setAttribute("href", "#footnote-ref" + footnoteCount);
+	    footnotes[i].setAttribute("id", "footnote-text" + textCount);
+		footnotes[i].setAttribute("href", "#footnote-ref" + textCount);
+		textCount++;
 	  } else {
-	    footnotes[i].setAttribute("id", "footnote-ref" + footnoteCount);
-		footnotes[i].setAttribute("href", "#footnote-text" + footnoteCount);
+	    footnotes[i].setAttribute("id", "footnote-ref" + refCount);
+		footnotes[i].setAttribute("href", "#footnote-text" + refCount);
+		refCount++;
 	  }
-	  footnoteCount++;
 	}
   }
 }
