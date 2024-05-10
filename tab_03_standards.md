@@ -353,8 +353,8 @@ function openStandard(evt, standardName) {
   
   <!-- Dynamic footnote links -->
   let footnotes = document.getElementsByClassName("footnote");
-  let textCount = 0;
-  let refCount = 0;
+  let textCount = 1;
+  let refCount = 1;
   for (i = 0; i < footnotes.length; i++) {
 	footnotes[i].removeAttribute("id");
 	footnotes[i].removeAttribute("href");
