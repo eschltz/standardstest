@@ -216,7 +216,7 @@ case study of crowdsourcing software development. In *Proceedings of the
 
 ---
 <footnote><sup><a class="footnote footnote-text">1</a></sup>e.g. descriptive, emancipatory, evaluative, explanatory, exploratory, historical, revelatory</footnote><br> 
-<footnote><sup><a class="footnote footnote-text">2</a></sup> Direct observation means watching research subjects without getting involved; participant observation means joining in with whatever participants are doing</footnote><br>
-<footnote><sup><a class="footnote footnote-text">3</a></sup> L. Harvey. 2015. Beyond member-checking: A dialogic approach to the research interview, International Journal of Research & Method in Education, 38, 1, 23–38.</footnote><br>
-<footnote><sup><a class="footnote footnote-text">4</a></sup> Quotations should not be *the only* representation of a finding; each finding should be described independently of supporting quotations</footnote><br>    
+<footnote><sup><a class="footnote footnote-text">2</a></sup>Direct observation means watching research subjects without getting involved; participant observation means joining in with whatever participants are doing</footnote><br>
+<footnote><sup><a class="footnote footnote-text">3</a></sup>L. Harvey. 2015. Beyond member-checking: A dialogic approach to the research interview, International Journal of Research & Method in Education, 38, 1, 23–38.</footnote><br>
+<footnote><sup><a class="footnote footnote-text">4</a></sup>Quotations should not be *the only* representation of a finding; each finding should be described independently of supporting quotations</footnote><br>    
 </standard>

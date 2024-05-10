@@ -80,6 +80,6 @@ Ben Goldacre, Nicholas J DeVito, Carl Heneghan, Francis Irving, Seb Bacon, Jessi
 Wiseman R, Watt C, Kornbrot D. 2019. Registered reports: an early example and analysis. PeerJ 7:e6232 [10.7717/peerj.6232](https://doi.org/10.7717/peerj.6232)
 
 ---
-<footnote><sup><a class="footnote footnote-text">1</a></sup> e.g. presents power analysis; describes how card sorting will be executed, lists anticipated statistical tests</footnote>
-<footnote><sup><a class="footnote footnote-text">2</a></sup> e.g. as a decision tree; while not strictly required, omitting conditional analysis is extraordinarily risky for the authors</footnote>
+<footnote><sup><a class="footnote footnote-text">1</a></sup> e.g. presents power analysis; describes how card sorting will be executed, lists anticipated statistical tests</footnote><br>
+<footnote><sup><a class="footnote footnote-text">2</a></sup> e.g. as a decision tree; while not strictly required, omitting conditional analysis is extraordinarily risky for the authors</footnote><br>
 <footnote><sup><a class="footnote footnote-text">3</a></sup> Adapted from https://osf.io/pukzy/ by CC-BY</footnote>

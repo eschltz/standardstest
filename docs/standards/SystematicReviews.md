@@ -144,10 +144,10 @@ Yahya Rafique, and Vojislav B. Mišić. 2012. The effects of test-driven develop
 Martin Shepperd, David Bowes, and Tracy Hall. (2014) Researcher bias: The use of machine learning in software defect prediction. _IEEE Transactions on Software Engineering_ 40,6: 603-616.
 
 ---
-<footnote><sup><a class="footnote footnote-text">1</a></sup> Searches can be manual or automated or a combination of both.</footnote><br>
-<footnote><sup><a class="footnote footnote-text">2</a></sup> Primary studies are the studies that are being reviewed. In a tertiary study, the “primary studies” are themselves reviews.</footnote><br>
-<footnote><sup><a class="footnote footnote-text">3</a></sup> e.g. formal meta-analysis of experiments has higher requirements for completeness than mapping studies of broad topic areas.</footnote><br>
+<footnote><sup><a class="footnote footnote-text">1</a></sup>Searches can be manual or automated or a combination of both.</footnote><br>
+<footnote><sup><a class="footnote footnote-text">2</a></sup>Primary studies are the studies that are being reviewed. In a tertiary study, the “primary studies” are themselves reviews.</footnote><br>
+<footnote><sup><a class="footnote footnote-text">3</a></sup>e.g. formal meta-analysis of experiments has higher requirements for completeness than mapping studies of broad topic areas.</footnote><br>
 <footnote><sup><a class="footnote footnote-text">4</a></sup>By discussion and agreement, voting, adding tie-breaker, consulting with study authors, etc.</footnote><br>
-<footnote><sup><a class="footnote footnote-text">5</a></sup> Simply separating results and discussion into different sections is typically sufficient. No speculation in the results section.</footnote><br>
+<footnote><sup><a class="footnote footnote-text">5</a></sup>Simply separating results and discussion into different sections is typically sufficient. No speculation in the results section.</footnote><br>
 <footnote><sup><a class="footnote footnote-text">6</a></sup>See https://idaunc.web.unc.edu/home/ida/</footnote><br>
 </standard>

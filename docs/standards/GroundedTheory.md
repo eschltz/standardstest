@@ -169,5 +169,5 @@ up-front? A grounded theory of agile architecture. In *2015 IEEE/ACM
 2015), 347–357.
     
 ---
-<footnote><sup><a class="footnote footnote-text">1</a></sup> cf. Khaldoun M. Aldiabat and Carole-Lynne Le Navenec. "Data Saturation: The Mysterious Step in Grounded Theory Methodology." _The Qualitative Report_, vol. 23, no. 1, 2018, pp. 245-261.</footnote><br>    
+<footnote><sup><a class="footnote footnote-text">1</a></sup>cf. Khaldoun M. Aldiabat and Carole-Lynne Le Navenec. "Data Saturation: The Mysterious Step in Grounded Theory Methodology." _The Qualitative Report_, vol. 23, no. 1, 2018, pp. 245-261.</footnote><br>    
 </standard>

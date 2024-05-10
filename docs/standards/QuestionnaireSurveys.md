@@ -175,8 +175,8 @@ Trans. Softw. Eng. Methodol.* 28, 2, Article 9 (April 2019), 48 pages.
 DOI:10.1145/3306607
 
 ---
-<footnote><sup><a class="footnote footnote-text">1</a></sup> There is currently no standard for predominately open-ended questionnaire surveys. One exemplar readers could draw from is: Daniel Graziotin, Fabian Fagerholm, Xiaofeng Wang, and Pekka Abrahamsson. 2018. "What happens when software developers are (un)happy." Journal of Systems and Software 140, 32-47.</footnote><br>
-<footnote><sup><a class="footnote footnote-text">2</a></sup> Questions are mapped to research objectives and their wording and format is appropriate for their audience.</footnote><br>
-<footnote><sup><a class="footnote footnote-text">3</a></sup> For advice on analyzing construct validity, see recommended readings Graziotin et al. (2021) and Ralph and Tempero (2018).</footnote><br>
-<footnote><sup><a class="footnote footnote-text">4</a></sup> Simply separating results and discussion into different sections is typically sufficient. No speculation in the results section.</footnote><br>
+<footnote><sup><a class="footnote footnote-text">1</a></sup>There is currently no standard for predominately open-ended questionnaire surveys. One exemplar readers could draw from is: Daniel Graziotin, Fabian Fagerholm, Xiaofeng Wang, and Pekka Abrahamsson. 2018. "What happens when software developers are (un)happy." Journal of Systems and Software 140, 32-47.</footnote><br>
+<footnote><sup><a class="footnote footnote-text">2</a></sup>Questions are mapped to research objectives and their wording and format is appropriate for their audience.</footnote><br>
+<footnote><sup><a class="footnote footnote-text">3</a></sup>For advice on analyzing construct validity, see recommended readings Graziotin et al. (2021) and Ralph and Tempero (2018).</footnote><br>
+<footnote><sup><a class="footnote footnote-text">4</a></sup>Simply separating results and discussion into different sections is typically sufficient. No speculation in the results section.</footnote><br>
 </standard>

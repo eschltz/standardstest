@@ -182,8 +182,8 @@ Andreas Zeller, Thomas Zimmermann, and Christian Bird. 2011. Failure is a four-l
 
 
 ---
-<footnote><sup><a class="footnote footnote-text">1</a></sup> For example, in an experiment where the control group applies Test-Driven Development (TDD) with Object 1 while the treatment group applies Test-Last-Development (TDD) with Object 2, the experimental object is confounded with the treatment.</footnote><br>
-<footnote><sup><a class="footnote footnote-text">2</a></sup> e.g. dropouts affecting balance between treatment and control group.</footnote><br>
-<footnote><sup><a class="footnote footnote-text">3</a></sup> Simply separating results and discussion into different sections is typically sufficient. No speculation in the results section.</footnote><br>
-<footnote><sup><a class="footnote footnote-text">4</a></sup> Quasi-experiments are appropriate for pilot studies or when assignment is beyond the researcher’s control (e.g. assigning students to two different sections of a course). Simply claiming that a study is “exploratory” is not sufficient justification.</footnote><br>
+<footnote><sup><a class="footnote footnote-text">1</a></sup>For example, in an experiment where the control group applies Test-Driven Development (TDD) with Object 1 while the treatment group applies Test-Last-Development (TDD) with Object 2, the experimental object is confounded with the treatment.</footnote><br>
+<footnote><sup><a class="footnote footnote-text">2</a></sup>e.g. dropouts affecting balance between treatment and control group.</footnote><br>
+<footnote><sup><a class="footnote footnote-text">3</a></sup>Simply separating results and discussion into different sections is typically sufficient. No speculation in the results section.</footnote><br>
+<footnote><sup><a class="footnote footnote-text">4</a></sup>Quasi-experiments are appropriate for pilot studies or when assignment is beyond the researcher’s control (e.g. assigning students to two different sections of a course). Simply claiming that a study is “exploratory” is not sufficient justification.</footnote><br>
 </standard>

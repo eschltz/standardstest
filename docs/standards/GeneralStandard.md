@@ -174,7 +174,7 @@ their trustworthiness and importance. Reviewers should endeavor to:
 -   Acknowledging limitations but then writing implications and conclusions as though the limitations don't exist.
 
 ---
-<footnote><sup><a class="footnote footnote-text">1</a></sup> visual methods of checking assumptions are often as good as or better than statistical tests</footnote><br>
+<footnote><sup><a class="footnote footnote-text">1</a></sup>visual methods of checking assumptions are often as good as or better than statistical tests</footnote><br>
 <footnote><sup><a class="footnote footnote-text">2</a></sup>e.g. positivism, falisificationism, interpretivism, critical realism, postmodernism</footnote><br>
 <footnote><sup><a class="footnote footnote-text">Q</a></sup>This is a custom question for first checklist</footnote><br>
 

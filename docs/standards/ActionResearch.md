@@ -208,9 +208,9 @@ product line architecture. In *Proc. IASTED Int. Conf. on Software
 Engineering*. 2008, 178-183.
 
 ---
-<footnote><sup><a class="footnote footnote-text">1</a></sup> i.e. who intervened and with which part of the organization? </footnote><br>
-<footnote><sup><a class="footnote footnote-text">2</a></sup> Action research projects are structured in interventions often described as action research cycles, which are often structured in distinct phases. It is a flexible methodology, where subsequent cycles are based on their predecessors.</footnote><br>
-<footnote><sup><a class="footnote footnote-text">3</a></sup> E.g. project financing, potential conflicts of interest, professional relationship leading to access.</footnote><br>
-<footnote><sup><a class="footnote footnote-text">4</a></sup> Can include quantitative evaluation in addition to qualitative evaluation.</footnote><br>
-<footnote><sup><a class="footnote footnote-text">5</a></sup> L. Harvey. 2015. Beyond member-checking: A dialogic approach to the research interview, International Journal of Research & Method in Education, 38, 1, 23–38.</footnote><br>
+<footnote><sup><a class="footnote footnote-text">1</a></sup>i.e. who intervened and with which part of the organization? </footnote><br>
+<footnote><sup><a class="footnote footnote-text">2</a></sup>Action research projects are structured in interventions often described as action research cycles, which are often structured in distinct phases. It is a flexible methodology, where subsequent cycles are based on their predecessors.</footnote><br>
+<footnote><sup><a class="footnote footnote-text">3</a></sup>E.g. project financing, potential conflicts of interest, professional relationship leading to access.</footnote><br>
+<footnote><sup><a class="footnote footnote-text">4</a></sup>Can include quantitative evaluation in addition to qualitative evaluation.</footnote><br>
+<footnote><sup><a class="footnote footnote-text">5</a></sup>L. Harvey. 2015. Beyond member-checking: A dialogic approach to the research interview, International Journal of Research & Method in Education, 38, 1, 23–38.</footnote><br>
 </standard>
