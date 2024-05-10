@@ -29,9 +29,9 @@ To _[replicate](../glossary#replicability)_ means to repeat a study by collectin
 <intro>
 
 - [ ] discusses the motivation for conducting the replication in appropriate detail (e.g., to validate the results, to broaden the results by changing the participant pool or the artifacts)
-- [ ] defines the type of the replication by methodological similarity (exact, methodological, conceptual)<sup>[2](#footnote2)</sup>
-- [ ] defines the type of the replication by overlap (partial, complete, extended)<sup>[3](#footnote3)</sup>
-- [ ] defines the type of the replication by participants (internal, external, mixed)<sup>[4](#footnote4)</sup>
+- [ ] defines the type of the replication by methodological similarity (exact, methodological, conceptual)<sup><a class="footnote footnote-ref">2</a></sup>
+- [ ] defines the type of the replication by overlap (partial, complete, extended)<sup><a class="footnote footnote-ref">3</a></sup>
+- [ ] defines the type of the replication by participants (internal, external, mixed)<sup><a class="footnote footnote-ref">4</a></sup>
 
 <method>
 
@@ -39,7 +39,7 @@ To _[replicate](../glossary#replicability)_ means to repeat a study by collectin
   - [ ] the research questions of the original study
   - [ ] the design of the original study 
   - [ ] if applicable, the participants of the original study (their number and any relevant characteristics)
-  - [ ] the artifacts of the original study<sup>[5](#footnote5)</sup>
+  - [ ] the artifacts of the original study<sup><a class="footnote footnote-ref">5</a></sup>
   - [ ] the context variables of the original study that might have affected the design of the study or interpretation of the results
   - [ ] the major findings of the original study
 - [ ] 	EITHER: describes overlap or interactions with the original study author(s),
@@ -64,7 +64,7 @@ To _[replicate](../glossary#replicability)_ means to repeat a study by collectin
 
 <checklist name="Desirable">
 
-- [ ] 	clearly seperates information about (i) the original study, (ii) the replication, (iii) the comparison of results, and (iv) conclusions <sup>[1](#footnote1)</sup>
+- [ ] 	clearly seperates information about (i) the original study, (ii) the replication, (iii) the comparison of results, and (iv) conclusions <sup><a class="footnote footnote-ref">1</a></sup>
 - [ ] 	improves on the original study in some way (e.g., design, analysis, statistical power)
 - for *families of replications*:
   	- [ ] provides a brief summary of the previous studies and replications, including information about how the studies were related, conclusions drawn and current state of knowledge about the topic 

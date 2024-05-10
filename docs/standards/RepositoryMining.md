@@ -71,7 +71,7 @@ If the study focuses on predictive modeling (e.g. machine learning) consider the
 - [ ] performs testing (e.g., unit testing) to avoid bugs in the proposed tool
 - [ ] builds, tests or extends theory
 - [ ] tests formal hypotheses
-- [ ] discusses ethical issues in mining of software repositories<sup>[1](#footnote1)</sup> (e.g., data privacy)    
+- [ ] discusses ethical issues in mining of software repositories<sup><a class="footnote footnote-ref">1</a></sup> (e.g., data privacy)    
     
 </checklist>
 
@@ -93,8 +93,8 @@ Internal validity, external validity, construct validity, reliability.
 ## Antipatterns
 - limiting a study to quantitative description; failing to test, build or extend theory
 - unvalidated, uni-dimensional operationalizations of multidimensional constructs (e.g. using github stars as a proxy for popularity) 
-- using open-source repositories without any filtering criteria; i.e., convenience sampling<sup>[2](#footnote2)</sup>.
-- in a study where *all* the commits of a project need to be analyzed, only the GitHub repository is considered; a GitHub repository does not necessarily contain all commits of a project<sup>[3](#footnote3)</sup>.
+- using open-source repositories without any filtering criteria; i.e., convenience sampling<sup><a class="footnote footnote-ref">2</a></sup>.
+- in a study where *all* the commits of a project need to be analyzed, only the GitHub repository is considered; a GitHub repository does not necessarily contain all commits of a project<sup><a class="footnote footnote-ref">3</a></sup>.
 - conclusions must be derived in the context of the selected repositories; deriving generic conclusions applicable to the selected repositories but necessarily to a larger generic set is an antipattern
 - insufficient details about the applied processing steps of the selected repositories
 
