@@ -25,8 +25,8 @@ For cross-sectional analysis, consider the **Exploratory Data Science Standard**
 - [ ] determines the appropriate number of waves based on the natural oscillation of the research phenomenon<sup><a class="footnote footnote-ref">1</a></sup>
 - [ ] uses at least two data collection waves
 - [ ] subjects (humans or artifacts) are identifiable between waves
-- [ ] justifies the data analysis strategy<sup><a class="footnote footnote-ref">3</a></sup>
-- [ ] the data analysis strategy is appropriate for the interdependent nature of the data<sup><a class="footnote footnote-ref">2</a></sup>
+- [ ] justifies the data analysis strategy<sup><a class="footnote footnote-ref">2</a></sup>
+- [ ] the data analysis strategy is appropriate for the interdependent nature of the data<sup><a class="footnote footnote-ref">3</a></sup>
 - [ ] discusses the critical alpha levels or justifies Bayesian priors<sup><a class="footnote footnote-ref">4</a></sup>
 - [ ] justifies sample size (e.g. using power analysis)<sup><a class="footnote footnote-ref">5</a></sup>
 - [ ] describes data loss throughout the different waves
@@ -113,8 +113,8 @@ Longitudinal studies exploit the temporal nature of data to maximize internal va
 
 ---
 <footnote><sup><a class="footnote footnote-text">1</a></sup>On the concept of natural oscillation cf. Kehr &amp; Kowatsch, 2015.</footnote><br>
-<footnote><sup><a class="footnote footnote-text">2</a></sup>Several different statistical approaches are used to analyze longitudinal data (Kehr &amp; Kowatsch provide a partial overview).</footnote><br>
-<footnote><sup><a class="footnote footnote-text">3</a></sup>Although there might not be one best method for a specific problem, it should still be discussed on a subjective level (e.g., why it fits best to the research question) and at an objective level (e.g., data normality).</footnote><br>
+<footnote><sup><a class="footnote footnote-text">2</a></sup>Although there might not be one best method for a specific problem, it should still be discussed on a subjective level (e.g., why it fits best to the research question) and at an objective level (e.g., data normality).</footnote><br>
+<footnote><sup><a class="footnote footnote-text">3</a></sup>Several different statistical approaches are used to analyze longitudinal data (Kehr &amp; Kowatsch provide a partial overview).</footnote><br>
 <footnote><sup><a class="footnote footnote-text">4</a></sup>The choice of thresholds (e.g., _p_-values \&lt; 0.05) should be discussed, to avoid Type I errors. Typically, longitudinal analyses deal with many variables and multiple comparisons, increasing the likelihood to obtain results within traditionally acceptable thresholds. For this reason, authors are advised to adjust the critical alpha level (e.g., using as a threshold _p_-values \&lt; 0.001) or use Bayesian statistics (Simmons et al., 2011).</footnote><br>
 <footnote><sup><a class="footnote footnote-text">5</a></sup>Determining the sample size is of utter importance to avoid Type II errors. Thus, authors might define their sample size using a priori power calculations. At the same time, reviewers can control adequate size through a post hoc analysis (Faul, 2019).</footnote><br>
 <footnote><sup><a class="footnote footnote-text">6</a></sup>The research design should explicitly state how the sample has been selected and filtered out through a selection process. For example, how are we sure to have included only software engineers when dealing with human subjects? Or, which type of quality controls have been performed on software repositories to ensure the consistency and homogeneity of artifacts?</footnote><br>
