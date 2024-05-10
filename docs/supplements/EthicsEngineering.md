@@ -63,4 +63,4 @@ United Nations. 2015.  *Sustainable Development Goals*. [https://sdgs.un.org/goa
 Caroline Whitbeck. 2011.  *Ethics in Engineering Practice and Research*. Cambridge University Press.  ISBN 978-0521723985.  Chapters 10 and 11 in particular.
 
 ---
-<sup><a class="footnote footnote-text">1</a></sup> The tool at [https://mlco2.github.io/impact/#home] provides an estimate of the carbon impact of machine learning for a wide variety of hardware running in various cloud platforms including private infrastructure, producing results in a publication-friendly format.
+<footnote><sup><a class="footnote footnote-text">1</a></sup> The tool at [https://mlco2.github.io/impact/#home] provides an estimate of the carbon impact of machine learning for a wide variety of hardware running in various cloud platforms including private infrastructure, producing results in a publication-friendly format.</footnote>
