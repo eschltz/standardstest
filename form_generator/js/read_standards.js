@@ -1134,16 +1134,19 @@ function preparation_to_convert_MD_to_HTML(standardTagName, checklistTagName, ch
 
 	// superscript tags
 	checklistInnerHTML = checklistInnerHTML.replaceAll("<sup>", "{sup}").replaceAll("</sup>", "{/sup}");
+	console.log("DEBUG1: " + checklistInnerHTML);
 
     var tempDivElement = document.createElement("div");
     tempDivElement.innerHTML = checklistInnerHTML;
 	checklistInnerText = tempDivElement.innerText;
+	console.log("DEBUG1.1 " + checklistInnerText);
 
 	checklistText = checklistInnerText.replaceAll(">", "").replaceAll(/\n\s*\n/g, '\n').replaceAll("\n", "<br/>");
+	console.log("DEBUG2: " + checklistText);
 
 	// Transform Markdown tags to HTMLtags
 	checklistText = convert_MD_tags_to_HTML_tags(checklistText);
-	//console.log(checklistText);
+	console.log("DEBUG3: " + checklistText);
 	// Standard Files - Change from docs to link, change from .md file to nothing
 	checklistText = checklistText.replaceAll('https://github.com/acmsigsoft/EmpiricalStandards/blob/master/docs/standards/', '../docs/standards?standard=').replaceAll('.md', '');
 
@@ -1209,6 +1212,7 @@ function create_requirements_heading_with_UL(title){
 // collect footnotes
 function collect_footnotes(dom, standardTag){
 	var footnoteTags = dom.getElementsByTagName("footnote");
+	console.log("DEBUG: " + footnoteTags);
 
 	for(let footnoteTag of footnoteTags){
 		supTag = footnoteTag.getElementsByTagName("sup")[0];
@@ -1270,6 +1274,7 @@ function Encode_key(content){
 	content = content.replace(/<a[^>]*>|<\/a>/g, '');
 	// process the footnote issue
 	content = content.replace(/\{sup\}.*?\{\/sup\}/g, '');
+	console.log("DEBUG: " + content);
 	// now remove all the non-alphabetic and non-numeric characters
 	content = content.replace(/[^a-zA-Z0-9]/g, '');
 	return content;
@@ -1411,7 +1416,7 @@ function create_requirements_checklist(file){
 
 			// dealing with footnotes
 			checklistHTML = checklistTag.innerHTML.replaceAll("<sup>", "<sup>"+standardName+"--") // To make footnotes belong to their standards 
-			//console.log(checklistHTML)
+			console.log("DEBUG: " + checklistHTML)
 			// Add all information for "all_intro_items", etc.
 			separate_essential_attributes_based_on_IMRaD_tags(standardTag.getAttribute('name'), checklistTag.getAttribute('name'), checklistHTML)
 
