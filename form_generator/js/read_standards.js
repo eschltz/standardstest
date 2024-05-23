@@ -133,18 +133,23 @@ function readSpecificEmpiricalStandard_table(standard_name){
 //This function creates tooltips for text
 //Anything between / and / is known as regular expressions
 function createTooltip(checklistItemText, line_text, footnotes){
-	footnote_sups = line_text.match(/(.*?)\{sup\}.+?\[\d+\]\(#[\w\d_]+\)\{\/sup\}(.*?)/g);
+	footnote_sups = line_text.match(/\{sup\}.*?\{\/sup\}/g);
+	console.log("DEBUG1: " + line_text);
+	console.log("DEBUG2:" + footnote_sups.toString());
 	if(footnote_sups){
 		footnote_rest = line_text.match(/(?!.*\})(.*?)$/g);
+		console.log("DEBUG3: " + footnote_rest.toString());
 		footnote_rest = footnote_rest.filter(function (el) {
 			return el.trim() != "";
 		});
+		console.log("DEBUG4: " + footnote_rest.toString());
 		checklistItemText.innerHTML = checklistItemText.innerHTML.replace("<br>", "");
 		var allTooltipsText = checklistItemText;
 		var i = 0;
 		for (let footnote_sup of footnote_sups){
 			i++;
 			ftnt = footnote_sup.match(/(.*?)\{sup\}(.*?)\{\/sup\}(.*?)/);
+			console.log("DEBUG5: " + ftnt.toString());
 			var tooltip = document.createElement("span");
 			tooltip.className = "tooltip";
 			tooltip.innerHTML = ftnt[1].trim();
@@ -156,6 +161,7 @@ function createTooltip(checklistItemText, line_text, footnotes){
 			allTooltipsText.appendChild(tooltip);
 		}
 		if(footnote_rest.length > 0){
+			console.log("DEBUG6: footnote_rest > 0");
 			var tooltip = document.createElement("span");
 			tooltip.innerHTML = footnote_rest[0].trim();
 			allTooltipsText.appendChild(tooltip);
@@ -606,7 +612,7 @@ function generate_question_block_with_yes_no_radio_answers(id, class_name, quest
 	//console.log(question_block);
 
 	// if the deviation reasonable is fixed in the table
-	if(!display){
+	if(display){
 		deviationRadioYes.disabled = true; // Disable 'Yes' radio button
 
 		// Cross out the label associated with the 'Yes' radio button
@@ -791,7 +797,7 @@ function generate_one_phase_reviewer_deviation_block(checklistItem_id,data) {
 	// Create a question block with Yes-No radio answers
 	// 2nd Question
 	if(data!=null){
-		var deviation_block = generate_question_block_with_yes_no_radio_answers("deviation_block", "deviationRadio", "is the deviation reasonable?", checklistItem_id, 2.40, data.display1 == "True");
+		var deviation_block = generate_question_block_with_yes_no_radio_answers("deviation_block", "deviationRadio", "is the deviation reasonable?", checklistItem_id, 2.40, data.display1 == "False");
 
 		
 		// Reviewer-specific deviation justification block
@@ -857,32 +863,75 @@ function generate_one_phase_reviewer_deviation_block(checklistItem_id,data) {
 }
 
 // generate the deviation block for Two Phase Reviewer Role
-function generate_two_phase_reviewer_deviation_block(checklistItem_id) {
+function generate_two_phase_reviewer_deviation_block(checklistItem_id,data) {
 
+
+	//console.log(checklistItem_id);
 	// Create a question block with Yes-No radio answers
 	// 2nd Question
-	var deviation_block = generate_question_block_with_yes_no_radio_answers("deviation_block", "deviationRadio", "Is the deviation reasonable?", checklistItem_id, 2.40);
+	if(data!=null){
+		var deviation_block = generate_question_block_with_yes_no_radio_answers("deviation_block", "deviationRadio", "is the deviation reasonable?", checklistItem_id, 2.40, data.display1 == "False");
 
-	// Reviewer-specific deviation justification block
-	//var deviation_justified = generate_question_block_with_yes_no_radio_answers("deviation_justified", "deviationRadio", "", checklistItem_id, 2.06);
-	var deviation_justified = generate_message("deviation_justified:" + checklistItem_id, "red", "", 2.80, -1.07);
+		
+		// Reviewer-specific deviation justification block
+		//var deviation_justified = generate_question_block_with_radio_answers("deviation_justified", "deviationRadio", "", checklistItem_id, 2.06);
+		var deviation_justified = generate_message("deviation_justified:" + checklistItem_id, "red", "", 2.80, -1.07);
+	
+		// Create a question block with type radio answers
+		// 3rd Question
+		// console.log(data.errortype);
+		var numbersArray = data.errortype.split(",").map(function(item) {
+			return parseInt(item, 10);
+		});
+		// console.log(numbersArray);
 
-	// Create a question block with type radio answers
-	// 3rd Question
-	var deviation_not_justified = generate_question_block_with_type_radio_answers("deviation_not_justified", "justificationRadio", "Please indicate the type of unreasonable deviations. (Pick the largest number that applies.)", checklistItem_id, 2.06, type = [1,2,3,4]);
+		var deviation_not_justified = generate_question_block_with_type_radio_answers("deviation_not_justified", "justificationRadio", "Please indicate the type of unreasonable deviations. (Pick the largest number that applies.)", checklistItem_id, 2.06, numbersArray);
 
-	// (No-No-Yes)
-	var deviation_reasonable = generate_message("deviation_reasonable:" + checklistItem_id, "red", "", 0, 0);
+		// (No-No-Yes)
+		var deviation_reasonable = generate_message("deviation_reasonable:" + checklistItem_id, "red", "", 0, 0);
+	
+		// (No-No-No)
+		var deviation_unreasonable = generate_message("deviation_unreasonable:" + checklistItem_id, "red", "", 0, 0);
+		
+	
+		deviation_block.appendChild(deviation_justified);
+		deviation_block.appendChild(deviation_not_justified);
 
-	// (No-No-No)
-	var deviation_unreasonable = generate_message("deviation_unreasonable:" + checklistItem_id, "red", "", 0, 0);
+		
+		deviation_block.appendChild(deviation_reasonable);
+		deviation_block.appendChild(deviation_unreasonable);
 
-	deviation_block.appendChild(deviation_justified);
-	deviation_block.appendChild(deviation_not_justified);
+		if(data.displayfree == "True"){
+			var freeTextQuestion = generate_free_text_question("free_text_question", "freeText", data.freelabel, checklistItem_id, 0);
 
-	deviation_block.appendChild(deviation_reasonable);
-	deviation_block.appendChild(deviation_unreasonable);
+			deviation_block.appendChild(freeTextQuestion);
+		}
+	}else{
+		console.log("Data not fetched");
+		var deviation_block = generate_question_block_with_yes_no_radio_answers("deviation_block", "deviationRadio", "is the deviation reasonable?", checklistItem_id, 2.40);
 
+		// Reviewer-specific deviation justification block
+		//var deviation_justified = generate_question_block_with_radio_answers("deviation_justified", "deviationRadio", "", checklistItem_id, 2.06);
+		var deviation_justified = generate_message("deviation_justified:" + checklistItem_id, "red", "", 2.80, -1.07);
+	
+		// Create a question block with type radio answers
+		// 3rd Question
+		var deviation_not_justified = generate_question_block_with_type_radio_answers("deviation_not_justified", "justificationRadio", "Please indicate the type of unreasonable deviations. (Pick the largest number that applies.)", checklistItem_id, 2.06, type = [1,2,3,4]);
+	
+		// (No-No-Yes)
+		var deviation_reasonable = generate_message("deviation_reasonable:" + checklistItem_id, "red", "", 0, 0);
+	
+		// (No-No-No)
+		var deviation_unreasonable = generate_message("deviation_unreasonable:" + checklistItem_id, "red", "", 0, 0);
+	
+		deviation_block.appendChild(deviation_justified);
+		deviation_block.appendChild(deviation_not_justified);
+	
+		deviation_block.appendChild(deviation_reasonable);
+		deviation_block.appendChild(deviation_unreasonable);		
+	}
+
+	console.log(deviation_block);
 	return deviation_block;
 }
 
@@ -955,14 +1004,21 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 
 			// Change the text to the string held in line_text
 			checklistItemLI.setAttribute("text", line_text);
+			
+			console.log("DEBUG: " + line_text);
 
-			if(line_text.replaceAll("<br/><br>", "") == "")
+			if(line_text.replaceAll("<br/><br>", "") == "") {
 				continue;
-			if(line_text.includes("footnote"))
+			}
+			
+			if(line_text.includes("footnote")) {
+				console.log("DEBUG: Creating tooltip");
 				checklistItemText = createTooltip(checklistItemText, line_text, footnotes);
-			else
+			} else {
+				console.log("DEBUG: Did not create tooltip");
 				checklistItemText.innerHTML = "&nbsp;" + line_text;
 				// ???????????????????? previous line does what?
+			}
 
 			//locate the current checklist into the table
 			data = dataStructure.get(Encode_key(line_text))
@@ -1011,8 +1067,14 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 						deviation_block = generate_one_phase_reviewer_deviation_block(checklistItem_id,null);
 					}
 				}
-				else if(role == "\"two-phase-reviewer\"")
-					deviation_block = generate_two_phase_reviewer_deviation_block(checklistItem_id);
+				else if(role == "\"two-phase-reviewer\""){
+					if(data){
+						deviation_block = generate_two_phase_reviewer_deviation_block(checklistItem_id,data);
+					}else{
+						deviation_block = generate_two_phase_reviewer_deviation_block(checklistItem_id,null);
+					}
+				}
+					// deviation_block = generate_two_phase_reviewer_deviation_block(checklistItem_id);
 
 				checklistItemText.appendChild(deviation_block);
 
@@ -1134,19 +1196,16 @@ function preparation_to_convert_MD_to_HTML(standardTagName, checklistTagName, ch
 
 	// superscript tags
 	checklistInnerHTML = checklistInnerHTML.replaceAll("<sup>", "{sup}").replaceAll("</sup>", "{/sup}");
-	console.log("DEBUG1: " + checklistInnerHTML);
 
     var tempDivElement = document.createElement("div");
     tempDivElement.innerHTML = checklistInnerHTML;
 	checklistInnerText = tempDivElement.innerText;
-	console.log("DEBUG1.1 " + checklistInnerText);
 
 	checklistText = checklistInnerText.replaceAll(">", "").replaceAll(/\n\s*\n/g, '\n').replaceAll("\n", "<br/>");
-	console.log("DEBUG2: " + checklistText);
 
 	// Transform Markdown tags to HTMLtags
 	checklistText = convert_MD_tags_to_HTML_tags(checklistText);
-	console.log("DEBUG3: " + checklistText);
+	//console.log(checklistText);
 	// Standard Files - Change from docs to link, change from .md file to nothing
 	checklistText = checklistText.replaceAll('https://github.com/acmsigsoft/EmpiricalStandards/blob/master/docs/standards/', '../docs/standards?standard=').replaceAll('.md', '');
 
@@ -1212,13 +1271,14 @@ function create_requirements_heading_with_UL(title){
 // collect footnotes
 function collect_footnotes(dom, standardTag){
 	var footnoteTags = dom.getElementsByTagName("footnote");
-	console.log("DEBUG: " + footnoteTags);
 
 	for(let footnoteTag of footnoteTags){
 		supTag = footnoteTag.getElementsByTagName("sup")[0];
-		footnote_id = standardTag.getAttribute('name')+"--"+supTag.innerText.trim() // To make footnotes belong to their standards
+		footnote_id = standardTag.getAttribute('name')+"--footnote--"+supTag.innerText.trim() // To make footnotes belong to their standards
+		console.log("DEBUGf1: " + footnote_id);
 		supTag.remove();
 		footnotes[footnote_id] = footnoteTag.innerText.trim();
+		console.log("DEBUGf2: " + footnotes[footnote_id]);
 	}
 }
 
@@ -1274,7 +1334,6 @@ function Encode_key(content){
 	content = content.replace(/<a[^>]*>|<\/a>/g, '');
 	// process the footnote issue
 	content = content.replace(/\{sup\}.*?\{\/sup\}/g, '');
-	console.log("DEBUG: " + content);
 	// now remove all the non-alphabetic and non-numeric characters
 	content = content.replace(/[^a-zA-Z0-9]/g, '');
 	return content;
@@ -1415,8 +1474,8 @@ function create_requirements_checklist(file){
 		for (let checklistTag of checklistTags){
 
 			// dealing with footnotes
-			checklistHTML = checklistTag.innerHTML.replaceAll("<sup>", "<sup>"+standardName+"--") // To make footnotes belong to their standards 
-			console.log("DEBUG: " + checklistHTML)
+			checklistHTML = checklistTag.innerHTML.replaceAll("<sup>", "<sup>"+standardName+"--footnote--") // To make footnotes belong to their standards 
+			//console.log(checklistHTML)
 			// Add all information for "all_intro_items", etc.
 			separate_essential_attributes_based_on_IMRaD_tags(standardTag.getAttribute('name'), checklistTag.getAttribute('name'), checklistHTML)
 
