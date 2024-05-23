@@ -58,7 +58,7 @@ following.
     
 - [ ]	presents results
 - [ ]	results directly address research questions
-- [ ]	enumerates and validates assumptions of statistical tests used (if any)<sup>[1](#myfootnote1)</sup>
+- [ ]	enumerates and validates assumptions of statistical tests used (if any)<sup><a class="footnote footnote-ref">1</a></sup>
 
 <discussion>
     
