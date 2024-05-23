@@ -1036,6 +1036,7 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 			checklists.appendChild(checklistItemLI);
 		}
 	}
+	console.log("DEBUG5: " + checklists.innerHTML);
 	return checklists;
 }
 
@@ -1134,12 +1135,15 @@ function preparation_to_convert_MD_to_HTML(standardTagName, checklistTagName, ch
 
 	// superscript tags
 	checklistInnerHTML = checklistInnerHTML.replaceAll("<sup>", "{sup}").replaceAll("</sup>", "{/sup}");
+	console.log("DEBUG1: " + checklistInnerHTML);
 
     var tempDivElement = document.createElement("div");
     tempDivElement.innerHTML = checklistInnerHTML;
 	checklistInnerText = tempDivElement.innerText;
+	console.log("DEBUG2: " + checklistInnerText);
 
 	checklistText = checklistInnerText.replaceAll(">", "").replaceAll(/\n\s*\n/g, '\n').replaceAll("\n", "<br/>");
+	console.log("DEBUG3: " + checklistText);
 
 	// Transform Markdown tags to HTMLtags
 	checklistText = convert_MD_tags_to_HTML_tags(checklistText);
@@ -1149,6 +1153,8 @@ function preparation_to_convert_MD_to_HTML(standardTagName, checklistTagName, ch
 
 	// Supplement Files - Change from docs to link, change from .md file to nothing
 	checklistText = checklistText.replaceAll('https://github.com/acmsigsoft/EmpiricalStandards/blob/master/docs/supplements/', '../docs/supplements?supplement=').replaceAll('.md', '');
+	
+	console.log("DEBUG4: " + checklistText);
 
 	// Convert Markdown Checklists to HTML checklists
 	checklists = convert_MD_standard_checklists_to_html_standard_checklists(standardTagName, checklistTagName, checklistText, footnotes)
@@ -1411,7 +1417,7 @@ function create_requirements_checklist(file){
 
 			// dealing with footnotes
 			checklistHTML = checklistTag.innerHTML.replaceAll("<sup>", "<sup>"+standardName+"--") // To make footnotes belong to their standards 
-			//console.log(checklistHTML)
+			console.log("DEBUG: " + checklistHTML)
 			// Add all information for "all_intro_items", etc.
 			separate_essential_attributes_based_on_IMRaD_tags(standardTag.getAttribute('name'), checklistTag.getAttribute('name'), checklistHTML)
 
