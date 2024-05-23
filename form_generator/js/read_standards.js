@@ -1036,7 +1036,6 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 			checklists.appendChild(checklistItemLI);
 		}
 	}
-	console.log("DEBUG5: " + checklists.innerHTML);
 	return checklists;
 }
 
@@ -1466,6 +1465,7 @@ function create_requirements_checklist(file){
 	
 	// Change from Markdown to HTML elements
 	checklists = preparation_to_convert_MD_to_HTML("", 'Essential', all_essential_IMRaD_items_innerHTML, footnotes);
+	console.log("DEBUG5: " + checklists.innerHTML);
 	EssentialUL.appendChild(checklists);
 	
 	// Add Essential Attributes to the form
