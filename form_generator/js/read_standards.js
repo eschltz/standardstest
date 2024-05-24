@@ -138,6 +138,7 @@ function createTooltip(checklistItemText, line_text, footnotes){
 	console.log("DEBUG2:" + footnote_sups.toString());
 	if(footnote_sups){
 		footnote_rest = line_text.match(/(?!.*\})(.*?)$/g);
+		console.log("DEBUG2.1: " + line_text);
 		console.log("DEBUG3: " + footnote_rest.toString());
 		footnote_rest = footnote_rest.filter(function (el) {
 			return el.trim() != "";
@@ -145,6 +146,7 @@ function createTooltip(checklistItemText, line_text, footnotes){
 		console.log("DEBUG4: " + footnote_rest.toString());
 		checklistItemText.innerHTML = checklistItemText.innerHTML.replace("<br>", "");
 		var allTooltipsText = checklistItemText;
+		console.log("DEBUG4.1: " + allTooltipsText);
 		var i = 0;
 		for (let footnote_sup of footnote_sups){
 			i++;
@@ -153,10 +155,12 @@ function createTooltip(checklistItemText, line_text, footnotes){
 			var tooltip = document.createElement("span");
 			tooltip.className = "tooltip";
 			tooltip.innerHTML = ftnt[1].trim();
+			console.log("DEBUG5.1: " + tooltip.innerHTML);
 
 			var tooltipText = document.createElement("span");
 			tooltipText.className = "tooltiptext";
-			tooltipText.innerHTML = convert_MD_tags_to_HTML_tags(footnotes[ftnt[2]]);			
+			tooltipText.innerHTML = convert_MD_tags_to_HTML_tags(footnotes[ftnt[2]]);
+			console.log("DEBUG5.2: " + tooltipText.innerHTML);
 			tooltip.appendChild(tooltipText);
 			allTooltipsText.appendChild(tooltip);
 		}
