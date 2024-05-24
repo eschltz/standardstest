@@ -133,7 +133,7 @@ function readSpecificEmpiricalStandard_table(standard_name){
 //This function creates tooltips for text
 //Anything between / and / is known as regular expressions
 function createTooltip(checklistItemText, line_text, footnotes){
-	footnote_sups = line_text.match(/\{sup\}.*?\{\/sup\}/g);
+	footnote_sups = line_text.match(/(.*?)\{sup\}(.+?)\{\/sup\}(.*?)/g);
 	console.log("DEBUG1: " + line_text);
 	console.log("DEBUG2:" + footnote_sups.toString());
 	if(footnote_sups){
