@@ -146,7 +146,7 @@ function createTooltip(checklistItemText, line_text, footnotes){
 		console.log("DEBUG4: " + footnote_rest.toString());
 		checklistItemText.innerHTML = checklistItemText.innerHTML.replace("<br>", "");
 		var allTooltipsText = checklistItemText;
-		console.log("DEBUG4.1: " + allTooltipsText);
+		console.log("DEBUG4.1: " + allTooltipsText.toString());
 		var i = 0;
 		for (let footnote_sup of footnote_sups){
 			i++;
