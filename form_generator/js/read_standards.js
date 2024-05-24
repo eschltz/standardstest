@@ -151,6 +151,7 @@ function createTooltip(checklistItemText, line_text, footnotes){
 		for (let footnote_sup of footnote_sups){
 			i++;
 			ftnt = footnote_sup.match(/(.*?)\{sup\}(.*?)\{\/sup\}(.*?)/);
+			console.log("DEBUGx: " + ftnt);
 			var tooltip = document.createElement("span");
 			tooltip.className = "tooltip";
 			tooltip.innerHTML = ftnt[1].trim();
