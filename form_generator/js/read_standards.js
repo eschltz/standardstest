@@ -134,13 +134,19 @@ function readSpecificEmpiricalStandard_table(standard_name){
 //Anything between / and / is known as regular expressions
 function createTooltip(checklistItemText, line_text, footnotes){
 	footnote_sups = line_text.match(/(.*?)\{sup\}.+?\[\d+\]\(#[\w\d_]+\)\{\/sup\}(.*?)/g);
+	console.log("DEBUG1: " + line_text);
+	console.log("DEBUG2: " + footnote_sups.toString());
 	if(footnote_sups){
 		footnote_rest = line_text.match(/(?!.*\})(.*?)$/g);
+		console.log("DEBUG3: " + line_text);
+		console.log("DEBUG4: " + footnote_rest.toString());
 		footnote_rest = footnote_rest.filter(function (el) {
 			return el.trim() != "";
 		});
+		console.log("DEBUG5: " + footnote_rest.toString());
 		checklistItemText.innerHTML = checklistItemText.innerHTML.replace("<br>", "");
 		var allTooltipsText = checklistItemText;
+		console.log("DEBUG51: " + allTooltipsText.toString());
 		var i = 0;
 		for (let footnote_sup of footnote_sups){
 			i++;
@@ -148,10 +154,12 @@ function createTooltip(checklistItemText, line_text, footnotes){
 			var tooltip = document.createElement("span");
 			tooltip.className = "tooltip";
 			tooltip.innerHTML = ftnt[1].trim();
+			console.log("DEBUG6: " + tooltip.innerHTML);
 
 			var tooltipText = document.createElement("span");
 			tooltipText.className = "tooltiptext";
-			tooltipText.innerHTML = convert_MD_tags_to_HTML_tags(footnotes[ftnt[2]]);			
+			tooltipText.innerHTML = convert_MD_tags_to_HTML_tags(footnotes[ftnt[2]]);
+			console.log("DEBUG6: " + tooltipText.innerHTML);
 			tooltip.appendChild(tooltipText);
 			allTooltipsText.appendChild(tooltip);
 		}
