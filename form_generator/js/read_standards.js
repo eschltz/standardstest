@@ -1159,18 +1159,63 @@ function separate_essential_attributes_based_on_IMRaD_tags(standardName, checkli
 
 // Create Role Heading (Pre-Submission Checklist, Reviewer Checklist)
 function create_role_heading(){
+	var heading_div = document.createElement("div");
 	var heading = document.createElement("H1");
-	if(role == "\"author\"")
+	
+	if(role == "\"author\"") {
 		heading.innerHTML = "Pre-Submission Checklist";
-	else if(role == "\"one-phase-reviewer\"")
+		heading_div.appendChild(heading);
+
+		var subheading = document.createElement("H3");		
+		subheading.innerHTML = "Choose the preferred location type to indicate for each checklist item in the paper, where applicable: ";
+		
+		var location_types_combobox = document.createElement("select");
+		location_types_combobox.id = 'location_type';
+
+		var defaultOption = document.createElement('option');
+		defaultOption.textContent = 'Select an option';
+		defaultOption.disabled = true;
+		defaultOption.selected = true;
+		location_types_combobox.appendChild(defaultOption);
+
+		var location_types = [
+			{ value: 'page_no', text: 'Page No.' },
+			{ value: 'section_no', text: 'Section No.' },
+			{ value: 'page_with_section_no', text: 'Page with Section No.' },
+			{ value: 'page_with_paragraph_no', text: 'Page with Paragraph No.' },
+			{ value: 'line_no', text: 'Line No.' }
+		];
+
+		location_types.forEach(function(option) {
+			var location = document.createElement('option');
+			location.value = option.value;
+			location.text = option.text;
+			location_types_combobox.appendChild(location);
+		});	
+
+		location_types_combobox.selectedIndex = 0;
+
+		subheading.appendChild(location_types_combobox);
+		var subheading2 = document.createElement("H4");		
+		subheading2.innerHTML = "Multiple locations per one checklist item should be separated by comma.";
+		subheading.appendChild(subheading2);
+		
+		heading_div.appendChild(subheading);
+		
+	} else if(role == "\"one-phase-reviewer\"") {
 		heading.innerHTML = "Reviewer Checklist";
-	else if(role == "\"two-phase-reviewer\"")
+		heading_div.appendChild(heading);
+		
+	} else if(role == "\"two-phase-reviewer\"") {
 		heading.innerHTML = "Reviewer Checklist";
+		heading_div.appendChild(heading);
+	}
+	
 	// DEPRECATED
 	// else if(role == "\"ease-reviewer\"") 
 	// 	  heading.innerHTML = "Reviewer Checklist";
 
-	return heading;
+	return heading_div;
 }	
 
 // Create a message showing the loaded configuration
