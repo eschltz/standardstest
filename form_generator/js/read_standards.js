@@ -196,6 +196,9 @@ function generate_decision_message_block() {
 
 	// Second level yes
 	deviation_yes_checked_count = $('input[class="deviationRadioYes"][type="radio"][value="yes"]:checked').length;
+	
+	// Second level no
+	deviation_no_checked_count = $('input[class="deviationRadioNo"][type="radio"][value="no"]:checked').length;
 
 	// Need to change to types
 	// justification_yes_checked_count = $('input[class="justificationRadioYes"][type="radio"][value="yes"]:checked').length;
@@ -247,26 +250,20 @@ function generate_decision_message_block() {
 				document.getElementById("deviation_reasonable").style.display = "block";
 				document.getElementById("Desirable").style.display = "block";
 				document.getElementById("Extraordinary").style.display = "block";
-
 			} else {
 				msg = "ACCEPT";
 				document.getElementById("Desirable").style.display = "block";
 				document.getElementById("Extraordinary").style.display = "block";
-
 			}
 			
 			// Showing a decision message is not needed for now
 			//document.getElementById("decision_msg").innerHTML = msg;
 			//document.getElementById("decision_msg").style.display = "block";
-		}
-			
-		else{
+		} else {
 			document.getElementById("checklist_download").disabled = true;
 			document.getElementById("decision_msg").style.display = "none";
 		}
-	}
-
-	else if (role == "\"two-phase-reviewer\""){
+	} else if (role == "\"two-phase-reviewer\""){
 		
 		document.getElementById("deviation_reasonable").style.display = "none";
 		document.getElementById("deviation_unreasonable").style.display = "none";
@@ -295,10 +292,9 @@ function generate_decision_message_block() {
 				document.getElementById("deviation_reasonable").style.display = "block";
 				document.getElementById("Desirable").style.display = "block";
 				document.getElementById("Extraordinary").style.display = "block";
-			}
-			
+				
 			// if number of type 1 is greater than 0
-			else if (justification_type1_checked_count > 0) {
+			} else if (justification_type1_checked_count > 0) {
 				msg = "MINOR REVISION";
 				document.getElementById("deviation_reasonable").style.display = "block";
 				document.getElementById("Desirable").style.display = "block";
@@ -309,18 +305,21 @@ function generate_decision_message_block() {
 				msg = "ACCEPT";
 				document.getElementById("Desirable").style.display = "block";
 				document.getElementById("Extraordinary").style.display = "block";
-
 			}
-
+			
 			document.getElementById("decision_msg").innerHTML = msg;
 			document.getElementById("decision_msg").style.display = "block";
-		}
-			
-		else{
+		} else {
 			document.getElementById("checklist_download").disabled = true;
 			document.getElementById("decision_msg").style.display = "none";
 		}
 
+	} else if (role == "\"author\""){
+		if (checklist_yes_not_checked_count == checklist_no_checked_count & checklist_no_checked_count == (deviation_yes_checked_count+deviation_no_checked_count)) {
+			document.getElementById("checklist_download").disabled = false;
+		} else {
+			document.getElementById("checklist_download").disabled = true;
+		}
 	}
 
 
