@@ -1573,7 +1573,7 @@ function create_requirements_checklist(file){
 
 
 	/// ???????????????????????????????????
-	if(role == "\"one-phase-reviewer\""){
+	if(role == "\"author\""){
 		// (At least one 'No-No-No' -> reject manuscript)
 		var deviation_unreasonable = generate_message("deviation_unreasonable", "red", "In the free-text part of your review, please explain the deviation(s) and why they are not reasonable.", 2, 0);
 		form.appendChild(deviation_unreasonable);
@@ -1584,8 +1584,18 @@ function create_requirements_checklist(file){
 		if(deviation_unreasonable.style.display == "block"){
 			download.disabled = false;
 		}
-	}
-	else if(role == "\"two-phase-reviewer\""){
+	} else if(role == "\"one-phase-reviewer\""){
+		// (At least one 'No-No-No' -> reject manuscript)
+		var deviation_unreasonable = generate_message("deviation_unreasonable", "red", "In the free-text part of your review, please explain the deviation(s) and why they are not reasonable.", 2, 0);
+		form.appendChild(deviation_unreasonable);
+		// (At least one 'No-No-Yes' -> explain fix)
+		var deviation_reasonable = generate_message("deviation_reasonable", "red", "In the free-text part of your review, please explain the deviation(s) and why they are not reasonable. Please give specific suggestions for how each deviation can be addressed.", 2, 0);
+		form.appendChild(deviation_reasonable);
+
+		if(deviation_unreasonable.style.display == "block"){
+			download.disabled = false;
+		}
+	} else if(role == "\"two-phase-reviewer\""){
 		// (At least one 'No-No-No' -> reject manuscript)
 		var deviation_unreasonable = generate_message("deviation_unreasonable", "red", "In the free-text part of your review, please explain the deviation(s) and why they are not reasonable.", 2, 0);
 		form.appendChild(deviation_unreasonable);
@@ -1602,16 +1612,7 @@ function create_requirements_checklist(file){
 	// Add Desirable and Extraordinary Unordered List to Form
 	form.appendChild(DesirableUL);
 	form.appendChild(ExtraordinaryUL);
-
-	// Add Download Button for One Phase Reviewer and Two Phase Reviewer
-	if(role == "\"one-phase-reviewer\"") {
-		form.appendChild(download);
-		// Delete the download_Configuration button for phase 1
-		// form.appendChild(download_test);
-	}
-	if(role == "\"two-phase-reviewer\"") {
-		form.appendChild(download);
-	}
+	form.appendChild(download);
 	
 	return form;
 }
@@ -1697,6 +1698,7 @@ function generateStandardChecklist(file){
 
 //Download the checklist with a specific format
 function saveFile(){
+	var role = getParameterByName('role');
 	var checklists = document.getElementById('checklists');
 	var generated_text = '=================\n' +
 		'Review Checklist\n' +
@@ -1704,6 +1706,14 @@ function saveFile(){
 	
 	let date_generated = new Date();
 	generated_text += '\nGenerated at: ' + date_generated.toDateString() + ', ' + date_generated.toLocaleTimeString() + '\n';
+	
+	if (role == "\"author\""){
+		var location_type = document.getElementById('location_type');
+		if (location_type.selectedIndex != 0){
+			location_type = location_type.options[location_type.selectedIndex].text;
+			generated_text += "\nNote: The numbers beside checklist items, if any, represent " + location_type + "\n";
+		}
+	}
 		
 	var decision = document.getElementById("decision_msg");
 	var unreasonable = document.getElementById("deviation_unreasonable");
@@ -1872,8 +1882,17 @@ function saveFile(){
 	if (include_extraordinary) {
 		generated_text += extraordinary_list;
 	}
-
-	generated_text += "\n" +
+	
+	if (role == "\"author\"") {
+		generated_text += "\n" +
+		"=======\n" +
+		"Legend\n" +
+		"=======\n" +
+		"Y = yes, the paper has this attribute\n" +
+		"J = a deviation is justified in the paper\n" +
+		"U = a deviation is unjustified in the papere paper\n\n\n";
+	} else {
+		generated_text += "\n" +
 		"=======\n" +
 		"Legend\n" +
 		"=======\n" +
@@ -1883,6 +1902,7 @@ function saveFile(){
 		"2 = a deviation that can be fixed by doing some new data analysis, redoing some existing data analysis, or collecting a small amount of additional data\n" +
 		"3 = a deviation that can be fixed by completely redoing data analysis, or collecting additional data\n" +
 		"4 = a deviation that cannot be fixed, or at least not without doing a brand new study\n\n\n";
+	}
 
 	generated_text+= "=================\n" +
 		"Standards Used\n" +
