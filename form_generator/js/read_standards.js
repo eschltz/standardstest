@@ -62,6 +62,8 @@ class HashMap {
 
 const dataStructure = new HashMap();
 
+let role = getParameterByName('role');
+
 //This function reads in the file name and passes it onto the next method
 function getParameterByName(param_name, url = window.location.href){
 	var params = location.search&&location.search.substr(1).replace(/\+/gi," ").split("&");
@@ -397,9 +399,9 @@ function show_hide_location_textbox() {
 		if (item_location_textbox.style.display === "inline"){
 			item_location_textbox.style.display = "none";
 			item_location_textbox.value = '';
-		}
-		else
+		} else {
 			item_location_textbox.style.display = "inline";
+		}
 	}
 }
 
@@ -440,8 +442,11 @@ function hide_deviation_block_and_show_location_textbox() {
 	block.style.display = "none";
 	var block = document.getElementById("deviation_not_justified:" + id);
 	block.style.display = "none";
-	var msg_block = document.getElementById("free_text_question:" + id);
-	msg_block.style.display = "none";
+	
+	if (role != "\"author\"") {
+		var msg_block = document.getElementById("free_text_question:" + id);
+		msg_block.style.display = "none";
+	}
 
 	// Uncheck all deviation-block-radio
 	deviation_radio_name = this.name.replace("checklist-radio", "deviation_block-radio");
@@ -522,8 +527,12 @@ function create_deviation_justification_block_and_show_hide_justification_locati
 		block.style.display = "none";
 		var block = document.getElementById("deviation_justified:" + id);
 		block.style.display = "block";
-		var msg_block = document.getElementById("free_text_question:" + id);
-		msg_block.style.display = "none";
+		
+		if (role != "\"author\"") {
+			var msg_block = document.getElementById("free_text_question:" + id);
+			msg_block.style.display = "none";
+		}
+		
 		deviation_radio_name = this.name.replace("deviation_block-radio", "deviation_not_justified-radio");
 
 		for(let i = 0; i < document.getElementsByName(deviation_radio_name).length; i++){
@@ -532,8 +541,9 @@ function create_deviation_justification_block_and_show_hide_justification_locati
 		
 		// Show item location textbox
 		var justification_location_textbox = document.getElementById("justification_location_textbox:" + id);
-		if (justification_location_textbox)
+		if (justification_location_textbox) {
 			justification_location_textbox.style.display = "inline";
+		}
 	}
 	// (No-No) deviation is unjustified
 	else if(this.id.includes("deviation_block-radio:No:")){
@@ -543,11 +553,15 @@ function create_deviation_justification_block_and_show_hide_justification_locati
 		empty_message.style.display = "none";
 		var message = document.getElementById("deviation_not_justified:" + id);
 		message.style.display = "block";
-		var msg_block = document.getElementById("free_text_question:" + id);
-		msg_block.style.display = "block";
+		
+		if (role != "\"author\"") {
+			var msg_block = document.getElementById("free_text_question:" + id);
+			msg_block.style.display = "block";
+		}
+		
 		deviation_radio_name = this.name.replace("deviation_block-radio", "deviation_justified-radio");
 
-		for(let i = 0; i <document.getElementsByName(deviation_radio_name).length; i++){
+		for(let i = 0; i < document.getElementsByName(deviation_radio_name).length; i++){
 			document.getElementsByName(deviation_radio_name)[i].checked = false;
 		}
 		
@@ -669,7 +683,7 @@ function generate_question_block_with_yes_no_radio_answers(id, class_name, quest
 	deviation_block_radios.appendChild(deviationLabelNo);
 	//console.log(question_block);
 	
-	if(role == "author") {
+	if(role == "\"author\"") {
 		var justification_location_textbox = generate_location_textbox("justification_location_textbox", checklistItem_id, "10px");
 		deviation_block_radios.appendChild(justification_location_textbox);
 	}
@@ -1775,7 +1789,7 @@ function generateStandardChecklist(file){
 
 //Download the checklist with a specific format
 function saveFile(){
-	var role = getParameterByName('role');
+	//var role = getParameterByName('role');
 	var checklists = document.getElementById('checklists');
 	var generated_text = '=================\n' +
 		'Review Checklist\n' +
@@ -1875,21 +1889,24 @@ function saveFile(){
 								essential_list +=  'Y' + '\t   ' + li_text + (location_value != "" ? " (" + location_value + ")" : "") + '\r\n';
 							} else {
 								var reasonable_deviation = li.getElementsByClassName('deviationRadioYes')[0];
-
+								
 								// store for the free_text_question
 								var questionDiv  = li.getElementsByClassName("question_block_free_Text");
-								if(questionDiv[0]){
+								
+								if (questionDiv[0]) {
 									var question_text = questionDiv[0].querySelector('div:first-child').textContent.trim().replace(/^\W+/g, '');
 									console.log(question_text)
 									var inputCollection  = li.getElementsByClassName('freeTextAnswer');
 									console.log(inputCollection);
-									if(inputCollection[0]){
+									
+									if (inputCollection[0]) {
 										var input_text = inputCollection[0].value;
 									}
-									
+
 									// free_text_list += li_text + '\r\n'
 									// free_text_list += '    ' + question_text + ': ' + input_text + '\r\n';
 								}
+
 								if (reasonable_deviation.checked) {
 									var location_value = "";
 									var location_textbox = li.getElementsByClassName('justification_location_textbox');
@@ -1898,22 +1915,38 @@ function saveFile(){
 											location_value = location_textbox[0].value;
 										}
 									}
-									essential_list += (role === "\"author\"" ? 'J' : 'R') + '\t   ' + li_text + (location_value != "" ? " (" + location_value + ")" : "");
+									essential_list += (role == "\"author\"" ? 'J' : 'R') + '\t   ' + li_text + (location_value != "" ? " (" + location_value + ")" : "") + '\r\n';
 								} else {
 									var fixable_deviation = li.getElementsByClassName('justificationRadioType');
 									
 									if (fixable_deviation.length != 0){
 										if (fixable_deviation[0].checked) {
 											type1_list += '1\t   ' + li_text + '\r\n';
+											if(input_text !== ""){
+												type1_list += ' \t   ' + question_text + '\r\n';
+												type1_list += ' \t    \t   ' + input_text + '\r\n';
+											}
 										} else if (fixable_deviation[1].checked) {
 											type2_list += '2\t   ' + li_text + '\r\n';
+											if(input_text !== ""){
+												type2_list += ' \t   ' + question_text + '\r\n';
+												type2_list += ' \t    \t   ' + input_text + '\r\n';
+											}
 										}  else if (fixable_deviation[2].checked) {
 											type3_list += '3\t   ' + li_text + '\r\n';
+											if(input_text !== ""){
+												type3_list += ' \t   ' + question_text + '\r\n';
+												type3_list += ' \t    \t   ' + input_text + '\r\n';
+											}
 										}  else if (fixable_deviation[3].checked) {
 											type4_list += '4\t   ' + li_text + '\r\n';
+											if(input_text !== ""){
+												type4_list += ' \t   ' + question_text + '\r\n';
+												type4_list += ' \t    \t   ' + input_text + '\r\n';
+											}
 										}
 									} else {
-										essential_list += (role === "\"author\"" ? 'U' : ' ') + '\t   ' + li_text + '\r\n';
+										essential_list += (role == "\"author\"" ? 'U' : ' ') + '\t   ' + li_text + '\r\n';
 									}
 								}
 
@@ -1984,7 +2017,7 @@ function saveFile(){
 		"=======\n" +
 		"Y = yes, the paper has this attribute\n" +
 		"J = a deviation is justified in the paper\n" +
-		"U = a deviation is unjustified in the papere paper\n\n\n";
+		"U = a deviation is unjustified in the paper\n\n\n";
 	} else {
 		generated_text += "\n" +
 		"=======\n" +
