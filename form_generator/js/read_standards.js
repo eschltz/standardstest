@@ -388,11 +388,33 @@ function generate_decision_message_block() {
 	// }
 }
 
+
+function show_hide_location_textbox() {
+	id = this.id
+	// Show/Hide item location textbox
+	var item_location_textbox = document.getElementById("item_location_textbox:" + id);
+	if (item_location_textbox){
+		if (item_location_textbox.style.display === "inline"){
+			item_location_textbox.style.display = "none";
+			item_location_textbox.value = '';
+		}
+		else
+			item_location_textbox.style.display = "inline";
+	}
+}
+
 //this function manages the display of the deviation block, which is dependent upon user input
-function show_deviation_block() {
+function show_deviation_block_and_hide_location_textbox() {
 	id = this.id.replace("checklist-radio:No:", "")
 	var block = document.getElementById("deviation_block:" + id);
 	block.style.display = "block";
+	
+	// Hide item location textbox
+	var item_location_textbox = document.getElementById("item_location_textbox:" + id);
+	if (item_location_textbox){
+		item_location_textbox.style.display = "none";
+		item_location_textbox.value = '';
+	}
 
 	let deviationRadioYes = document.getElementById("deviation_block-radio:Yes:" + id);
 	if(deviationRadioYes.disabled){
@@ -405,7 +427,7 @@ function show_deviation_block() {
 }
 
 //this function manages the display of the deviation block, which is dependent upon user input
-function hide_deviation_block() {
+function hide_deviation_block_and_show_location_textbox() {
 
 	// Replace ID from Yes to an empty string
 	id = this.id.replace("checklist-radio:Yes:", "")
@@ -438,6 +460,18 @@ function hide_deviation_block() {
 	for(let i = 0; i < document.getElementsByName(deviation_radio_name).length; i++){
 		document.getElementsByName(deviation_radio_name)[i].checked = false;
 	}
+	
+	// Show item location textbox
+	var item_location_textbox = document.getElementById("item_location_textbox:" + id);
+	if (item_location_textbox)
+		item_location_textbox.style.display = "inline";
+
+	// Hide justification location textbox and clear its value
+	var item_location_textbox = document.getElementById("justification_location_textbox:" + id);
+	if (item_location_textbox){
+		item_location_textbox.style.display = "none";
+		item_location_textbox.value = '';
+	}
 
 	//This function is primarily responsible for controlling the displaying of the deviation blocks in the checklist.
 	generate_decision_message_block();
@@ -456,8 +490,29 @@ function hide_other_messages(id) {
 	catch(err) {}
 }
 
+//this function creates a location textbox for all items in the standards
+function generate_location_textbox(name, id, margin) {
+	var location_textbox;
+	location_textbox = document.createElement('input');
+	location_textbox.type = 'text';
+	location_textbox.className = name;
+	location_textbox.id = name + ":" + id;
+	location_textbox.placeholder = 'Where in the paper?';
+	location_textbox.style.marginLeft = margin;
+	location_textbox.style.display = 'none';
+	location_textbox.defaultValue = '';
+	location_textbox.oninput = function(event) {
+		var location_type = document.getElementById('location_type');
+		if (location_type.selectedIndex < 1){
+			alert('First choose the location type from the list above.');
+			event.target.value = "";
+		}
+	}
+	return location_textbox;
+}
+
 //this function creates a deviation block for all Essential items in the standards
-function create_deviation_justification_block() {
+function create_deviation_justification_block_and_show_hide_justification_location_textbox() {
 	// (No-Yes) deviation is justified
 	console.log(this);
 	if(this.id.includes("deviation_block-radio:Yes:")){
@@ -474,6 +529,11 @@ function create_deviation_justification_block() {
 		for(let i = 0; i < document.getElementsByName(deviation_radio_name).length; i++){
 			document.getElementsByName(deviation_radio_name)[i].checked = false;
 		}
+		
+		// Show item location textbox
+		var justification_location_textbox = document.getElementById("justification_location_textbox:" + id);
+		if (justification_location_textbox)
+			justification_location_textbox.style.display = "inline";
 	}
 	// (No-No) deviation is unjustified
 	else if(this.id.includes("deviation_block-radio:No:")){
@@ -489,6 +549,13 @@ function create_deviation_justification_block() {
 
 		for(let i = 0; i <document.getElementsByName(deviation_radio_name).length; i++){
 			document.getElementsByName(deviation_radio_name)[i].checked = false;
+		}
+		
+		// Hide item location textbox
+		var justification_location_textbox = document.getElementById("justification_location_textbox:" + id);
+		if (justification_location_textbox){
+			justification_location_textbox.style.display = "none";
+			justification_location_textbox.value = "";
 		}
 	}
 	else{
@@ -554,8 +621,6 @@ function generate_question_block_with_yes_no_radio_answers(id, class_name, quest
 	// &nbsh: HTML can't do spaces. This is for spaces. 
 	question_block.innerHTML = "&rdsh;&nbsp; " + question;
 
-	var deviation_block_radios = document.createElement("div");
-
 	// Yes and No Radio
 	var deviationRadioYes = document.createElement("input");
 	var deviationRadioNo = document.createElement("input");
@@ -576,8 +641,8 @@ function generate_question_block_with_yes_no_radio_answers(id, class_name, quest
 	deviationRadioNo.name = id + "-radio:" + checklistItem_id;
 
 	// deviation justification is a function
-	deviationRadioYes.onclick = create_deviation_justification_block;
-	deviationRadioNo.onclick = create_deviation_justification_block;
+	deviationRadioYes.onclick = create_deviation_justification_block_and_show_hide_justification_location_textbox;
+	deviationRadioNo.onclick = create_deviation_justification_block_and_show_hide_justification_location_textbox;
 
 	// Set type of input to "radio"
 	deviationRadioYes.type = "radio";
@@ -588,6 +653,7 @@ function generate_question_block_with_yes_no_radio_answers(id, class_name, quest
 	deviationRadioNo.value = "no";
 
 	// Actual Text of the Radio button
+	var deviation_block_radios = document.createElement("div");
 	deviation_block_radios.innerHTML = "&nbsp;&nbsp;&nbsp;";
 	deviationLabelYes.innerHTML = "yes&nbsp;&nbsp;";
 	deviationLabelNo.innerHTML = "no";
@@ -601,8 +667,14 @@ function generate_question_block_with_yes_no_radio_answers(id, class_name, quest
 	deviation_block_radios.appendChild(deviationLabelYes);
 	deviation_block_radios.appendChild(deviationRadioNo);
 	deviation_block_radios.appendChild(deviationLabelNo);
-	question_block.appendChild(deviation_block_radios);
 	//console.log(question_block);
+	
+	if(role == "author") {
+		var justification_location_textbox = generate_location_textbox("justification_location_textbox", checklistItem_id, "10px");
+		deviation_block_radios.appendChild(justification_location_textbox);
+	}
+	
+	question_block.appendChild(deviation_block_radios);
 
 	// if the deviation reasonable is fixed in the table
 	if(display){
@@ -682,7 +754,7 @@ function generate_question_block_with_type_radio_answers(id, class_name, questio
         deviationRadioType.name = id + "-radio:" + checklistItem_id;
     
         // deviation justification is a function
-        deviationRadioType.onclick = create_deviation_justification_block;
+        deviationRadioType.onclick = create_deviation_justification_block_and_show_hide_justification_location_textbox;
     
         deviationRadioType.type = "radio";
     
@@ -1011,6 +1083,11 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 
 			//locate the current checklist into the table
 			data = dataStructure.get(Encode_key(line_text))
+			
+			if(role == "\"author\""){
+				var item_location_textbox = generate_location_textbox("item_location_textbox", checklistItem_id, "5px");
+				checklistItemText.appendChild(item_location_textbox);
+			}
 	
 
 			if (checklistName == "Essential"){
@@ -1029,9 +1106,9 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 				checklistRadioNo.name = "checklist-radio:" + checklistItem_id;
 
 				// in the case of YES, hide the deviation block
-				checklistRadioYes.onclick = hide_deviation_block;
+				checklistRadioYes.onclick = hide_deviation_block_and_show_location_textbox;
 				// in the case of NO, show the deviation block
-				checklistRadioNo.onclick = show_deviation_block;
+				checklistRadioNo.onclick = show_deviation_block_and_hide_location_textbox;
 
 				// set the type of the input to "radio"
 				checklistRadioYes.type = "radio";
@@ -1078,6 +1155,7 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 				checkboxInput.id = checklistItem_id;
 				checkboxInput.className = "checkbox_attributes";
 				checkboxInput.name = checklistItem_id;
+				checkboxInput.onclick = show_hide_location_textbox;
 				checkboxInput.style = "color:#FFF";
 				checkboxInput.value = line_text;
 				checklistItemLI.appendChild(checkboxInput);
@@ -1754,7 +1832,7 @@ function saveFile(){
 						if (li.tagName.toLowerCase() != 'li')
 						   continue;
 						i++;
-						var li_text = li.getAttribute("text");
+						var li_text = li.getAttribute("text").trim();
 						var regex = /<a+\n*.+<\/a>/g;
 						if (li_text.match(regex) != null)
 							li_text = li_text.replace(regex, "");
@@ -1786,9 +1864,16 @@ function saveFile(){
 							li_text = li_text.replace(regex9,"");
 
 						if (list.id == 'Essential'){
-							if (li.children[0].checked)
-								essential_list +=  'Y' + '\t   ' + li_text + '\r\n';
-							else{
+							if (li.children[0].checked) {
+								var location_value = "";
+								var location_textbox = li.getElementsByClassName('item_location_textbox');
+								if (location_textbox.length == 1) {
+									if (location_textbox[0].value != "") {
+										location_value = location_textbox[0].value;
+									}
+								}
+								essential_list +=  'Y' + '\t   ' + li_text + (location_value != "" ? " (" + location_value + ")" : "") + '\r\n';
+							} else {
 								var reasonable_deviation = li.getElementsByClassName('deviationRadioYes')[0];
 
 								// store for the free_text_question
@@ -1805,34 +1890,30 @@ function saveFile(){
 									// free_text_list += li_text + '\r\n'
 									// free_text_list += '    ' + question_text + ': ' + input_text + '\r\n';
 								}
-								if (reasonable_deviation.checked)
-									essential_list += 'R' + '\t   ' + li_text + '\r\n';
-								else{
+								if (reasonable_deviation.checked) {
+									var location_value = "";
+									var location_textbox = li.getElementsByClassName('justification_location_textbox');
+									if (location_textbox.length == 1) {
+										if (location_textbox[0].value != "") {
+											location_value = location_textbox[0].value;
+										}
+									}
+									essential_list += (role === "\"author\"" ? 'J' : 'R') + '\t   ' + li_text + (location_value != "" ? " (" + location_value + ")" : "");
+								} else {
 									var fixable_deviation = li.getElementsByClassName('justificationRadioType');
-									if (fixable_deviation[0].checked) {
-										type1_list += '1\t   ' + li_text + '\r\n';
-										if(input_text !== ""){
-											type1_list += ' \t   ' + question_text + '\r\n';
-											type1_list += ' \t    \t   ' + input_text + '\r\n';
+									
+									if (fixable_deviation.length != 0){
+										if (fixable_deviation[0].checked) {
+											type1_list += '1\t   ' + li_text + '\r\n';
+										} else if (fixable_deviation[1].checked) {
+											type2_list += '2\t   ' + li_text + '\r\n';
+										}  else if (fixable_deviation[2].checked) {
+											type3_list += '3\t   ' + li_text + '\r\n';
+										}  else if (fixable_deviation[3].checked) {
+											type4_list += '4\t   ' + li_text + '\r\n';
 										}
-									} else if (fixable_deviation[1].checked) {
-										type2_list += '2\t   ' + li_text + '\r\n';
-										if(input_text !== ""){
-											type2_list += ' \t   ' + question_text + '\r\n';
-											type2_list += ' \t    \t   ' + input_text + '\r\n';
-										}
-									}  else if (fixable_deviation[2].checked) {
-										type3_list += '3\t   ' + li_text + '\r\n';
-										if(input_text !== ""){
-											type3_list += ' \t   ' + question_text + '\r\n';
-											type3_list += ' \t    \t   ' + input_text + '\r\n';
-										}
-									}  else if (fixable_deviation[3].checked) {
-										type4_list += '4\t   ' + li_text + '\r\n';
-										if(input_text !== ""){
-											type4_list += ' \t   ' + question_text + '\r\n';
-											type4_list += ' \t    \t   ' + input_text + '\r\n';
-										}
+									} else {
+										essential_list += (role === "\"author\"" ? 'U' : ' ') + '\t   ' + li_text + '\r\n';
 									}
 								}
 
@@ -1856,11 +1937,25 @@ function saveFile(){
 						else if (list.id == 'Desirable') {
 							if (li.children[0].checked) {
 								include_desirable = true;
-								desirable_list += 'Y' + '\t   ' + li_text + '\r\n';
+								var location_value = "";
+								var location_textbox = li.getElementsByClassName('item_location_textbox');
+								if (location_textbox.length == 1) {
+									if (location_textbox[0].value != "") {
+										location_value = location_textbox[0].value;
+									}
+								}
+								desirable_list +=  'Y' + '\t   ' + li_text + (location_value != "" ? " (" + location_value + ")" : "") + '\r\n';
 							}
 						} else if (li.children[0].checked) {
 							include_extraordinary = true;
-							extraordinary_list += 'Y' + '\t   ' + li_text + '\r\n';
+							var location_value = "";
+							var location_textbox = li.getElementsByClassName('item_location_textbox');
+							if (location_textbox.length == 1) {
+								if (location_textbox[0].value != "") {
+									location_value = location_textbox[0].value;
+								}
+							}
+							extraordinary_list +=  'Y' + '\t   ' + li_text + (location_value != "" ? " (" + location_value + ")" : "") + '\r\n';
 						}
 
 					}
