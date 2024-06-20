@@ -189,10 +189,16 @@ function generate_decision_message_block() {
 
 	// Get the role (author, one-phase, two-phase)
 	role = getParameterByName('role');
+	
+	var checklist_yes_not_checked_count;
 
 	// Number of yes's that are not checked
-	checklist_yes_not_checked_count = $('input[class="checklistRadioYes"][type="radio"][value="yes"]').not(':checked').length;
-
+	if (role == "\"author\"") {
+		checklist_yes_not_checked_count = document.querySelectorAll('input[class="item_location_textbox"][type="text"]:placeholder-shown').length;
+	} else {
+		checklist_yes_not_checked_count = $('input[class="checklistRadioYes"][type="radio"][value="yes"]').not(':checked').length;
+	}
+	
 	// First level no - Number of nos checked
 	checklist_no_checked_count = $('input[class="checklistRadioNo"][type="radio"][value="no"]:checked').length;
 
@@ -201,6 +207,8 @@ function generate_decision_message_block() {
 	
 	// Second level no
 	deviation_no_checked_count = $('input[class="deviationRadioNo"][type="radio"][value="no"]:checked').length;
+	
+	console.log("Test: " + checklist_yes_not_checked_count + " yeses not counted; " + checklist_no_checked_count + " nos counted; " + deviation_yes_checked_count + " deviation yeses counted; " + deviation_no_checked_count + " deviation nos counted");
 
 	// Need to change to types
 	// justification_yes_checked_count = $('input[class="justificationRadioYes"][type="radio"][value="yes"]:checked').length;
@@ -318,8 +326,10 @@ function generate_decision_message_block() {
 
 	} else if (role == "\"author\""){
 		if (checklist_yes_not_checked_count == checklist_no_checked_count & checklist_no_checked_count == (deviation_yes_checked_count+deviation_no_checked_count)) {
+			console.log("download enabled");
 			document.getElementById("checklist_download").disabled = false;
 		} else {
+			console.log("download disabled");
 			document.getElementById("checklist_download").disabled = true;
 		}
 	}
@@ -411,10 +421,9 @@ function show_deviation_block_and_hide_location_textbox() {
 	var block = document.getElementById("deviation_block:" + id);
 	block.style.display = "block";
 	
-	// Hide item location textbox
+	// Empty item location textbox
 	var item_location_textbox = document.getElementById("item_location_textbox:" + id);
 	if (item_location_textbox){
-		item_location_textbox.style.display = "none";
 		item_location_textbox.value = '';
 	}
 
@@ -432,7 +441,11 @@ function show_deviation_block_and_hide_location_textbox() {
 function hide_deviation_block_and_show_location_textbox() {
 
 	// Replace ID from Yes to an empty string
-	id = this.id.replace("checklist-radio:Yes:", "")
+	if (role == "\"author\"") {
+		id = this.id.replace("item_location_textbox:", "");
+	} else {
+		id = this.id.replace("checklist-radio:Yes:", "");
+	}
 	hide_other_messages(id);
 
 	// Hide all Deviation Blocks
@@ -446,6 +459,9 @@ function hide_deviation_block_and_show_location_textbox() {
 	if (role != "\"author\"") {
 		var msg_block = document.getElementById("free_text_question:" + id);
 		msg_block.style.display = "none";
+	} else {
+		var no_radio = document.getElementById("checklist-radio:No:" + id);
+		no_radio.checked = false;
 	}
 
 	// Uncheck all deviation-block-radio
@@ -466,10 +482,12 @@ function hide_deviation_block_and_show_location_textbox() {
 		document.getElementsByName(deviation_radio_name)[i].checked = false;
 	}
 	
+	/*
 	// Show item location textbox
 	var item_location_textbox = document.getElementById("item_location_textbox:" + id);
 	if (item_location_textbox)
 		item_location_textbox.style.display = "inline";
+	*/
 
 	// Hide justification location textbox and clear its value
 	var item_location_textbox = document.getElementById("justification_location_textbox:" + id);
@@ -504,7 +522,7 @@ function generate_location_textbox(name, id, margin) {
 	location_textbox.id = name + ":" + id;
 	location_textbox.placeholder = 'Where in the paper?';
 	location_textbox.style.marginLeft = margin;
-	location_textbox.style.display = 'none';
+	//location_textbox.style.display = 'none';
 	location_textbox.defaultValue = '';
 	location_textbox.oninput = function(event) {
 		var location_type = document.getElementById('location_type');
@@ -685,6 +703,7 @@ function generate_question_block_with_yes_no_radio_answers(id, class_name, quest
 	
 	if(role == "\"author\"") {
 		var justification_location_textbox = generate_location_textbox("justification_location_textbox", checklistItem_id, "10px");
+		justification_location_textbox.style.display = 'none';
 		deviation_block_radios.appendChild(justification_location_textbox);
 	}
 	
@@ -1098,40 +1117,53 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 			//locate the current checklist into the table
 			data = dataStructure.get(Encode_key(line_text))
 			
+			/*
 			if(role == "\"author\""){
 				var item_location_textbox = generate_location_textbox("item_location_textbox", checklistItem_id, "5px");
 				checklistItemText.appendChild(item_location_textbox);
-			}
+			}*/
 	
 
 			if (checklistName == "Essential"){
 				// create Input Elements
-				var checklistRadioYes = document.createElement("input");
+				
+				var userInputYes;
+				
+				if (role == "\"author\"") {
+					userInputYes = generate_location_textbox("item_location_textbox", checklistItem_id, "5px");
+					userInputYes.onfocus = hide_deviation_block_and_show_location_textbox;
+					
+				} else {
+					userInputYes = document.createElement("input");
+					userInputYes.id = "checklist-radio:Yes:" + checklistItem_id;
+					userInputYes.className = "checklistRadioYes";
+					userInputYes.name = "checklist-radio:" + checklistItem_id;
+					
+					// in the case of YES, hide the deviation block
+					userInputYes.onclick = hide_deviation_block_and_show_location_textbox;
+					
+					userInputYes.type = "radio";
+					userInputYes.value = "yes";
+					userInputYes.checked = tester;
+				}
+				
 				var checklistRadioNo = document.createElement("input");
 
 				// Set the IDs
-				checklistRadioYes.id = "checklist-radio:Yes:" + checklistItem_id;
 				checklistRadioNo.id = "checklist-radio:No:" + checklistItem_id;
 
 				// Set the names of the class
-				checklistRadioYes.className = "checklistRadioYes";
 				checklistRadioNo.className = "checklistRadioNo";
-				checklistRadioYes.name = "checklist-radio:" + checklistItem_id;
 				checklistRadioNo.name = "checklist-radio:" + checklistItem_id;
 
-				// in the case of YES, hide the deviation block
-				checklistRadioYes.onclick = hide_deviation_block_and_show_location_textbox;
 				// in the case of NO, show the deviation block
 				checklistRadioNo.onclick = show_deviation_block_and_hide_location_textbox;
 
 				// set the type of the input to "radio"
-				checklistRadioYes.type = "radio";
 				checklistRadioNo.type = "radio";
 
 				// set the value to yes or no
-				checklistRadioYes.value = "yes";
 				checklistRadioNo.value = "no";
-				checklistRadioYes.checked = tester;
 
 				// Generate a deviation block
 				var deviation_block;
@@ -1158,7 +1190,7 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 
 				checklistItemText.appendChild(deviation_block);
 
-				checklistItemLI.appendChild(checklistRadioYes);
+				checklistItemLI.appendChild(userInputYes);
 				checklistItemLI.appendChild(checklistRadioNo);
 				checklistItemLI.appendChild(checklistItemText);
 			}
@@ -1878,13 +1910,11 @@ function saveFile(){
 							li_text = li_text.replace(regex9,"");
 
 						if (list.id == 'Essential'){
-							if (li.children[0].checked) {
-								var location_value = "";
-								var location_textbox = li.getElementsByClassName('item_location_textbox');
+							var location_value = "";
+							var location_textbox = li.getElementsByClassName('item_location_textbox');
+							if (li.children[0].checked || role == "\"author\"" && location_textbox[0].value != "") {
 								if (location_textbox.length == 1) {
-									if (location_textbox[0].value != "") {
-										location_value = location_textbox[0].value;
-									}
+									location_value = location_textbox[0].value;
 								}
 								essential_list +=  'Y' + '\t   ' + li_text + (location_value != "" ? " (" + location_value + ")" : "") + '\r\n';
 							} else {
