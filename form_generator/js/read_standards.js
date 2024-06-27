@@ -521,7 +521,7 @@ function generate_location_textbox(name, id, margin) {
 	location_textbox.className = name;
 	location_textbox.id = name + ":" + id;
 	location_textbox.placeholder = 'Where in the paper?';
-	location_textbox.style.marginLeft = margin;
+	location_textbox.style = "margin-left: " + margin + "; margin-right: 50px;";
 	//location_textbox.style.display = 'none';
 	location_textbox.defaultValue = '';
 	location_textbox.oninput = function(event) {
@@ -1638,7 +1638,20 @@ function create_requirements_checklist(file){
 			// Reformat the checklists from MD to HTML
 			var Yes_No = document.createElement("div");
 			Yes_No.style = "align:center; font-size: 80%; font-weight: bold;";
-			Yes_No.innerHTML = "&nbsp;yes no";
+			
+			if (role == "\"author\"") {
+				var location_label = document.createElement("span");
+				location_label.innerHTML = "Location";
+				location_label.style = "margin-left: 10px; margin-right: 140px;"
+			
+				var no_label = document.createElement("span");
+				no_label.innerHTML = "Missing";
+			
+				Yes_No.appendChild(location_label);
+				Yes_No.appendChild(no_label);
+			} else {
+				Yes_No.innerHTML = "&nbsp;yes no";
+			}
 
 			// DEPRECATED
 			//var standard_header_rule = document.createElement("div");
