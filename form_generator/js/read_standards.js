@@ -1167,11 +1167,12 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 
 				// Generate a deviation block
 				var deviation_block;
-				if(role == "\"author\"")
+				if(role == "\"author\"") {
 					deviation_block = generate_author_deviation_block(checklistItem_id);
+					checklistRadioNo.style = "margin-right: 60px;";
 				// else if(role == "\"ease-reviewer\"")
 				// 	deviation_block = generate_ease_reviewer_deviation_block(checklistItem_id);
-				else if(role == "\"one-phase-reviewer\""){
+				} else if(role == "\"one-phase-reviewer\""){
 					// deviation_block = generate_reviewer_deviation_block(checklistItem_id);
 					if(data){
 						deviation_block = generate_one_phase_reviewer_deviation_block(checklistItem_id,data);
