@@ -194,7 +194,7 @@ function generate_decision_message_block() {
 
 	// Number of yes's that are not checked
 	if (role == "\"author\"") {
-		checklist_yes_not_checked_count = document.querySelectorAll('input[class="item_location_textbox"][type="text"]:placeholder-shown').length;
+		checklist_yes_not_checked_count = document.querySelectorAll('.item_location_textbox:placeholder-shown:has(+ .checklistRadioNo)').length;
 	} else {
 		checklist_yes_not_checked_count = $('input[class="checklistRadioYes"][type="radio"][value="yes"]').not(':checked').length;
 	}
@@ -1197,16 +1197,24 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 			}
 			// ?????????????????????????????
 			else{
-				var checkboxInput = document.createElement("input");
-				checkboxInput.type = "checkbox";
-				checkboxInput.id = checklistItem_id;
-				checkboxInput.className = "checkbox_attributes";
-				checkboxInput.name = checklistItem_id;
-				checkboxInput.onclick = show_hide_location_textbox;
-				checkboxInput.style = "color:#FFF";
-				checkboxInput.value = line_text;
-				checklistItemLI.appendChild(checkboxInput);
-				checklistItemLI.appendChild(checklistItemText);
+				if (role == "\"author\"") {
+					var userInputYes;
+					userInputYes = generate_location_textbox("item_location_textbox", checklistItem_id, "5px");
+				
+					checklistItemLI.appendChild(userInputYes);
+					checklistItemLI.appendChild(checklistItemText);
+				} else {
+					var checkboxInput = document.createElement("input");
+					checkboxInput.type = "checkbox";
+					checkboxInput.id = checklistItem_id;
+					checkboxInput.className = "checkbox_attributes";
+					checkboxInput.name = checklistItem_id;
+					checkboxInput.onclick = show_hide_location_textbox;
+					checkboxInput.style = "color:#FFF";
+					checkboxInput.value = line_text;
+					checklistItemLI.appendChild(checkboxInput);
+					checklistItemLI.appendChild(checklistItemText);
+				}
 			}
 
 			checklists.appendChild(checklistItemLI);
@@ -1922,10 +1930,11 @@ function saveFile(){
 							li_text = li_text.replace(regex8,"");
 						if (li_text.match(regex9) != null)
 							li_text = li_text.replace(regex9,"");
+						
+						var location_value = "";
+						var location_textbox = li.getElementsByClassName('item_location_textbox');
 
 						if (list.id == 'Essential'){
-							var location_value = "";
-							var location_textbox = li.getElementsByClassName('item_location_textbox');
 							if (li.children[0].checked || role == "\"author\"" && location_textbox[0].value != "") {
 								if (location_textbox.length == 1) {
 									location_value = location_textbox[0].value;
@@ -2012,25 +2021,19 @@ function saveFile(){
 							}
 						}
 						else if (list.id == 'Desirable') {
-							if (li.children[0].checked) {
+							if (li.children[0].checked || role == "\"author\"" && location_textbox[0].value != "") {
 								include_desirable = true;
-								var location_value = "";
-								var location_textbox = li.getElementsByClassName('item_location_textbox');
+
 								if (location_textbox.length == 1) {
-									if (location_textbox[0].value != "") {
-										location_value = location_textbox[0].value;
-									}
+									location_value = location_textbox[0].value;
 								}
 								desirable_list +=  'Y' + '\t   ' + li_text + (location_value != "" ? " (" + location_value + ")" : "") + '\r\n';
 							}
-						} else if (li.children[0].checked) {
+						} else if (li.children[0].checked || role == "\"author\"" && location_textbox[0].value != "") {
 							include_extraordinary = true;
-							var location_value = "";
-							var location_textbox = li.getElementsByClassName('item_location_textbox');
+
 							if (location_textbox.length == 1) {
-								if (location_textbox[0].value != "") {
-									location_value = location_textbox[0].value;
-								}
+								location_value = location_textbox[0].value;
 							}
 							extraordinary_list +=  'Y' + '\t   ' + li_text + (location_value != "" ? " (" + location_value + ")" : "") + '\r\n';
 						}
