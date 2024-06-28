@@ -191,16 +191,21 @@ function generate_decision_message_block() {
 	role = getParameterByName('role');
 	
 	var checklist_yes_not_checked_count;
+	var checklist_no_checked_count;
 
 	// Number of yes's that are not checked
 	if (role == "\"author\"") {
-		checklist_yes_not_checked_count = document.querySelectorAll('.item_location_textbox:placeholder-shown:has(+ .checklistRadioNo)').length;
+		checklist_yes_not_checked_count = document.querySelectorAll('.missing_checkbox + .item_location_textbox:placeholder-shown').length;
 	} else {
 		checklist_yes_not_checked_count = $('input[class="checklistRadioYes"][type="radio"][value="yes"]').not(':checked').length;
 	}
 	
 	// First level no - Number of nos checked
-	checklist_no_checked_count = $('input[class="checklistRadioNo"][type="radio"][value="no"]:checked').length;
+	if (role == "\"author\"") {
+		checklist_no_checked_count = document.querySelectorAll('.missing_checkbox:checked').length;
+	} else {
+		checklist_no_checked_count = $('input[class="checklistRadioNo"][type="radio"][value="no"]:checked').length;
+	}
 
 	// Second level yes
 	deviation_yes_checked_count = $('input[class="deviationRadioYes"][type="radio"][value="yes"]:checked').length;
@@ -402,30 +407,40 @@ function generate_decision_message_block() {
 
 
 function show_hide_location_textbox() {
-	id = this.id
-	// Show/Hide item location textbox
-	var item_location_textbox = document.getElementById("item_location_textbox:" + id);
-	if (item_location_textbox){
-		if (item_location_textbox.style.display === "inline"){
-			item_location_textbox.style.display = "none";
-			item_location_textbox.value = '';
-		} else {
-			item_location_textbox.style.display = "inline";
-		}
+	id = this.id;
+	console.log(id);
+
+	var missing_checkbox = document.getElementById(id);
+	
+	console.log(missing_checkbox);
+	
+	if (missing_checkbox.checked) {
+		console.log("Missing checked");
+		show_deviation_block_and_hide_location_textbox();
+	} else {
+		console.log("Missing unchecked");
+		hide_deviation_block_and_show_location_textbox();
 	}
 }
 
 //this function manages the display of the deviation block, which is dependent upon user input
 function show_deviation_block_and_hide_location_textbox() {
-	id = this.id.replace("checklist-radio:No:", "")
+	
+	// Replace ID from Yes to an empty string
+	if (role == "\"author\"") {
+		console.log(id);
+		id = this.id.replace("missing_checkbox:", "");
+		console.log(id);
+		
+		var item_location_textbox = document.getElementById("item_location_textbox:" + id);
+		item_location_textbox.style.visibility = "hidden";
+		item_location_textbox.value = "";
+	} else {
+		id = this.id.replace("checklist-radio:No:", "")
+	}
+	
 	var block = document.getElementById("deviation_block:" + id);
 	block.style.display = "block";
-	
-	// Empty item location textbox
-	var item_location_textbox = document.getElementById("item_location_textbox:" + id);
-	if (item_location_textbox){
-		item_location_textbox.value = '';
-	}
 
 	let deviationRadioYes = document.getElementById("deviation_block-radio:Yes:" + id);
 	if(deviationRadioYes.disabled){
@@ -442,7 +457,14 @@ function hide_deviation_block_and_show_location_textbox() {
 
 	// Replace ID from Yes to an empty string
 	if (role == "\"author\"") {
+		console.log(id);
+		id = this.id.replace("missing_checkbox:", "");
 		id = this.id.replace("item_location_textbox:", "");
+		console.log(id);
+		
+		var item_location_textbox = document.getElementById("item_location_textbox:" + id);
+		item_location_textbox.style.visibility = "visible";
+		
 	} else {
 		id = this.id.replace("checklist-radio:Yes:", "");
 	}
@@ -459,27 +481,29 @@ function hide_deviation_block_and_show_location_textbox() {
 	if (role != "\"author\"") {
 		var msg_block = document.getElementById("free_text_question:" + id);
 		msg_block.style.display = "none";
-	} else {
 		var no_radio = document.getElementById("checklist-radio:No:" + id);
 		no_radio.checked = false;
+	} else {
+		var missing_checkbox = document.getElementById("missing_checkbox:" + id);
+		missing_checkbox.checked = false;
 	}
 
 	// Uncheck all deviation-block-radio
-	deviation_radio_name = this.name.replace("checklist-radio", "deviation_block-radio");
-	for(let i = 0; i < document.getElementsByName(deviation_radio_name).length; i++){
-		document.getElementsByName(deviation_radio_name)[i].checked = false;
+	//deviation_radio_name = this.name.replace("checklist-radio", "deviation_block-radio");
+	for(let i = 0; i < document.getElementsByName("deviation_block-radio:" + id).length; i++){
+		document.getElementsByName("deviation_block-radio:" + id)[i].checked = false;
 	}
 
 	// Uncheck all deviation-justified-radio
-	deviation_radio_name = this.name.replace("checklist-radio", "deviation_justified-radio");
-	for(let i = 0; i < document.getElementsByName(deviation_radio_name).length; i++){
-		document.getElementsByName(deviation_radio_name)[i].checked = false;
+	//deviation_radio_name = this.name.replace("checklist-radio", "deviation_justified-radio");
+	for(let i = 0; i < document.getElementsByName("deviation_block-radio:" + id).length; i++){
+		document.getElementsByName("deviation_block-radio:" + id)[i].checked = false;
 	}
 
 	// Uncheck all deviation-not-justified-radio
-	deviation_radio_name = this.name.replace("checklist-radio", "deviation_not_justified-radio");
-	for(let i = 0; i < document.getElementsByName(deviation_radio_name).length; i++){
-		document.getElementsByName(deviation_radio_name)[i].checked = false;
+	//deviation_radio_name = this.name.replace("checklist-radio", "deviation_not_justified-radio");
+	for(let i = 0; i < document.getElementsByName("deviation_block-radio:" + id).length; i++){
+		document.getElementsByName("deviation_block-radio:" + id)[i].checked = false;
 	}
 	
 	/*
@@ -1128,10 +1152,24 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 				// create Input Elements
 				
 				var userInputYes;
+				var userInputNo;
 				
 				if (role == "\"author\"") {
 					userInputYes = generate_location_textbox("item_location_textbox", checklistItem_id, "5px");
 					userInputYes.onfocus = hide_deviation_block_and_show_location_textbox;
+					
+					userInputNo = document.createElement("input");
+					userInputNo.type = "checkbox";
+					userInputNo.id = "missing_checkbox:" + checklistItem_id;
+					userInputNo.className = "missing_checkbox";
+					userInputNo.name = checklistItem_id;
+					userInputNo.onclick = show_hide_location_textbox;
+					userInputNo.style = "color:#FFF; margin-left: 25px; margin-right: 105px;";
+					userInputNo.value = line_text;
+					
+					checklistItemLI.appendChild(userInputNo);
+					checklistItemLI.appendChild(userInputYes);
+					
 					
 				} else {
 					userInputYes = document.createElement("input");
@@ -1145,31 +1183,23 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 					userInputYes.type = "radio";
 					userInputYes.value = "yes";
 					userInputYes.checked = tester;
+					
+					var userInputNo = document.createElement("input");
+					userInputNo.id = "checklist-radio:No:" + checklistItem_id;
+					userInputNo.className = "checklistRadioNo";
+					userInputNo.name = "checklist-radio:" + checklistItem_id;
+					userInputNo.onclick = show_deviation_block_and_hide_location_textbox;
+					userInputNo.type = "radio";
+					userInputNo.value = "no";
+					
+					checklistItemLI.appendChild(userInputYes);
+					checklistItemLI.appendChild(userInputNo);
 				}
-				
-				var checklistRadioNo = document.createElement("input");
-
-				// Set the IDs
-				checklistRadioNo.id = "checklist-radio:No:" + checklistItem_id;
-
-				// Set the names of the class
-				checklistRadioNo.className = "checklistRadioNo";
-				checklistRadioNo.name = "checklist-radio:" + checklistItem_id;
-
-				// in the case of NO, show the deviation block
-				checklistRadioNo.onclick = show_deviation_block_and_hide_location_textbox;
-
-				// set the type of the input to "radio"
-				checklistRadioNo.type = "radio";
-
-				// set the value to yes or no
-				checklistRadioNo.value = "no";
 
 				// Generate a deviation block
 				var deviation_block;
 				if(role == "\"author\"") {
 					deviation_block = generate_author_deviation_block(checklistItem_id);
-					checklistRadioNo.style = "margin-right: 60px;";
 				// else if(role == "\"ease-reviewer\"")
 				// 	deviation_block = generate_ease_reviewer_deviation_block(checklistItem_id);
 				} else if(role == "\"one-phase-reviewer\""){
@@ -1191,8 +1221,6 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 
 				checklistItemText.appendChild(deviation_block);
 
-				checklistItemLI.appendChild(userInputYes);
-				checklistItemLI.appendChild(checklistRadioNo);
 				checklistItemLI.appendChild(checklistItemText);
 			}
 			// ?????????????????????????????
@@ -1209,7 +1237,7 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 					checkboxInput.id = checklistItem_id;
 					checkboxInput.className = "checkbox_attributes";
 					checkboxInput.name = checklistItem_id;
-					checkboxInput.onclick = show_hide_location_textbox;
+					//checkboxInput.onclick = show_hide_location_textbox;
 					checkboxInput.style = "color:#FFF";
 					checkboxInput.value = line_text;
 					checklistItemLI.appendChild(checkboxInput);
@@ -1649,15 +1677,15 @@ function create_requirements_checklist(file){
 			Yes_No.style = "align:center; font-size: 80%; font-weight: bold;";
 			
 			if (role == "\"author\"") {
+				var missing_label = document.createElement("span");
+				missing_label.innerHTML = "Missing";
+				missing_label.style = "margin-left: 10px; margin-right: 90px;"
+				
 				var location_label = document.createElement("span");
 				location_label.innerHTML = "Location";
-				location_label.style = "margin-left: 10px; margin-right: 140px;"
 			
-				var no_label = document.createElement("span");
-				no_label.innerHTML = "Missing";
-			
+				Yes_No.appendChild(missing_label);
 				Yes_No.appendChild(location_label);
-				Yes_No.appendChild(no_label);
 			} else {
 				Yes_No.innerHTML = "&nbsp;yes no";
 			}
@@ -1935,7 +1963,7 @@ function saveFile(){
 						var location_textbox = li.getElementsByClassName('item_location_textbox');
 
 						if (list.id == 'Essential'){
-							if (li.children[0].checked || role == "\"author\"" && location_textbox[0].value != "") {
+							if (role != "\"author\"" && li.children[0].checked || role == "\"author\"" && location_textbox[0].value != "") {
 								if (location_textbox.length == 1) {
 									location_value = location_textbox[0].value;
 								}
