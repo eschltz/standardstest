@@ -1075,7 +1075,7 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 	// Essential needs more room for radio buttons
 	if (checklistName == "Essential") {
 		if (role = "\"author\"") {
-			checklists.style = "list-style-type:none; list-style-position:inside; text-indent: 2em; margin-left: 0;";
+			checklists.style = "list-style-type:none; list-style-position:inside; text-indent: 2em hanging; margin-left: 0;";
 		} else {
 			checklists.style = "list-style-type:none; list-style-position:inside; text-indent:-2.4em;";
 		}
