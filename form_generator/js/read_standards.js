@@ -1110,7 +1110,14 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 			checklistItem_id = standardName + "-" + checklistName + ":" + i;
 			console.log(checklistItem_id);
 			var checklistItemLI = document.createElement("LI");
+			
 			var checklistItemText = document.createElement("span");
+			
+			if (role == "\"author\"") {
+				checklistItemLI.style = "display: flex; align-items: flex-start;";
+				checklistItemText.style = "flex: 0 1 60%";
+			}
+			
 			if(IMRaD_line_break)
 				checklists.appendChild(document.createElement("br"));
 
@@ -1167,10 +1174,6 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 					userInputNo.style = "color:#FFF; margin-left: 25px; margin-right: 105px;";
 					userInputNo.value = line_text;
 					
-					checklistItemLI.appendChild(userInputNo);
-					checklistItemLI.appendChild(userInputYes);
-					
-					
 				} else {
 					userInputYes = document.createElement("input");
 					userInputYes.id = "checklist-radio:Yes:" + checklistItem_id;
@@ -1200,6 +1203,13 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 				var deviation_block;
 				if(role == "\"author\"") {
 					deviation_block = generate_author_deviation_block(checklistItem_id);
+					
+					checklistItemText.appendChild(deviation_block);
+					checklistItemLI.appendChild(checklistItemText);
+					
+					checklistItemLI.appendChild(userInputYes);
+					checklistItemLI.appendChild(userInputNo);
+					
 				// else if(role == "\"ease-reviewer\"")
 				// 	deviation_block = generate_ease_reviewer_deviation_block(checklistItem_id);
 				} else if(role == "\"one-phase-reviewer\""){
@@ -1209,6 +1219,10 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 					}else{
 						deviation_block = generate_one_phase_reviewer_deviation_block(checklistItem_id,null);
 					}
+					
+					checklistItemText.appendChild(deviation_block);
+					checklistItemLI.appendChild(checklistItemText);
+					
 				}
 				else if(role == "\"two-phase-reviewer\""){
 					if(data){
@@ -1216,12 +1230,12 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 					}else{
 						deviation_block = generate_two_phase_reviewer_deviation_block(checklistItem_id,null);
 					}
+					
+					checklistItemText.appendChild(deviation_block);
+					checklistItemLI.appendChild(checklistItemText);
 				}
 					// deviation_block = generate_two_phase_reviewer_deviation_block(checklistItem_id);
 
-				checklistItemText.appendChild(deviation_block);
-
-				checklistItemLI.appendChild(checklistItemText);
 			}
 			// ?????????????????????????????
 			else{
@@ -1677,15 +1691,22 @@ function create_requirements_checklist(file){
 			Yes_No.style = "align:center; font-size: 80%; font-weight: bold;";
 			
 			if (role == "\"author\"") {
+				Yes_No.style.display = "flex";
+				
+				var attribute_label = document.createElement("span");
+				attribute_label.innerHTML = "Attribute";
+				attribute_label.style = "flex: 0 1 63%;";
+				
 				var missing_label = document.createElement("span");
-				missing_label.innerHTML = "Missing";
-				missing_label.style = "margin-left: 10px; margin-right: 90px;"
+				missing_label.innerHTML = "N/A";
+				missing_label.style = "margin-left: 170px;";
 				
 				var location_label = document.createElement("span");
 				location_label.innerHTML = "Location";
-			
-				Yes_No.appendChild(missing_label);
+				
+				Yes_No.appendChild(attribute_label);
 				Yes_No.appendChild(location_label);
+				Yes_No.appendChild(missing_label);
 			} else {
 				Yes_No.innerHTML = "&nbsp;yes no";
 			}
