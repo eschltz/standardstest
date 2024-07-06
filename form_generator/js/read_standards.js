@@ -1073,11 +1073,16 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 
 	// Positioning Essential, Desirable, Extraordinary lines on page
 	// Essential needs more room for radio buttons
-	if (checklistName == "Essential")
-		checklists.style = "list-style-type:none; list-style-position:inside; text-indent: 2em hanging;";
-	else
+	if (checklistName == "Essential") {
+		if (role = "\"author\"") {
+			checklists.style = "list-style-type:none; list-style-position:inside; text-indent: 2em; margin-left: 0;";
+		} else {
+			checklists.style = "list-style-type:none; list-style-position:inside; text-indent:-2.4em;";
+		}
+	} else {
 		checklists.style = "list-style-type:none; list-style-position:inside; padding-left:0em; text-indent:-1.3em;";
-
+	}
+	
 	//checklists.appendChild(standard_H3); //no subheadings
 
 	// splitting lines on bullet points from markdown file
@@ -1643,9 +1648,7 @@ function create_requirements_checklist(file){
 	// create Header for Extraordinary Requirements with an unordered list
 	var ExtraordinaryUL = create_requirements_heading_with_UL("Extraordinary");
 	
-	if( role == "\"author\"" ) {
-		EssentialUL.style.marginLeft = "0";
-	} else {
+	if( role != "\"author\"" ) {
 		DesirableUL.style = "padding: 0px; display:none;";
 		ExtraordinaryUL.style = "padding: 0px; display:none;";
 	}
