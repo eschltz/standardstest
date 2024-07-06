@@ -1164,7 +1164,7 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 				if (role == "\"author\"") {
 					
 					var location_container = document.createElement("span");
-					location_container.style = "flex: 0 1 20%;";
+					location_container.style = "flex: 0 1 20%; margin-right: 10px;";
 					
 					userInputYes = generate_location_textbox("item_location_textbox", checklistItem_id, "5px");
 					userInputYes.style.width = "90%";
@@ -1642,16 +1642,12 @@ function create_requirements_checklist(file){
 
 	// create Header for Extraordinary Requirements with an unordered list
 	var ExtraordinaryUL = create_requirements_heading_with_UL("Extraordinary");
-
-	// hide desirable and extraordinary list of requirements for One Phase Reviewer
-	if(role == "\"one-phase-reviewer\""){
+	
+	if( role == "\"author\"" ) {
+		EssentialUL.style.marginLeft = "0";
+	} else {
 		DesirableUL.style = "padding: 0px; display:none;";
 		ExtraordinaryUL.style = "padding: 0px; display:none;";
-	}
-	// hide desirable and extraordinary list of requirements for Two Phase Reviewer
-	else if(role == "\"two-phase-reviewer\""){
-		DesirableUL.style = "padding: 0px; display:none;";
-		ExtraordinaryUL.style = "padding: 0px; display:none;";		
 	}
 
 	// unshift() method adds new items to the beginning of an array, and returns the new length
@@ -1709,7 +1705,7 @@ function create_requirements_checklist(file){
 				
 				var location_label = document.createElement("span");
 				location_label.innerHTML = "Location";
-				location_label.style = "flex: 0 1 20%;";
+				location_label.style = "flex: 0 1 20%; margin-right: 10px;";
 				
 				var missing_label = document.createElement("span");
 				missing_label.innerHTML = "N/A";
