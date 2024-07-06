@@ -195,7 +195,7 @@ function generate_decision_message_block() {
 
 	// Number of yes's that are not checked
 	if (role == "\"author\"") {
-		checklist_yes_not_checked_count = document.querySelectorAll('.missing_checkbox + .item_location_textbox:placeholder-shown').length;
+		checklist_yes_not_checked_count = document.querySelectorAll('.item_location_textbox[id*="Essential"]:placeholder-shown').length;
 	} else {
 		checklist_yes_not_checked_count = $('input[class="checklistRadioYes"][type="radio"][value="yes"]').not(':checked').length;
 	}
@@ -428,7 +428,6 @@ function show_deviation_block_and_hide_location_textbox() {
 	
 	// Replace ID from Yes to an empty string
 	if (role == "\"author\"") {
-		console.log(id);
 		id = this.id.replace("missing_checkbox:", "");
 		console.log(id);
 		
@@ -457,7 +456,6 @@ function hide_deviation_block_and_show_location_textbox() {
 
 	// Replace ID from Yes to an empty string
 	if (role == "\"author\"") {
-		console.log(id);
 		id = this.id.replace("missing_checkbox:", "");
 		id = this.id.replace("item_location_textbox:", "");
 		console.log(id);
@@ -1059,6 +1057,8 @@ function generate_two_phase_reviewer_deviation_block(checklistItem_id,data) {
 
 // convert from Markdown to HTML checklists
 function convert_MD_standard_checklists_to_html_standard_checklists(standardName, checklistName, checklistText, footnotes){
+	
+	console.log(role);
 
 	// ???????
 	tester = getParameterByName('y')[0] == 'noval' ? true : false;
@@ -1074,10 +1074,10 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 	// Positioning Essential, Desirable, Extraordinary lines on page
 	// Essential needs more room for radio buttons
 	if (checklistName == "Essential") {
-		if (role = "\"author\"") {
+		if (role == "\"author\"") {
 			checklists.style = "list-style-type:none; list-style-position:inside; text-indent: 2em hanging; margin-left: 0;";
 		} else {
-			checklists.style = "list-style-type:none; list-style-position:inside; text-indent:-2.4em;";
+			checklists.style = "list-style-type:none; list-style-position:inside; padding-left: 1.2em; text-indent:-2.4em;";
 		}
 	} else {
 		checklists.style = "list-style-type:none; list-style-position:inside; padding-left:0em; text-indent:-1.3em;";
@@ -1165,17 +1165,19 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 				
 				var userInputYes;
 				var userInputNo;
+				var location_container;
+				var missing_container;
 				
 				if (role == "\"author\"") {
 					
-					var location_container = document.createElement("span");
+					location_container = document.createElement("span");
 					location_container.style = "flex: 0 1 20%; margin-right: 10px;";
 					
 					userInputYes = generate_location_textbox("item_location_textbox", checklistItem_id, "5px");
 					userInputYes.style.width = "90%";
 					userInputYes.onfocus = hide_deviation_block_and_show_location_textbox;
 					
-					var missing_container = document.createElement("span");
+					missing_container = document.createElement("span");
 					
 					userInputNo = document.createElement("input");
 					userInputNo.type = "checkbox";
@@ -1186,8 +1188,7 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 					userInputNo.style = "color:#FFF;";
 					userInputNo.value = line_text;
 					
-					location_container.appendChild(userInputYes);
-					missing_container.appendChild(userInputNo);
+					console.log("AUTHOR: Yes input:" + userInputYes.className + "; No input: " + userInputNo.className);
 					
 				} else {
 					userInputYes = document.createElement("input");
@@ -1202,7 +1203,7 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 					userInputYes.value = "yes";
 					userInputYes.checked = tester;
 					
-					var userInputNo = document.createElement("input");
+					userInputNo = document.createElement("input");
 					userInputNo.id = "checklist-radio:No:" + checklistItem_id;
 					userInputNo.className = "checklistRadioNo";
 					userInputNo.name = "checklist-radio:" + checklistItem_id;
@@ -1210,9 +1211,10 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 					userInputNo.type = "radio";
 					userInputNo.value = "no";
 					
-					checklistItemLI.appendChild(userInputYes);
-					checklistItemLI.appendChild(userInputNo);
+					console.log("REVIEWER: Yes input:" + userInputYes.className + "; No input: " + userInputNo.className);
 				}
+				
+				console.log("Yes input:" + userInputYes.className + "; No input: " + userInputNo.className);
 
 				// Generate a deviation block
 				var deviation_block;
@@ -1222,8 +1224,13 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 					checklistItemText.appendChild(deviation_block);
 					checklistItemLI.appendChild(checklistItemText);
 					
+					location_container.appendChild(userInputYes);
+					missing_container.appendChild(userInputNo);
+					
 					checklistItemLI.appendChild(location_container);
 					checklistItemLI.appendChild(missing_container);
+					
+					console.log("AUTHOR:" + checklistItemLI);
 					
 				// else if(role == "\"ease-reviewer\"")
 				// 	deviation_block = generate_ease_reviewer_deviation_block(checklistItem_id);
@@ -1235,8 +1242,13 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 						deviation_block = generate_one_phase_reviewer_deviation_block(checklistItem_id,null);
 					}
 					
+					checklistItemLI.appendChild(userInputYes);
+					checklistItemLI.appendChild(userInputNo);
+					
 					checklistItemText.appendChild(deviation_block);
 					checklistItemLI.appendChild(checklistItemText);
+					
+					console.log("ONE PHASE:" + checklistItemLI);
 					
 				}
 				else if(role == "\"two-phase-reviewer\""){
@@ -1246,10 +1258,17 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 						deviation_block = generate_two_phase_reviewer_deviation_block(checklistItem_id,null);
 					}
 					
+					checklistItemLI.appendChild(userInputYes);
+					checklistItemLI.appendChild(userInputNo);
+					
 					checklistItemText.appendChild(deviation_block);
 					checklistItemLI.appendChild(checklistItemText);
+					
+					console.log("TWO PHASE:" + checklistItemLI);
 				}
 					// deviation_block = generate_two_phase_reviewer_deviation_block(checklistItem_id);
+					
+				console.log(checklistItemLI);
 
 			}
 			// ?????????????????????????????
