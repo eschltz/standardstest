@@ -1074,7 +1074,7 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 	// Positioning Essential, Desirable, Extraordinary lines on page
 	// Essential needs more room for radio buttons
 	if (checklistName == "Essential")
-		checklists.style = "list-style-type:none; list-style-position:inside; padding-left:1.2em; text-indent:-2.4em;";
+		checklists.style = "list-style-type:none; list-style-position:inside; text-indent: 2em hanging;";
 	else
 		checklists.style = "list-style-type:none; list-style-position:inside; padding-left:0em; text-indent:-1.3em;";
 
@@ -1115,7 +1115,7 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 			
 			if (role == "\"author\"") {
 				checklistItemLI.style = "display: flex; align-items: flex-start;";
-				checklistItemText.style = "flex: 0 1 60%";
+				checklistItemText.style = "flex: 0 1 50vw";
 			}
 			
 			if(IMRaD_line_break)
@@ -1162,8 +1162,15 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 				var userInputNo;
 				
 				if (role == "\"author\"") {
+					
+					var location_container = document.createElement("span");
+					location_container.style = "flex: 0 1 20%;";
+					
 					userInputYes = generate_location_textbox("item_location_textbox", checklistItem_id, "5px");
+					userInputYes.style.width = "90%";
 					userInputYes.onfocus = hide_deviation_block_and_show_location_textbox;
+					
+					var missing_container = document.createElement("span");
 					
 					userInputNo = document.createElement("input");
 					userInputNo.type = "checkbox";
@@ -1171,8 +1178,11 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 					userInputNo.className = "missing_checkbox";
 					userInputNo.name = checklistItem_id;
 					userInputNo.onclick = show_hide_location_textbox;
-					userInputNo.style = "color:#FFF; margin-left: 25px; margin-right: 105px;";
+					userInputNo.style = "color:#FFF;";
 					userInputNo.value = line_text;
+					
+					location_container.appendChild(userInputYes);
+					missing_container.appendChild(userInputNo);
 					
 				} else {
 					userInputYes = document.createElement("input");
@@ -1207,8 +1217,8 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 					checklistItemText.appendChild(deviation_block);
 					checklistItemLI.appendChild(checklistItemText);
 					
-					checklistItemLI.appendChild(userInputYes);
-					checklistItemLI.appendChild(userInputNo);
+					checklistItemLI.appendChild(location_container);
+					checklistItemLI.appendChild(missing_container);
 					
 				// else if(role == "\"ease-reviewer\"")
 				// 	deviation_block = generate_ease_reviewer_deviation_block(checklistItem_id);
@@ -1243,8 +1253,8 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 					var userInputYes;
 					userInputYes = generate_location_textbox("item_location_textbox", checklistItem_id, "5px");
 				
-					checklistItemLI.appendChild(userInputYes);
 					checklistItemLI.appendChild(checklistItemText);
+					checklistItemLI.appendChild(userInputYes);
 				} else {
 					var checkboxInput = document.createElement("input");
 					checkboxInput.type = "checkbox";
@@ -1695,14 +1705,14 @@ function create_requirements_checklist(file){
 				
 				var attribute_label = document.createElement("span");
 				attribute_label.innerHTML = "Attribute";
-				attribute_label.style = "flex: 0 1 63%;";
-				
-				var missing_label = document.createElement("span");
-				missing_label.innerHTML = "N/A";
-				missing_label.style = "margin-left: 170px;";
+				attribute_label.style = "flex: 0 1 50vw;";
 				
 				var location_label = document.createElement("span");
 				location_label.innerHTML = "Location";
+				location_label.style = "flex: 0 1 20%;";
+				
+				var missing_label = document.createElement("span");
+				missing_label.innerHTML = "N/A";
 				
 				Yes_No.appendChild(attribute_label);
 				Yes_No.appendChild(location_label);
