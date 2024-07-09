@@ -1073,12 +1073,11 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 
 	// Positioning Essential, Desirable, Extraordinary lines on page
 	// Essential needs more room for radio buttons
-	if (checklistName == "Essential") {
-		if (role == "\"author\"") {
-			checklists.style = "list-style-type:none; list-style-position:inside; text-indent: 2em hanging; margin-left: 0;";
-		} else {
-			checklists.style = "list-style-type:none; list-style-position:inside; padding-left: 1.2em; text-indent:-2.4em;";
-		}
+	
+	if (role == "\"author\"") {
+		checklists.style = "list-style-type:none; list-style-position:inside; text-indent: 2em hanging; margin-left: 0;";
+	} else if (checklistName == "Essential") {
+		checklists.style = "list-style-type:none; list-style-position:inside; padding-left: 1.2em; text-indent:-2.4em;";
 	} else {
 		checklists.style = "list-style-type:none; list-style-position:inside; padding-left:0em; text-indent:-1.3em;";
 	}
