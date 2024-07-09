@@ -12,6 +12,8 @@ form:active {
 	border: none;
 	border-radius: 4px;
 	padding: 5px;
+	margin-left: 5px;
+	width: 90%;
 }
 
 .item_location_textbox {

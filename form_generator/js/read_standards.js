@@ -1275,10 +1275,15 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 			else{
 				if (role == "\"author\"") {
 					var userInputYes;
+					location_container = document.createElement("span");
+					location_container.style = "flex: 0 1 20%; margin-right: 10px;";
+
 					userInputYes = generate_location_textbox("item_location_textbox", checklistItem_id, "5px");
+					userInputYes.style.width = "90%";
 				
 					checklistItemLI.appendChild(checklistItemText);
-					checklistItemLI.appendChild(userInputYes);
+					location_container.appendChild(userInputYes);
+					checklistItemLI.appendChild(location_container);
 				} else {
 					var checkboxInput = document.createElement("input");
 					checkboxInput.type = "checkbox";
@@ -1375,39 +1380,8 @@ function create_role_heading(){
 		heading_div.appendChild(heading);
 
 		var subheading = document.createElement("H3");		
-		subheading.innerHTML = "Choose the preferred location type to indicate for each checklist item in the paper, where applicable: ";
-		
-		var location_types_combobox = document.createElement("select");
-		location_types_combobox.id = 'location_type';
-
-		var defaultOption = document.createElement('option');
-		defaultOption.textContent = 'Select an option';
-		defaultOption.disabled = true;
-		defaultOption.selected = true;
-		location_types_combobox.appendChild(defaultOption);
-
-		var location_types = [
-			{ value: 'page_no', text: 'Page No.' },
-			{ value: 'section_no', text: 'Section No.' },
-			{ value: 'page_with_section_no', text: 'Page with Section No.' },
-			{ value: 'page_with_paragraph_no', text: 'Page with Paragraph No.' },
-			{ value: 'line_no', text: 'Line No.' }
-		];
-
-		location_types.forEach(function(option) {
-			var location = document.createElement('option');
-			location.value = option.value;
-			location.text = option.text;
-			location_types_combobox.appendChild(location);
-		});	
-
-		location_types_combobox.selectedIndex = 0;
-
-		subheading.appendChild(location_types_combobox);
-		var subheading2 = document.createElement("H4");		
-		subheading2.innerHTML = "Multiple locations per one checklist item should be separated by comma.";
-		subheading.appendChild(subheading2);
-		
+		subheading.innerHTML = "Choose a location type to indicate for each checklist item in the paper, where applicable. Multiple locations per one checklist item should be separated by comma.";
+	
 		heading_div.appendChild(subheading);
 		
 	} else if(role == "\"one-phase-reviewer\"") {
@@ -1726,8 +1700,33 @@ function create_requirements_checklist(file){
 				attribute_label.style = "flex: 0 1 50vw;";
 				
 				var location_label = document.createElement("span");
-				location_label.innerHTML = "Location";
+				var location_types_combobox = document.createElement("select");
+				location_types_combobox.id = 'location_type';
+
+				var defaultOption = document.createElement('option');
+				defaultOption.textContent = 'Location';
+				defaultOption.disabled = true;
+				defaultOption.selected = true;
+				location_types_combobox.appendChild(defaultOption);
+
+				var location_types = [
+					{ value: 'page_no', text: 'Page No.' },
+					{ value: 'section_no', text: 'Section No.' },
+					{ value: 'page_with_section_no', text: 'Page with Section No.' },
+					{ value: 'page_with_paragraph_no', text: 'Page with Paragraph No.' },
+					{ value: 'line_no', text: 'Line No.' }
+				];
+
+				location_types.forEach(function(option) {
+					var location = document.createElement('option');
+					location.value = option.value;
+					location.text = option.text;
+					location_types_combobox.appendChild(location);
+				});	
+
+				location_types_combobox.selectedIndex = 0;
 				location_label.style = "flex: 0 1 20%; margin-right: 10px;";
+				location_label.appendChild(location_types_combobox);
 				
 				var missing_label = document.createElement("span");
 				missing_label.innerHTML = "N/A";
