@@ -193,17 +193,9 @@ function generate_decision_message_block() {
 	var checklist_yes_not_checked_count;
 	var checklist_no_checked_count;
 
-	// Number of yes's that are not checked
-	if (role == "\"author\"") {
-		checklist_yes_not_checked_count = document.querySelectorAll('.item_location_textbox[id*="Essential"]:placeholder-shown').length;
-	} else {
+	// Number of yes's that are not checked and nos checked
+	if (role != "\"author\"") {
 		checklist_yes_not_checked_count = $('input[class="checklistRadioYes"][type="radio"][value="yes"]').not(':checked').length;
-	}
-	
-	// First level no - Number of nos checked
-	if (role == "\"author\"") {
-		checklist_no_checked_count = document.querySelectorAll('.missing_checkbox:checked').length;
-	} else {
 		checklist_no_checked_count = $('input[class="checklistRadioNo"][type="radio"][value="no"]:checked').length;
 	}
 
@@ -329,14 +321,6 @@ function generate_decision_message_block() {
 			document.getElementById("decision_msg").style.display = "none";
 		}
 
-	} else if (role == "\"author\""){
-		if (checklist_yes_not_checked_count == checklist_no_checked_count & checklist_no_checked_count == (deviation_yes_checked_count+deviation_no_checked_count)) {
-			console.log("download enabled");
-			document.getElementById("checklist_download").disabled = false;
-		} else {
-			console.log("download disabled");
-			document.getElementById("checklist_download").disabled = true;
-		}
 	}
 
 
@@ -542,8 +526,8 @@ function generate_location_textbox(name, id, margin) {
 	location_textbox.type = 'text';
 	location_textbox.className = name;
 	location_textbox.id = name + ":" + id;
-	location_textbox.placeholder = 'Where in the paper?';
 	location_textbox.style = "margin-left: " + margin + "; margin-right: 50px;";
+	location_textbox.maxLength = "100";
 	//location_textbox.style.display = 'none';
 	location_textbox.defaultValue = '';
 	location_textbox.oninput = function(event) {
@@ -1451,7 +1435,11 @@ function create_download_button(){
 	download.innerHTML = "Download";
 	download.id = "checklist_download";
 	download.name = "checklist_download";
-	download.disabled = true;
+	
+	if (role != "\"author\"") {
+		download.disabled = true;
+	}
+	
 	download.onclick = saveFile;
 	return download;
 }
