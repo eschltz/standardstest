@@ -1377,11 +1377,6 @@ function create_role_heading(){
 	if(role == "\"author\"") {
 		heading.innerHTML = "Pre-Submission Checklist";
 		heading_div.appendChild(heading);
-
-		var subheading = document.createElement("H3");		
-		subheading.innerHTML = "Choose a location type to indicate for each checklist item in the paper, where applicable. Multiple locations per one checklist item should be separated by comma.";
-	
-		heading_div.appendChild(subheading);
 		
 	} else if(role == "\"one-phase-reviewer\"") {
 		heading.innerHTML = "Reviewer Checklist";
@@ -1702,18 +1697,12 @@ function create_requirements_checklist(file){
 				var location_types_combobox = document.createElement("select");
 				location_types_combobox.id = 'location_type';
 
-				var defaultOption = document.createElement('option');
-				defaultOption.textContent = 'Location';
-				defaultOption.disabled = true;
-				defaultOption.selected = true;
-				location_types_combobox.appendChild(defaultOption);
-
 				var location_types = [
-					{ value: 'page_no', text: 'Page No.' },
-					{ value: 'section_no', text: 'Section No.' },
-					{ value: 'page_with_section_no', text: 'Page with Section No.' },
-					{ value: 'page_with_paragraph_no', text: 'Page with Paragraph No.' },
-					{ value: 'line_no', text: 'Line No.' }
+					{ value: 'line_no', text: 'Line Number(s)' },
+					{ value: 'page_no', text: 'Page #, Line #' },
+					{ value: 'page_with_paragraph_no', text: 'Page #, Paragraph #' },
+					{ value: 'section_no', text: 'Section #, Line #' },
+					{ value: 'section_with_paragraph_no', text: 'Section #, Paragraph #' },
 				];
 
 				location_types.forEach(function(option) {
