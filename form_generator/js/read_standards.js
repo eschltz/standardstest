@@ -1263,10 +1263,26 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 
 					userInputYes = generate_location_textbox("item_location_textbox", checklistItem_id, "5px");
 					userInputYes.style.width = "90%";
+					
+					var userInputNo;
+					missing_container = document.createElement("span");
+					
+					userInputNo = document.createElement("input");
+					userInputNo.type = "checkbox";
+					userInputNo.id = "missing_checkbox:" + checklistItem_id;
+					userInputNo.className = "missing_checkbox";
+					userInputNo.name = checklistItem_id;
+					userInputNo.onclick = show_hide_location_textbox;
+					userInputNo.style = "color:#FFF;";
+					userInputNo.value = line_text;
 				
 					checklistItemLI.appendChild(checklistItemText);
+					
 					location_container.appendChild(userInputYes);
 					checklistItemLI.appendChild(location_container);
+					
+					missing_container.appendChild(userInputNo);
+					checklistItemLI.appendChild(missing_container);
 				} else {
 					var checkboxInput = document.createElement("input");
 					checkboxInput.type = "checkbox";
