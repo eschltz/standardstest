@@ -1915,10 +1915,8 @@ function saveFile(){
 	
 	if (role == "\"author\""){
 		var location_type = document.getElementById('location_type');
-		if (location_type.selectedIndex != 0){
-			location_type = location_type.options[location_type.selectedIndex].text;
-			generated_text += "\nNote: The numbers beside checklist items, if any, represent " + location_type + "\n";
-		}
+		location_type = location_type.options[location_type.selectedIndex].text;
+		generated_text += "\nNote: The numbers beside checklist items, if any, represent " + location_type + "\n";
 	}
 		
 	var decision = document.getElementById("decision_msg");
