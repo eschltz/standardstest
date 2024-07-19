@@ -530,13 +530,6 @@ function generate_location_textbox(name, id, margin) {
 	location_textbox.maxLength = "100";
 	//location_textbox.style.display = 'none';
 	location_textbox.defaultValue = '';
-	location_textbox.oninput = function(event) {
-		var location_type = document.getElementById('location_type');
-		if (location_type.selectedIndex < 1){
-			alert('First choose the location type from the list above.');
-			event.target.value = "";
-		}
-	}
 	return location_textbox;
 }
 
