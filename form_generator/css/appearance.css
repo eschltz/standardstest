@@ -23,6 +23,16 @@ form:active {
 	padding: 3px;
 }
 
+.item_location_textbox:invalid {
+	border: 2px solid red;
+}
+
+.unjustified_warning {
+	color: red;
+	font-size: 90%;
+	padding-left: 20px;
+}
+
 @media screen and (min-width: 401px) and (max-width: 785px)
 {
 	#container
