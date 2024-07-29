@@ -1971,7 +1971,7 @@ function saveFile(){
 		location_type = location_type.options[location_type.selectedIndex].text;
 		generated_text += "\nNote: The numbers beside checklist items, if any, represent " + location_type + "\n";
 		
-		essential_list += "  Location" + "\t" + "Attribute\r\n";
+		essential_list += "  Location" + "\t" + "Attribute\r\n\r\n";
 	}
 	
 	var desirable_list = "\nDesirable\r\n";
@@ -2101,7 +2101,7 @@ function saveFile(){
 											}
 										}
 									} else {
-										essential_list += (role == "\"author\"" ? '\r\n  *' : ' ') + '\t   ' + li_text + '\r\n';
+										essential_list += (role == "\"author\"" ? '  *' : ' ') + '\t\t' + li_text + '\r\n';
 									}
 								}
 
@@ -2128,16 +2128,20 @@ function saveFile(){
 
 								if (location_textbox.length == 1) {
 									location_value = location_textbox[0].value;
+									desirable_list += "  " + (location_value != "" ? location_value : "") + '\t\t' + li_text + '\r\n';
+								} else {
+									desirable_list +=  'Y' + '\t   ' + li_text + '\r\n';
 								}
-								desirable_list +=  'Y' + '\t   ' + li_text + (location_value != "" ? " (" + location_value + ")" : "") + '\r\n';
 							}
 						} else if (li.children[0].checked || role == "\"author\"" && location_textbox[0].value != "") {
 							include_extraordinary = true;
 
 							if (location_textbox.length == 1) {
 								location_value = location_textbox[0].value;
+								extraordinary_list += "  " + (location_value != "" ? location_value : "") + '\t\t' + li_text + '\r\n';
+							} else {
+								extraordinary_list +=  'Y' + '\t   ' + li_text + '\r\n';
 							}
-							extraordinary_list +=  'Y' + '\t   ' + li_text + (location_value != "" ? " (" + location_value + ")" : "") + '\r\n';
 						}
 
 					}
