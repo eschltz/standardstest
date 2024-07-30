@@ -2077,7 +2077,17 @@ function saveFile(){
 									}
 									
 									if (role == "\"author\"") {
-										essential_list += "  " + (location_value != "" ? location_value : "") + '\t\t' + li_text + ' (justified deviation)\r\n';
+										essential_list += "  " + (location_value != "" ? location_value : "");
+										
+										// Determine whether to push item text to new line based on location text length
+										if (location_value.length < 6) {
+											essential_list += '\t\t' + li_text + ' (justified deviation)\r\n';
+										} else if (location_value.length < 14) {
+											essential_list += '\t' + li_text + ' (justified deviation)\r\n';
+										} else {
+											essential_list += '\r\n\t\t' + li_text + ' (justified deviation)\r\n';
+										}
+										
 									} else {
 										essential_list += 'R' + '\t   ' + li_text + '\r\n';
 									}
