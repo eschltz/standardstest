@@ -2036,7 +2036,18 @@ function saveFile(){
 								if (location_textbox.length == 1) {
 									location_value = location_textbox[0].value;
 								}
-								essential_list += "  " + (location_value != "" ? location_value : "") + '\t\t' + li_text + '\r\n';
+																
+								essential_list += "  " + (location_value != "" ? location_value : "");
+								
+								// Determine whether to push item text to new line based on location text length
+								if (location_value.length < 6) {
+									essential_list += '\t\t' + li_text + '\r\n';
+								} else if (location_value.length < 14) {
+									essential_list += '\t' + li_text + '\r\n';
+								} else {
+									essential_list += '\r\n\t\t' + li_text + '\r\n';
+								}
+								
 							} else {
 								var reasonable_deviation = li.getElementsByClassName('deviationRadioYes')[0];
 								
@@ -2128,7 +2139,16 @@ function saveFile(){
 
 								if (location_textbox.length == 1) {
 									location_value = location_textbox[0].value;
-									desirable_list += "  " + (location_value != "" ? location_value : "") + '\t\t' + li_text + '\r\n';
+									desirable_list += "  " + (location_value != "" ? location_value : "");
+									
+									// Determine whether to push item text to new line based on location text length
+									if (location_value.length < 6) {
+										desirable_list += '\t\t' + li_text + '\r\n';
+									} else if (location_value.length < 14) {
+										desirable_list += '\t' + li_text + '\r\n';
+									} else {
+										desirable_list += '\r\n\t\t' + li_text + '\r\n';
+									}
 								} else {
 									desirable_list +=  'Y' + '\t   ' + li_text + '\r\n';
 								}
@@ -2138,7 +2158,16 @@ function saveFile(){
 
 							if (location_textbox.length == 1) {
 								location_value = location_textbox[0].value;
-								extraordinary_list += "  " + (location_value != "" ? location_value : "") + '\t\t' + li_text + '\r\n';
+								extraordinary_list += "  " + (location_value != "" ? location_value : "");
+								
+								// Determine whether to push item text to new line based on location text length
+								if (location_value.length < 6) {
+									extraordinary_list += '\t\t' + li_text + '\r\n';
+								} else if (location_value.length < 14) {
+									extraordinary_list += '\t' + li_text + '\r\n';
+								} else {
+									extraordinary_list += '\r\n\t\t' + li_text + '\r\n';
+								}
 							} else {
 								extraordinary_list +=  'Y' + '\t   ' + li_text + '\r\n';
 							}
