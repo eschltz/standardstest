@@ -501,12 +501,6 @@ function hide_deviation_block_and_show_location_textbox() {
 		item_location_textbox.style.display = "none";
 		item_location_textbox.value = '';
 	}
-	
-	// Hide unjustified deviation warning
-	var warning = document.getElementById("unjustified_warning:" + id);
-	if (warning) {
-		warning.style.display = "none";
-	}
 
 	//This function is primarily responsible for controlling the displaying of the deviation blocks in the checklist.
 	generate_decision_message_block();
@@ -569,12 +563,7 @@ function create_deviation_justification_block_and_show_hide_justification_locati
 		if (justification_location_textbox) {
 			justification_location_textbox.style.display = "inline";
 		}
-		
-		// Hide unjustified deviation warning
-		var warning = document.getElementById("unjustified_warning:" + id);
-		if (warning) {
-			warning.style.display = "none";
-		}
+
 	}
 	// (No-No) deviation is unjustified
 	else if(this.id.includes("deviation_block-radio:No:")){
@@ -583,7 +572,12 @@ function create_deviation_justification_block_and_show_hide_justification_locati
 		var empty_message = document.getElementById("deviation_justified:" + id);
 		empty_message.style.display = "none";
 		var message = document.getElementById("deviation_not_justified:" + id);
-		message.style.display = "block";
+		
+		if (role == "\"author\"") {
+			message.style.display = "inline";
+		} else {
+			message.style.display = "block";
+		}
 		
 		if (role != "\"author\"") {
 			var msg_block = document.getElementById("free_text_question:" + id);
@@ -601,12 +595,6 @@ function create_deviation_justification_block_and_show_hide_justification_locati
 		if (justification_location_textbox){
 			justification_location_textbox.style.display = "none";
 			justification_location_textbox.value = "";
-		}
-		
-		// Display unjustified deviation warning
-		var warning = document.getElementById("unjustified_warning:" + id);
-		if (warning) {
-			warning.style.display = "inline";
 		}
 		
 	}
@@ -721,17 +709,14 @@ function generate_question_block_with_yes_no_radio_answers(id, class_name, quest
 	deviation_block_radios.appendChild(deviationLabelNo);
 	//console.log(question_block);
 	
-	if(role == "\"author\"") {
-		var warning = document.createElement('span');
-		warning.innerHTML = "&nbsp;Your manuscript should justify any deviations from essential attributes.";
-		warning.className = "unjustified_warning";
-		warning.id = "unjustified_warning:" + checklistItem_id;
-		warning.style.display = "none";
-		deviation_block_radios.appendChild(warning);
-		
+	if(role == "\"author\"") {		
 		var justification_location_textbox = generate_location_textbox("justification_location_textbox", checklistItem_id, "10px");
 		justification_location_textbox.style.display = 'none';
 		deviation_block_radios.appendChild(justification_location_textbox);
+		
+		var deviation_not_justified = generate_message("deviation_not_justified:" + checklistItem_id, "red", "&nbsp;Your manuscript should justify any deviations from essential attributes.", 0.65, -1);
+		
+		deviation_block_radios.appendChild(deviation_not_justified);
 	}
 	
 	question_block.appendChild(deviation_block_radios);
@@ -832,24 +817,31 @@ function generate_question_block_with_type_radio_answers(id, class_name, questio
     
         deviation_block_radios.appendChild(deviationRadioType);
         deviation_block_radios.appendChild(deviationLabelType);
-
-        
     }
 
-
     question_block.appendChild(deviation_block_radios);
-
 
 	return question_block;
 }
 
 //generate a message with a specific style
 function generate_message(id, color, text, padding, indent) {
-	var message = document.createElement("div");
+	
+	var message;
+	
+	if (role == "\"author\"") {
+		message = document.createElement("span");
+		message.innerHTML = text;
+		message.className = "unjustified_warning";
+	} else {
+		message = document.createElement("div");
+		message.className = "message";
+		message.style = "color:" + color + "; padding-left:"+padding+"em; text-indent:"+indent+"em;";
+	}
+	
 	message.id = id;
-	message.className = "message";
-	//message.innerHTML = text; // Showing instructions about explaining deviations is not needed for now
-	message.style = "color:" + color + "; padding-left:"+padding+"em; text-indent:"+indent+"em; display:none";
+	message.style.display = "none";
+	
 	return message;
 }
 
@@ -860,10 +852,7 @@ function generate_author_deviation_block(checklistItem_id) {
 	// Author-specific deviation justification message
 	var deviation_justified = generate_message("deviation_justified:" + checklistItem_id, "red", "", 0.65, -1);
 
-	var deviation_not_justified = generate_message("deviation_not_justified:" + checklistItem_id, "red", "&rdsh;&nbsp; the manuscript should either conform to the standard or clearly explain why it deviates from the standard", 0.65, -1);
-
 	deviation_block.appendChild(deviation_justified);
-	deviation_block.appendChild(deviation_not_justified);
 
 	return deviation_block;
 }

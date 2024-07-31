@@ -17,7 +17,7 @@ form:active {
 	font-weight: bold;
 }
 
-.item_location_textbox {
+.item_location_textbox, .justification_location_textbox {
 	border: 2px solid #bbbbbb;
 	border-radius: 4px;
 	padding: 3px;
