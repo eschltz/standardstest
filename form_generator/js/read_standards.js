@@ -487,13 +487,6 @@ function hide_deviation_block_and_show_location_textbox() {
 	for(let i = 0; i < document.getElementsByName("deviation_block-radio:" + id).length; i++){
 		document.getElementsByName("deviation_block-radio:" + id)[i].checked = false;
 	}
-	
-	/*
-	// Show item location textbox
-	var item_location_textbox = document.getElementById("item_location_textbox:" + id);
-	if (item_location_textbox)
-		item_location_textbox.style.display = "inline";
-	*/
 
 	// Hide justification location textbox and clear its value
 	var item_location_textbox = document.getElementById("justification_location_textbox:" + id);
@@ -501,7 +494,13 @@ function hide_deviation_block_and_show_location_textbox() {
 		item_location_textbox.style.display = "none";
 		item_location_textbox.value = '';
 	}
-
+	
+	// Hide secondary N/A box
+	var unjustified_checkbox = document.getElementById("unjustified_checkbox:" + id);
+	if (unjustified_checkbox) {
+		unjustified_checkbox.style.display = "none";
+	}
+	
 	//This function is primarily responsible for controlling the displaying of the deviation blocks in the checklist.
 	generate_decision_message_block();
 }
@@ -563,6 +562,13 @@ function create_deviation_justification_block_and_show_hide_justification_locati
 		if (justification_location_textbox) {
 			justification_location_textbox.style.display = "inline";
 		}
+		
+		// Show secondary N/A box
+		var unjustified_checkbox = document.getElementById("unjustified_checkbox:" + id);
+		if (unjustified_checkbox) {
+			console.log("display n/a checkbox");
+			unjustified_checkbox.style.display = "inline";
+		}
 
 	}
 	// (No-No) deviation is unjustified
@@ -595,6 +601,12 @@ function create_deviation_justification_block_and_show_hide_justification_locati
 		if (justification_location_textbox){
 			justification_location_textbox.style.display = "none";
 			justification_location_textbox.value = "";
+		}
+		
+		// Hide secondary N/A box
+		var unjustified_checkbox = document.getElementById("unjustified_checkbox:" + id);
+		if (unjustified_checkbox) {
+			unjustified_checkbox.style.display = "none";
 		}
 		
 	}
@@ -661,18 +673,15 @@ function generate_question_block_with_yes_no_radio_answers(id, class_name, quest
 	// &nbsh: HTML can't do spaces. This is for spaces. 
 	question_block.innerHTML = "&rdsh;&nbsp; " + question;
 
-	// Yes and No Radio
+	// Yes and no radio
 	var deviationRadioYes = document.createElement("input");
-	var deviationRadioNo = document.createElement("input");
 	var deviationLabelYes = document.createElement("label");
+	var deviationRadioNo = document.createElement("input");
 	var deviationLabelNo = document.createElement("label");
 
-	// Identify each radio button
 	deviationRadioYes.id = id + "-radio:Yes:" + checklistItem_id;
-	deviationRadioNo.id = id + "-radio:No:" + checklistItem_id;
-
-	// className - deal with all of them
 	deviationRadioYes.className = class_name + "Yes";
+	deviationRadioNo.id = id + "-radio:No:" + checklistItem_id;
 	deviationRadioNo.className = class_name + "No";
 
 	// These are the radio buttons of that element regardless of Yes or No
@@ -713,6 +722,16 @@ function generate_question_block_with_yes_no_radio_answers(id, class_name, quest
 		var justification_location_textbox = generate_location_textbox("justification_location_textbox", checklistItem_id, "10px");
 		justification_location_textbox.style.display = 'none';
 		deviation_block_radios.appendChild(justification_location_textbox);
+		
+		unjustified_checkbox = document.createElement("input");
+		unjustified_checkbox.type = "checkbox";
+		unjustified_checkbox.id = "unjustified_checkbox:" + checklistItem_id;
+		unjustified_checkbox.className = "unjustified_checkbox";
+		unjustified_checkbox.name = checklistItem_id;
+		unjustified_checkbox.onclick = create_deviation_justification_block_and_show_hide_justification_location_textbox;
+		unjustified_checkbox.style.display = "none";
+		
+		deviation_block_radios.appendChild(unjustified_checkbox);
 		
 		var deviation_not_justified = generate_message("deviation_not_justified:" + checklistItem_id, "red", "&nbsp;Your manuscript should justify any deviations from essential attributes.", 0.65, -1);
 		
@@ -1178,8 +1197,6 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 					userInputNo.className = "missing_checkbox";
 					userInputNo.name = checklistItem_id;
 					userInputNo.onclick = show_hide_location_textbox;
-					userInputNo.style = "color:#FFF;";
-					userInputNo.value = line_text;
 					
 					console.log("AUTHOR: Yes input:" + userInputYes.className + "; No input: " + userInputNo.className);
 					
