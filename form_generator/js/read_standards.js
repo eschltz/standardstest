@@ -487,19 +487,6 @@ function hide_deviation_block_and_show_location_textbox() {
 	for(let i = 0; i < document.getElementsByName("deviation_block-radio:" + id).length; i++){
 		document.getElementsByName("deviation_block-radio:" + id)[i].checked = false;
 	}
-
-	// Hide justification location textbox and clear its value
-	var item_location_textbox = document.getElementById("justification_location_textbox:" + id);
-	if (item_location_textbox){
-		item_location_textbox.style.display = "none";
-		item_location_textbox.value = '';
-	}
-	
-	// Hide secondary N/A box
-	var unjustified_checkbox = document.getElementById("unjustified_checkbox:" + id);
-	if (unjustified_checkbox) {
-		unjustified_checkbox.style.display = "none";
-	}
 	
 	//This function is primarily responsible for controlling the displaying of the deviation blocks in the checklist.
 	generate_decision_message_block();
@@ -556,19 +543,6 @@ function create_deviation_justification_block_and_show_hide_justification_locati
 		for(let i = 0; i < document.getElementsByName(deviation_radio_name).length; i++){
 			document.getElementsByName(deviation_radio_name)[i].checked = false;
 		}
-		
-		// Show item location textbox
-		var justification_location_textbox = document.getElementById("justification_location_textbox:" + id);
-		if (justification_location_textbox) {
-			justification_location_textbox.style.display = "inline";
-		}
-		
-		// Show secondary N/A box
-		var unjustified_checkbox = document.getElementById("unjustified_checkbox:" + id);
-		if (unjustified_checkbox) {
-			console.log("display n/a checkbox");
-			unjustified_checkbox.style.display = "inline";
-		}
 
 	}
 	// (No-No) deviation is unjustified
@@ -594,19 +568,6 @@ function create_deviation_justification_block_and_show_hide_justification_locati
 
 		for(let i = 0; i < document.getElementsByName(deviation_radio_name).length; i++){
 			document.getElementsByName(deviation_radio_name)[i].checked = false;
-		}
-		
-		// Hide item location textbox
-		var justification_location_textbox = document.getElementById("justification_location_textbox:" + id);
-		if (justification_location_textbox){
-			justification_location_textbox.style.display = "none";
-			justification_location_textbox.value = "";
-		}
-		
-		// Hide secondary N/A box
-		var unjustified_checkbox = document.getElementById("unjustified_checkbox:" + id);
-		if (unjustified_checkbox) {
-			unjustified_checkbox.style.display = "none";
 		}
 		
 	}
@@ -678,8 +639,6 @@ function generate_question_block_with_yes_no_radio_answers(id, class_name, quest
 	if (role == "\"author\"") {	
 		// For authors, create location indicator + N/A checkbox
 		var justification_location_textbox = generate_location_textbox("justification_location_textbox", checklistItem_id, "10px");
-		justification_location_textbox.style.display = 'none';
-		deviation_block.appendChild(justification_location_textbox);
 		
 		unjustified_checkbox = document.createElement("input");
 		unjustified_checkbox.type = "checkbox";
@@ -687,8 +646,8 @@ function generate_question_block_with_yes_no_radio_answers(id, class_name, quest
 		unjustified_checkbox.className = "unjustified_checkbox";
 		unjustified_checkbox.name = checklistItem_id;
 		unjustified_checkbox.onclick = create_deviation_justification_block_and_show_hide_justification_location_textbox;
-		unjustified_checkbox.style.display = "none";
 		
+		deviation_block.appendChild(justification_location_textbox);
 		deviation_block.appendChild(unjustified_checkbox);
 		
 		var deviation_not_justified = generate_message("deviation_not_justified:" + checklistItem_id, "red", "&nbsp;Your manuscript should justify any deviations from essential attributes.", 0.65, -1);
@@ -696,7 +655,6 @@ function generate_question_block_with_yes_no_radio_answers(id, class_name, quest
 		deviation_block.appendChild(deviation_not_justified);
 	} else {
 		// For reviewers, create yes-no radio buttons
-		
 		var deviationRadioYes = document.createElement("input");
 		var deviationLabelYes = document.createElement("label");
 		deviationRadioYes.id = id + "-radio:Yes:" + checklistItem_id;
