@@ -664,7 +664,6 @@ function generate_question_block_with_yes_no_radio_answers(id, class_name, quest
 	// checklistItem_id = 1,2,3,4
 	
 	question_block.id = id + ":" + checklistItem_id;
-	// className - deal with all of them
 	question_block.className = "question_block";
 	question_block.style = "padding-left:"+padding+"em; display:none";
 	//console.log(question_block);
@@ -672,56 +671,15 @@ function generate_question_block_with_yes_no_radio_answers(id, class_name, quest
 	// &rdsh: is for the arrows.
 	// &nbsh: HTML can't do spaces. This is for spaces. 
 	question_block.innerHTML = "&rdsh;&nbsp; " + question;
-
-	// Yes and no radio
-	var deviationRadioYes = document.createElement("input");
-	var deviationLabelYes = document.createElement("label");
-	var deviationRadioNo = document.createElement("input");
-	var deviationLabelNo = document.createElement("label");
-
-	deviationRadioYes.id = id + "-radio:Yes:" + checklistItem_id;
-	deviationRadioYes.className = class_name + "Yes";
-	deviationRadioNo.id = id + "-radio:No:" + checklistItem_id;
-	deviationRadioNo.className = class_name + "No";
-
-	// These are the radio buttons of that element regardless of Yes or No
-	// For Hiding Buttons
-	deviationRadioYes.name = id + "-radio:" + checklistItem_id;
-	deviationRadioNo.name = id + "-radio:" + checklistItem_id;
-
-	// deviation justification is a function
-	deviationRadioYes.onclick = create_deviation_justification_block_and_show_hide_justification_location_textbox;
-	deviationRadioNo.onclick = create_deviation_justification_block_and_show_hide_justification_location_textbox;
-
-	// Set type of input to "radio"
-	deviationRadioYes.type = "radio";
-	deviationRadioNo.type = "radio";
-
-	// Value for comparisons
-	deviationRadioYes.value = "yes";
-	deviationRadioNo.value = "no";
-
-	// Actual Text of the Radio button
-	var deviation_block_radios = document.createElement("div");
-	deviation_block_radios.innerHTML = "&nbsp;&nbsp;&nbsp;";
-	deviationLabelYes.innerHTML = "yes&nbsp;&nbsp;";
-	deviationLabelNo.innerHTML = "no";
-
-	// For Labels
-	// Click on the label, click that radio button
-	deviationLabelYes.htmlFor = deviationRadioYes.id;
-	deviationLabelNo.htmlFor = deviationRadioNo.id;
-
-	deviation_block_radios.appendChild(deviationRadioYes);
-	deviation_block_radios.appendChild(deviationLabelYes);
-	deviation_block_radios.appendChild(deviationRadioNo);
-	deviation_block_radios.appendChild(deviationLabelNo);
-	//console.log(question_block);
 	
-	if(role == "\"author\"") {		
+	var deviation_block = document.createElement("div");
+	deviation_block.innerHTML = "&nbsp;&nbsp;&nbsp;";
+
+	if (role == "\"author\"") {	
+		// For authors, create location indicator + N/A checkbox
 		var justification_location_textbox = generate_location_textbox("justification_location_textbox", checklistItem_id, "10px");
 		justification_location_textbox.style.display = 'none';
-		deviation_block_radios.appendChild(justification_location_textbox);
+		deviation_block.appendChild(justification_location_textbox);
 		
 		unjustified_checkbox = document.createElement("input");
 		unjustified_checkbox.type = "checkbox";
@@ -731,14 +689,43 @@ function generate_question_block_with_yes_no_radio_answers(id, class_name, quest
 		unjustified_checkbox.onclick = create_deviation_justification_block_and_show_hide_justification_location_textbox;
 		unjustified_checkbox.style.display = "none";
 		
-		deviation_block_radios.appendChild(unjustified_checkbox);
+		deviation_block.appendChild(unjustified_checkbox);
 		
 		var deviation_not_justified = generate_message("deviation_not_justified:" + checklistItem_id, "red", "&nbsp;Your manuscript should justify any deviations from essential attributes.", 0.65, -1);
 		
-		deviation_block_radios.appendChild(deviation_not_justified);
+		deviation_block.appendChild(deviation_not_justified);
+	} else {
+		// For reviewers, create yes-no radio buttons
+		
+		var deviationRadioYes = document.createElement("input");
+		var deviationLabelYes = document.createElement("label");
+		deviationRadioYes.id = id + "-radio:Yes:" + checklistItem_id;
+		deviationRadioYes.className = class_name + "Yes";
+		deviationRadioYes.name = id + "-radio:" + checklistItem_id;
+		deviationRadioYes.onclick = create_deviation_justification_block_and_show_hide_justification_location_textbox;
+		deviationRadioYes.type = "radio";
+		deviationRadioYes.value = "yes";
+		deviationLabelYes.innerHTML = "yes&nbsp;&nbsp;";
+		deviationLabelYes.htmlFor = deviationRadioYes.id;
+		
+		var deviationRadioNo = document.createElement("input");
+		var deviationLabelNo = document.createElement("label");
+		deviationRadioNo.id = id + "-radio:No:" + checklistItem_id;
+		deviationRadioNo.className = class_name + "No";
+		deviationRadioNo.name = id + "-radio:" + checklistItem_id;
+		deviationRadioNo.onclick = create_deviation_justification_block_and_show_hide_justification_location_textbox;
+		deviationRadioNo.type = "radio";
+		deviationRadioNo.value = "no";
+		deviationLabelNo.innerHTML = "no";
+		deviationLabelNo.htmlFor = deviationRadioNo.id;
+		
+		deviation_block.appendChild(deviationRadioYes);
+		deviation_block.appendChild(deviationLabelYes);
+		deviation_block.appendChild(deviationRadioNo);
+		deviation_block.appendChild(deviationLabelNo);
 	}
 	
-	question_block.appendChild(deviation_block_radios);
+	question_block.appendChild(deviation_block);
 
 	// if the deviation reasonable is fixed in the table
 	if(display){
@@ -2056,6 +2043,7 @@ function saveFile(){
 								
 							} else {
 								var reasonable_deviation = li.getElementsByClassName('deviationRadioYes')[0];
+								location_textbox = li.getElementsByClassName('justification_location_textbox');
 								
 								// store for the free_text_question
 								var questionDiv  = li.getElementsByClassName("question_block_free_Text");
@@ -2074,12 +2062,9 @@ function saveFile(){
 									// free_text_list += '    ' + question_text + ': ' + input_text + '\r\n';
 								}
 
-								if (reasonable_deviation.checked) {
-									location_textbox = li.getElementsByClassName('justification_location_textbox');
+								if (reasonable_deviation.checked || location_textbox[0].value != "") {
 									if (location_textbox.length == 1) {
-										if (location_textbox[0].value != "") {
-											location_value = location_textbox[0].value;
-										}
+										location_value = location_textbox[0].value;
 									}
 									
 									if (role == "\"author\"") {
