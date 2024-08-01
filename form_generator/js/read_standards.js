@@ -626,7 +626,7 @@ function generate_question_block_with_yes_no_radio_answers(id, class_name, quest
 	
 	question_block.id = id + ":" + checklistItem_id;
 	question_block.className = "question_block";
-	question_block.style = "padding-left:"+padding+"em; display:none";
+	question_block.style = "padding-left:"+padding+"em; display:none; flex: 0 0 100%;";
 	//console.log(question_block);
 
 	// &rdsh: is for the arrows.
@@ -1076,7 +1076,7 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 			var checklistItemText = document.createElement("span");
 			
 			if (role == "\"author\"") {
-				checklistItemLI.style = "display: flex; align-items: flex-start;";
+				checklistItemLI.style = "display: flex; align-items: flex-start; flex-flow: wrap;";
 				checklistItemText.style = "flex: 0 1 50vw";
 			}
 			
@@ -1176,7 +1176,6 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 				if(role == "\"author\"") {
 					deviation_block = generate_author_deviation_block(checklistItem_id);
 					
-					checklistItemText.appendChild(deviation_block);
 					checklistItemLI.appendChild(checklistItemText);
 					
 					location_container.appendChild(userInputYes);
@@ -1184,6 +1183,8 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 					
 					checklistItemLI.appendChild(location_container);
 					checklistItemLI.appendChild(missing_container);
+					
+					checklistItemLI.appendChild(deviation_block);
 					
 					console.log("AUTHOR:" + checklistItemLI);
 					
