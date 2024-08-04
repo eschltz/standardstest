@@ -552,14 +552,9 @@ function create_deviation_justification_block_and_show_hide_justification_locati
 		var empty_message = document.getElementById("deviation_justified:" + id);
 		empty_message.style.display = "none";
 		var message = document.getElementById("deviation_not_justified:" + id);
-		
-		if (role == "\"author\"") {
-			message.style.display = "inline";
-		} else {
-			message.style.display = "block";
-			var msg_block = document.getElementById("free_text_question:" + id);
-			msg_block.style.display = "block";
-		}
+		message.style.display = "block";
+		var msg_block = document.getElementById("free_text_question:" + id);
+		msg_block.style.display = "block";
 		
 		deviation_radio_name = this.name.replace("deviation_block-radio", "deviation_justified-radio");
 
@@ -575,12 +570,16 @@ function create_deviation_justification_block_and_show_hide_justification_locati
 		empty_message.style.display = "none";
 		var message = document.getElementById("deviation_not_justified:" + id);
 		
-		if (role == "\"author\"") {
+		var justification_box = document.getElementById("justification_location_textbox:" + id);
+		var unjustified_checkbox = document.getElementById("unjustified_checkbox:" + id);
+		
+		if (unjustified_checkbox.checked) {
 			message.style.display = "inline";
+			justification_box.style.visibility = "hidden";
+			justification_box.value = "";
 		} else {
-			message.style.display = "block";
-			var msg_block = document.getElementById("free_text_question:" + id);
-			msg_block.style.display = "block";
+			message.style.display = "none";
+			justification_box.style.visibility = "visible";
 		}
 		
 	} else {
