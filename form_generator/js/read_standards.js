@@ -429,7 +429,7 @@ function show_deviation_block_and_hide_location_textbox() {
 	if(deviationRadioYes.disabled){
 		let deviationRadioNo = document.getElementById("deviation_block-radio:No:" + id);
 		deviationRadioNo.click();
-		create_deviation_justification_block.call(deviationRadioNo);
+		create_deviation_justification_block_and_show_hide_justification_location_textbox.call(deviationRadioNo);
 	}
 	//This function is primarily responsible for controlling the displaying of the deviation blocks in the checklist.
 	generate_decision_message_block();
@@ -545,7 +545,7 @@ function create_deviation_justification_block_and_show_hide_justification_locati
 		}
 
 	}
-	// (No-No) deviation is unjustified
+	// (No-No) deviation is unjustified (reviewer)
 	else if(this.id.includes("deviation_block-radio:No:")){
 		id = this.id.replace("deviation_block-radio:No:", "")
 		hide_other_messages(id);
@@ -557,9 +557,6 @@ function create_deviation_justification_block_and_show_hide_justification_locati
 			message.style.display = "inline";
 		} else {
 			message.style.display = "block";
-		}
-		
-		if (role != "\"author\"") {
 			var msg_block = document.getElementById("free_text_question:" + id);
 			msg_block.style.display = "block";
 		}
@@ -569,9 +566,24 @@ function create_deviation_justification_block_and_show_hide_justification_locati
 		for(let i = 0; i < document.getElementsByName(deviation_radio_name).length; i++){
 			document.getElementsByName(deviation_radio_name)[i].checked = false;
 		}
+	
+	// (No-No) deviation is unjustified (author)
+	} else if (this.id.includes("unjustified_checkbox:")) {
+		id = this.id.replace("unjustified_checkbox:", "")
+		hide_other_messages(id);
+		var empty_message = document.getElementById("deviation_justified:" + id);
+		empty_message.style.display = "none";
+		var message = document.getElementById("deviation_not_justified:" + id);
 		
-	}
-	else{
+		if (role == "\"author\"") {
+			message.style.display = "inline";
+		} else {
+			message.style.display = "block";
+			var msg_block = document.getElementById("free_text_question:" + id);
+			msg_block.style.display = "block";
+		}
+		
+	} else {
 		// (No-Yes-Yes) => deviation is justified and justification is reasonable
 		if(this.id.includes("deviation_justified-radio:Yes:")){
 			id = this.id.replace("deviation_justified-radio:Yes:", "")
