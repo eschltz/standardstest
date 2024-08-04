@@ -423,10 +423,13 @@ function show_deviation_block_and_hide_location_textbox() {
 	}
 	
 	var block = document.getElementById("deviation_block:" + id);
-	block.style.display = "block";
+	
+	if (block) {
+		block.style.display = "block";
+	}
 
 	let deviationRadioYes = document.getElementById("deviation_block-radio:Yes:" + id);
-	if(deviationRadioYes.disabled){
+	if(deviationRadioYes && deviationRadioYes.disabled){
 		let deviationRadioNo = document.getElementById("deviation_block-radio:No:" + id);
 		deviationRadioNo.click();
 		create_deviation_justification_block_and_show_hide_justification_location_textbox.call(deviationRadioNo);
@@ -2012,7 +2015,7 @@ function saveFile(){
 								}
 								
 							} else {
-								var reasonable_deviation = li.getElementsByClassName('deviationRadioYes')[0];
+								var reasonable_deviation = li.getElementsByClassName('deviationRadioYes')[0];						
 								location_textbox = li.getElementsByClassName('justification_location_textbox');
 								
 								// store for the free_text_question
@@ -2032,7 +2035,7 @@ function saveFile(){
 									// free_text_list += '    ' + question_text + ': ' + input_text + '\r\n';
 								}
 
-								if (reasonable_deviation.checked || location_textbox[0].value != "") {
+								if (location_textbox[0] && location_textbox[0].value != "" || reasonable_deviation && reasonable_deviation.checked) {
 									if (location_textbox.length == 1) {
 										location_value = location_textbox[0].value;
 									}
