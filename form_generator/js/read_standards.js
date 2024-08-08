@@ -413,19 +413,18 @@ function show_deviation_block_and_hide_location_textbox() {
 	// Replace ID from Yes to an empty string
 	if (role == "\"author\"") {
 		id = this.id.replace("missing_checkbox:", "");
-		console.log(id);
 		
 		var item_location_textbox = document.getElementById("item_location_textbox:" + id);
 		item_location_textbox.style.visibility = "hidden";
 		item_location_textbox.value = "";
+		
 	} else {
 		id = this.id.replace("checklist-radio:No:", "")
 	}
 	
-	var block = document.getElementById("deviation_block:" + id);
-	
-	if (block) {
-		block.style.display = "block";
+	var deviation_block = document.getElementById("deviation_block:" + id);
+	if (deviation_block) {
+		deviation_block.style.display = (role == "\"author\"") ? "flex" : "block";
 	}
 
 	let deviationRadioYes = document.getElementById("deviation_block-radio:Yes:" + id);
@@ -515,7 +514,6 @@ function generate_location_textbox(name, id, margin) {
 	location_textbox.type = 'text';
 	location_textbox.className = name;
 	location_textbox.id = name + ":" + id;
-	location_textbox.style = "margin-left: " + margin + "; margin-right: 50px;";
 	location_textbox.maxLength = "100";
 	location_textbox.pattern = "^(?!.*[A-Za-z]).*$";
 	location_textbox.title = "Numbers and symbols only."
@@ -642,17 +640,20 @@ function generate_question_block_with_yes_no_radio_answers(id, class_name, quest
 	question_block.className = "question_block";
 	question_block.style = "padding-left:"+padding+"em; display:none; flex: 0 0 100%;";
 	//console.log(question_block);
-
-	// &rdsh: is for the arrows.
-	// &nbsh: HTML can't do spaces. This is for spaces. 
-	question_block.innerHTML = "&rdsh;&nbsp; " + question;
 	
 	var deviation_block = document.createElement("div");
 	deviation_block.innerHTML = "&nbsp;&nbsp;&nbsp;";
 
 	if (role == "\"author\"") {	
+		var questiontext_container = document.createElement("span");
+		questiontext_container.innerHTML = "&rdsh;&nbsp; " + question;
+		questiontext_container.style = "flex: 0 1 50vw";
+	
 		// For authors, create location indicator + N/A checkbox
 		var justification_location_textbox = generate_location_textbox("justification_location_textbox", checklistItem_id, "10px");
+		var location_container = document.createElement("span");
+		location_container.style = "flex: 0 1 20%; margin-right: 10px;";
+		location_container.appendChild(justification_location_textbox);
 		
 		unjustified_checkbox = document.createElement("input");
 		unjustified_checkbox.type = "checkbox";
@@ -661,13 +662,19 @@ function generate_question_block_with_yes_no_radio_answers(id, class_name, quest
 		unjustified_checkbox.name = checklistItem_id;
 		unjustified_checkbox.onclick = create_deviation_justification_block_and_show_hide_justification_location_textbox;
 		
-		deviation_block.appendChild(justification_location_textbox);
-		deviation_block.appendChild(unjustified_checkbox);
+		var unjustified_container = document.createElement("span");
+		unjustified_container.appendChild(unjustified_checkbox);
+		
+		question_block.appendChild(questiontext_container);
+		question_block.appendChild(location_container);
+		question_block.appendChild(unjustified_container);
 		
 		var deviation_not_justified = generate_message("deviation_not_justified:" + checklistItem_id, "red", "&nbsp;Your manuscript should justify any deviations from essential attributes.", 0.65, -1);
 		
-		deviation_block.appendChild(deviation_not_justified);
+		question_block.appendChild(deviation_not_justified);
 	} else {
+		question_block.innerHTML = "&rdsh;&nbsp; " + question;
+		
 		// For reviewers, create yes-no radio buttons
 		var deviationRadioYes = document.createElement("input");
 		var deviationLabelYes = document.createElement("label");
@@ -695,9 +702,8 @@ function generate_question_block_with_yes_no_radio_answers(id, class_name, quest
 		deviation_block.appendChild(deviationLabelYes);
 		deviation_block.appendChild(deviationRadioNo);
 		deviation_block.appendChild(deviationLabelNo);
+		question_block.appendChild(deviation_block);
 	}
-	
-	question_block.appendChild(deviation_block);
 
 	// if the deviation reasonable is fixed in the table
 	if(display){
@@ -1145,7 +1151,6 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 					location_container.style = "flex: 0 1 20%; margin-right: 10px;";
 					
 					userInputYes = generate_location_textbox("item_location_textbox", checklistItem_id, "5px");
-					userInputYes.style.width = "90%";
 					userInputYes.onfocus = hide_deviation_block_and_show_location_textbox;
 					
 					missing_container = document.createElement("span");
@@ -1249,7 +1254,6 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 					location_container.style = "flex: 0 1 20%; margin-right: 10px;";
 
 					userInputYes = generate_location_textbox("item_location_textbox", checklistItem_id, "5px");
-					userInputYes.style.width = "90%";
 					
 					var userInputNo;
 					missing_container = document.createElement("span");

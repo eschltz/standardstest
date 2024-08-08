@@ -21,6 +21,9 @@ form:active {
 	border: 2px solid #bbbbbb;
 	border-radius: 4px;
 	padding: 3px;
+	margin-left: 5px;
+	margin-right: 50px;
+	width: 90%;
 }
 
 .item_location_textbox:invalid {
