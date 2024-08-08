@@ -425,6 +425,7 @@ function show_deviation_block_and_hide_location_textbox() {
 	var deviation_block = document.getElementById("deviation_block:" + id);
 	if (deviation_block) {
 		deviation_block.style.display = (role == "\"author\"") ? "flex" : "block";
+		deviation_block.style.flexFlow = "wrap";
 	}
 
 	let deviationRadioYes = document.getElementById("deviation_block-radio:Yes:" + id);
@@ -470,6 +471,9 @@ function hide_deviation_block_and_show_location_textbox() {
 	} else {
 		var missing_checkbox = document.getElementById("missing_checkbox:" + id);
 		missing_checkbox.checked = false;
+		
+		var justification_box = document.getElementById("justification_location_textbox:" + id);
+		justification_box.value = "";
 	}
 
 	// Uncheck all deviation-block-radio
@@ -647,7 +651,7 @@ function generate_question_block_with_yes_no_radio_answers(id, class_name, quest
 	if (role == "\"author\"") {	
 		var questiontext_container = document.createElement("span");
 		questiontext_container.innerHTML = "&rdsh;&nbsp; " + question;
-		questiontext_container.style = "flex: 0 1 50vw";
+		questiontext_container.style = "flex: 0 1 50vw; text-indent: 2.4em;";
 	
 		// For authors, create location indicator + N/A checkbox
 		var justification_location_textbox = generate_location_textbox("justification_location_textbox", checklistItem_id, "10px");
@@ -831,7 +835,7 @@ function generate_message(id, color, text, padding, indent) {
 
 // generate the deviation block for Author Role
 function generate_author_deviation_block(checklistItem_id) {
-	var deviation_block = generate_question_block_with_yes_no_radio_answers("deviation_block", "deviationRadio", "where does the manuscript justify the deviation?", checklistItem_id, 2.4);
+	var deviation_block = generate_question_block_with_yes_no_radio_answers("deviation_block", "deviationRadio", "where does the manuscript justify the deviation?", checklistItem_id);
 
 	// Author-specific deviation justification message
 	var deviation_justified = generate_message("deviation_justified:" + checklistItem_id, "red", "", 0.65, -1);
