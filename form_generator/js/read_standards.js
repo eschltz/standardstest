@@ -1943,7 +1943,7 @@ function saveFile(){
 	if (role == "\"author\""){
 		var location_type = document.getElementById('location_type');
 		location_type = location_type.options[location_type.selectedIndex].text;
-		generated_text += "\nNote: The numbers beside checklist items, if any, represent " + location_type + "\n";
+		generated_text += "\nNote: The numbers beside checklist items, if any, represent " + location_type.toLowerCase() + "\n";
 		
 		essential_list += "  Location" + "\t" + "Attribute\r\n\r\n";
 	}
@@ -2094,7 +2094,8 @@ function saveFile(){
 											}
 										}
 									} else {
-										essential_list += (role == "\"author\"" ? '  *' : ' ') + '\t\t' + li_text + '\r\n';
+										essential_list += (role == "\"author\"" ? '  *' : ' ') + '\t\t' + li_text;
+										essential_list += (role == "\"author\"" ? ' (unjustified deviation)\r\n' : '\r\n');
 									}
 								}
 
