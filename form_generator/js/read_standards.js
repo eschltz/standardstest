@@ -1797,6 +1797,11 @@ function create_requirements_checklist(file){
 
 	// Create download button
 	var download = create_download_button();
+	
+	var error_warning = document.createElement("div");
+	error_warning.className = "error_warning";
+	error_warning.innerHTML = "Some required items are missing.";
+	error_warning.style.display = "none";
 
 	var download_test = create_download_configuration_button();
 
@@ -1837,6 +1842,7 @@ function create_requirements_checklist(file){
 	form.appendChild(DesirableUL);
 	form.appendChild(ExtraordinaryUL);
 	form.appendChild(download);
+	form.appendChild(error_warning);
 	
 	return form;
 }
