@@ -236,8 +236,6 @@ function generate_decision_message_block() {
 		console.log("deviation_yes_checked_count: ", deviation_yes_checked_count);
 		if (checklist_yes_not_checked_count == checklist_no_checked_count & checklist_no_checked_count == (deviation_yes_checked_count+justification_type1_checked_count+justification_type2_checked_count+justification_type3_checked_count+justification_type4_checked_count)){
 
-			document.getElementById("checklist_download").disabled = false;
-
 			// if number of type 3 + type 4 is greater than 0
 			if (justification_type3_checked_count + justification_type4_checked_count + justification_type2_checked_count > 0 ){
 				msg = "REJECT";
@@ -267,7 +265,6 @@ function generate_decision_message_block() {
 			//document.getElementById("decision_msg").innerHTML = msg;
 			//document.getElementById("decision_msg").style.display = "block";
 		} else {
-			document.getElementById("checklist_download").disabled = true;
 			document.getElementById("decision_msg").style.display = "none";
 		}
 	} else if (role == "\"two-phase-reviewer\""){
@@ -280,8 +277,6 @@ function generate_decision_message_block() {
 		$('.checkbox_attributes').prop('checked', false);
 
 		if (checklist_yes_not_checked_count == checklist_no_checked_count & checklist_no_checked_count == (deviation_yes_checked_count+justification_type1_checked_count+justification_type2_checked_count+justification_type3_checked_count+justification_type4_checked_count)){
-
-			document.getElementById("checklist_download").disabled = false;
 
 			// if number of type 4 is greater than 0
 			if (justification_type4_checked_count > 0 ){
@@ -318,7 +313,6 @@ function generate_decision_message_block() {
 			document.getElementById("decision_msg").innerHTML = msg;
 			document.getElementById("decision_msg").style.display = "block";
 		} else {
-			document.getElementById("checklist_download").disabled = true;
 			document.getElementById("decision_msg").style.display = "none";
 		}
 
@@ -1482,11 +1476,6 @@ function create_download_button(){
 	download.innerHTML = "Download";
 	download.id = "checklist_download";
 	download.name = "checklist_download";
-	
-	if (role != "\"author\"") {
-		download.disabled = true;
-	}
-	
 	download.onclick = saveFile;
 	return download;
 }
@@ -1825,9 +1814,6 @@ function create_requirements_checklist(file){
 		var deviation_reasonable = generate_message("deviation_reasonable", "red", "In the free-text part of your review, please explain the deviation(s) and why they are not reasonable. Please give specific suggestions for how each deviation can be addressed.", 2, 0);
 		form.appendChild(deviation_reasonable);
 
-		if(deviation_unreasonable.style.display == "block"){
-			download.disabled = false;
-		}
 	} else if(role == "\"one-phase-reviewer\""){
 		// (At least one 'No-No-No' -> reject manuscript)
 		var deviation_unreasonable = generate_message("deviation_unreasonable", "red", "In the free-text part of your review, please explain the deviation(s) and why they are not reasonable.", 2, 0);
@@ -1836,9 +1822,6 @@ function create_requirements_checklist(file){
 		var deviation_reasonable = generate_message("deviation_reasonable", "red", "In the free-text part of your review, please explain the deviation(s) and why they are not reasonable. Please give specific suggestions for how each deviation can be addressed.", 2, 0);
 		form.appendChild(deviation_reasonable);
 
-		if(deviation_unreasonable.style.display == "block"){
-			download.disabled = false;
-		}
 	} else if(role == "\"two-phase-reviewer\""){
 		// (At least one 'No-No-No' -> reject manuscript)
 		var deviation_unreasonable = generate_message("deviation_unreasonable", "red", "In the free-text part of your review, please explain the deviation(s) and why they are not reasonable.", 2, 0);
@@ -1848,9 +1831,6 @@ function create_requirements_checklist(file){
 		var deviation_reasonable = generate_message("deviation_reasonable", "red", "In the free-text part of your review, please explain the deviation(s) and why they are not reasonable. Please give specific suggestions for how each deviation can be addressed.", 2, 0);
 		form.appendChild(deviation_reasonable);
 
-		if(deviation_unreasonable.style.display == "block"){
-			download.disabled = false;
-		}
 	}
 
 	// Add Desirable and Extraordinary Unordered List to Form
