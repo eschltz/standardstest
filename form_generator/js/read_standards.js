@@ -1942,7 +1942,7 @@ function check_form_validity(event) {
 				if (li.tagName != 'LI'){
 					continue;
 				}
-				
+				 
 				// If yes-no is missing, the item is invalid
 				if (li.children[0].checked || li.children[1].checked) {
 					li.children[2].style.color = "black";
@@ -1952,36 +1952,44 @@ function check_form_validity(event) {
 				}
 				
 				let question_blocks = li.getElementsByClassName('question_block');
-				let reasonable_yes = question_blocks[0].getElementsByClassName('deviationRadioYes')[0];
-				let reasonable_no = question_blocks[0].getElementsByClassName('deviationRadioNo')[0];
 				
-				// If deviation reasonability missing, the item is invalid
-				if (reasonable_yes.checked || reasonable_no.checked) {
-					question_blocks[0].style.color = "black";
-				} else {
-					question_blocks[0].style.color = "red";
-					validity = false;
-				}
-				
-				let types = question_blocks[1].getElementsByClassName('justificationRadioType');
-				
-				// If deviation type missing, the item is invalid
-				if (types[0].checked || types[1] && types[1].checked || types[2] && types[2].checked || types[3] && types[3].checked) {
-					question_blocks[1].style.color = "black";
-				} else {
-					question_blocks[1].style.color = "red";
-					validity = false;
-				}
-				
-				let free_text = li.getElementsByClassName('question_block_free_Text')[0];
-				let free_text_content = free_text.getElementsByClassName('freeTextAnswer')[0];
-				
-				// If free text missing, the item is invalid
-				if (free_text_content.value == "") {
-					free_text.style.color = "red";
-					validity = false;
-				} else {
-					free_text.style.color = "black";
+				if (question_blocks[0].style.display != "none") {
+					let reasonable_yes = question_blocks[0].getElementsByClassName('deviationRadioYes')[0];
+					let reasonable_no = question_blocks[0].getElementsByClassName('deviationRadioNo')[0];
+					
+					// If deviation reasonability missing, the item is invalid
+					if (reasonable_yes.checked || reasonable_no.checked) {
+						question_blocks[0].style.color = "black";
+					} else {
+						question_blocks[0].style.color = "red";
+						validity = false;
+					}
+					
+					if (question_blocks[1].style.display != "none") {
+						let types = question_blocks[1].getElementsByClassName('justificationRadioType');
+					
+						// If deviation type missing, the item is invalid
+						if (types[0].checked || types[1] && types[1].checked || types[2] && types[2].checked || types[3] && types[3].checked) {
+							question_blocks[1].style.color = "black";
+						} else {
+							question_blocks[1].style.color = "red";
+							validity = false;
+						}
+					}
+					
+					let free_text = li.getElementsByClassName('question_block_free_Text')[0];
+					
+					if (free_text.style.display != "none") {
+						let free_text_content = free_text.getElementsByClassName('freeTextAnswer')[0];
+					
+						// If free text missing, the item is invalid
+						if (free_text_content.value == "") {
+							free_text.style.color = "red";
+							validity = false;
+						} else {
+							free_text.style.color = "black";
+						}
+					}
 				}
 			}
 		}
