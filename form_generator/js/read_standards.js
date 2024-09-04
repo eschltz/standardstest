@@ -1480,7 +1480,7 @@ function create_download_button(){
 	if (role == "\"author\"") {
 		download.onclick = saveFile;
 	} else {
-		download.onclick = check_form_validity;
+		download.addEventListener("click", check_form_validity, false);
 	}
 	return download;
 }
@@ -1931,7 +1931,8 @@ function generateStandardChecklist(file){
 }
 
 // Check if the completed checklist is valid (no missing items)
-function check_form_validity() {
+function check_form_validity(event) {
+	event.preventDefault();
 	let validity = true;
 	let checklists = document.getElementById('checklists');
 	
