@@ -1495,6 +1495,27 @@ function create_download_configuration_button(){
 	return download;
 }
 
+// Create a button for clearing the current checklist
+function create_clear_checklist_button() {
+	let clear_button = document.createElement("input");
+	clear_button.type = "reset";
+	clear_button.value = "Clear checklist";
+	clear_button.id = "clear_checklist";
+	
+	clear_button.addEventListener("click", clear_checklist, false);
+	
+	return clear_button;
+}
+
+// Clear the current checklist
+function clear_checklist(event) {
+	let clear_check = confirm("This will erase all progress on the current checklist. Are you sure?");
+	
+	if (!clear_check) {
+		event.preventDefault();
+	}
+}
+
 // create Header with Unordered List (Essential, Desirable, Extraordinary)
 function create_requirements_heading_with_UL(title){
 	var H3_ = document.createElement("H3");
@@ -1802,6 +1823,8 @@ function create_requirements_checklist(file){
 	// Create download button
 	var download = create_download_button();
 	
+	let clear_button = create_clear_checklist_button();
+	
 	var error_warning = document.createElement("div");
 	error_warning.className = "error_warning";
 	error_warning.id = "error_warning";
@@ -1847,6 +1870,7 @@ function create_requirements_checklist(file){
 	form.appendChild(DesirableUL);
 	form.appendChild(ExtraordinaryUL);
 	form.appendChild(download);
+	form.appendChild(clear_button);
 	form.appendChild(error_warning);
 	
 	return form;
