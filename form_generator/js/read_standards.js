@@ -1513,7 +1513,15 @@ function clear_checklist(event) {
 	
 	if (!clear_check) {
 		event.preventDefault();
+	} else {
+		console.log("Clearing " + role + " checklist");
+		localStorage.setItem(role, "");
 	}
+}
+
+// Populate a checklist with saved input data
+function populate_checklist() {
+	console.log("Populating " + role + " checklist");
 }
 
 // create Header with Unordered List (Essential, Desirable, Extraordinary)
@@ -1694,22 +1702,17 @@ function create_requirements_checklist(file){
 		standard_keys.unshift("\"General Standard\"");
 	
 	create_requirements_checklist_table(file);
-	//console.log(dataStructure);
+	
 	var i = 0;
 	for (let key of standard_keys){
 		i++;
 
 		// Obtain all the information for a Standard
 		empirical_standard = readSpecificEmpiricalStandard(key);
-		//console.log(empirical_standard);
-
 		
 		var dom = document.createElement("div");
 		dom.innerHTML = empirical_standard;
 		var standardTag = dom.getElementsByTagName("standard")[0];
-		//console.log(dom);
-		//console.log(standardTag);
-
 
 		// collect all the footnotes
 		collect_footnotes(dom, standardTag);
@@ -1717,17 +1720,13 @@ function create_requirements_checklist(file){
 		let standardName = "\"" + standardTag.getAttribute('name') + "\"";
 		standardName = standardName.replaceAll("\"", "");
 		console.log(standardName);
-		// DEPRECATED
-		//var standardTitle = document.createElement("H2");
-		//standardTitle.innerHTML = standardName;
-		//form.appendChild(standardTitle);
 		
 		var checklistTags = standardTag.getElementsByTagName("checklist");
 		for (let checklistTag of checklistTags){
 
 			// dealing with footnotes
 			checklistHTML = checklistTag.innerHTML.replaceAll("<sup>", "<sup>"+standardName+"--footnote--") // To make footnotes belong to their standards 
-			//console.log(checklistHTML)
+
 			// Add all information for "all_intro_items", etc.
 			separate_essential_attributes_based_on_IMRaD_tags(standardTag.getAttribute('name'), checklistTag.getAttribute('name'), checklistHTML)
 
@@ -1774,14 +1773,6 @@ function create_requirements_checklist(file){
 			} else {
 				Yes_No.innerHTML = "&nbsp;yes no";
 			}
-
-			// DEPRECATED
-			//var standard_header_rule = document.createElement("div");
-			//var standard_header_text = document.createElement("span");
-			//standard_header_rule.className = "standardHeaderRule";
-			//standard_header_text.className = "standardHeaderText";
-			//standard_header_text.innerText = standardName;
-			//standard_header_rule.appendChild(standard_header_text);
 
 			if (checklistTag.getAttribute('name') == "Essential") {
 				//EssentialUL.appendChild(standard_header_rule);
@@ -1931,6 +1922,15 @@ function generateStandardChecklist(file){
 
 	// Create Checklist
 	var form = create_requirements_checklist(file);
+	
+	// Check if the current checklist is being stored
+	if (localStorage.getItem(role) !== null) {
+		console.log(role + " checklist found in storage");
+		populate_checklist();
+	} else {
+		console.log("Begin storing " + role + " checklist");
+		localStorage.setItem(role, "");
+	}
 
 	// Append header and form to container
 	container.appendChild(heading);
