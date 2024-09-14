@@ -417,6 +417,9 @@ function show_deviation_block_and_hide_location_textbox() {
 		id = this.id.replace("checklist-radio:No:", "")
 	}
 	
+	const item_store = {name: "this-no", index: id};
+	localStorage.setItem(role, JSON.stringify(item_store));
+	
 	var deviation_block = document.getElementById("deviation_block:" + id);
 	if (deviation_block) {
 		deviation_block.style.display = (role == "\"author\"") ? "flex" : "block";
@@ -449,6 +452,9 @@ function hide_deviation_block_and_show_location_textbox() {
 		id = this.id.replace("checklist-radio:Yes:", "");
 	}
 	hide_other_messages(id);
+	 
+	const item_store = {name: "this-yes", index: id};
+	localStorage.setItem(role, JSON.stringify(item_store));
 
 	// Hide all Deviation Blocks
 	var block = document.getElementById("deviation_block:" + id);
