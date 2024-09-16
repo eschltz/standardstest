@@ -1084,9 +1084,7 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 	standard_H3.style = "font-size:20px;";
 	standard_H3.innerHTML = standardName + ":";
 
-	// Positioning Essential, Desirable, Extraordinary lines on page
-	// Essential needs more room for radio buttons
-	
+	// Positioning Essential, Desirable, Extraordinary lines on page	
 	if (role == "\"author\"") {
 		checklists.style = "list-style-type:none; list-style-position:inside; text-indent: 2em hanging; margin-left: 0;";
 	} else if (checklistName == "Essential") {
@@ -1098,8 +1096,8 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 	//checklists.appendChild(standard_H3); //no subheadings
 
 	// splitting lines on bullet points from markdown file
-	//console.log(checklistText);
 	lines = checklistText.includes("- [ ]") ? checklistText.split("- [ ]") : checklistText.includes("-	") ? checklistText.split("-	") : checklistText.split("");
+	console.log("Lines: " + lines);
 
 	var i = 0;
 
@@ -1112,21 +1110,39 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 		// replace all line breaks (<br> </br>)
 		// replace all tab character(\t)
 		line_text = line.trim().replaceAll(" ", "").replaceAll("<br>", "").replaceAll("<br/>", "").replaceAll("\t", "");
+		
+		console.log("Line text: " + line_text);
+		
 		if (line_text != ""){
 			i++;
 
-			// ?????????????????????
-			//console.log(line_text);
 			line_text = line.trim().replace("---", "&mdash;");
-			//console.log(line_text);
+
 			// Trim and remove line breaks in markdown text
 			while (line_text.match(/<br(\/)?>$/)) {
 				line_text = line_text.replace(/<br(\/)?>$/, "");
 				line_text = line_text.trim();
 			}
+			
 			checklistItem_id = standardName + "-" + checklistName + ":" + i;
+			
+			// Determine which standard to use for the current essential item item
+			if (checklistName == "Essential") {
+				for (let name of standardName) {
+					console.log("Name: " + name);
+					if (line_text.includes(name)) {
+						let regex = new RegExp(`(${name})$`, "g");
+						line_text = line_text.replace(regex, "");
+						checklistItem_id = name + "-" + checklistName + ":" + i;
+						break;
+					}
+				}
+			}
+			
 			console.log(checklistItem_id);
+			
 			var checklistItemLI = document.createElement("LI");
+			checklistItemLI.className = checklistItem_id;
 			
 			var checklistItemText = document.createElement("span");
 			
@@ -1135,12 +1151,14 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 				checklistItemText.style = "flex: 0 1 50vw";
 			}
 			
-			if(IMRaD_line_break)
+			if(IMRaD_line_break) {
 				checklists.appendChild(document.createElement("br"));
+			}
 
 			// !!!!!!!!!!!!!!!! we dont need this part in the checklist
-			if(line_text.includes("complies with all applicable empirical standards"))
+			if(line_text.includes("complies with all applicable empirical standards")) {
 				continue;
+			}
 			
 			// if line_text includes a specific regex set to true ( line break with horizontal rule)
 			IMRaD_line_break = line_text.includes('<br\/>_hr_') ? true : false;
@@ -1150,6 +1168,8 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 
 			// Change the text to the string held in line_text
 			checklistItemLI.setAttribute("text", line_text);
+			
+			console.log("Line text: " + line_text);
 
 			if(line_text.replaceAll("<br/><br>", "") == "") {
 				continue;
@@ -1164,13 +1184,6 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 
 			//locate the current checklist into the table
 			data = dataStructure.get(Encode_key(line_text))
-			
-			/*
-			if(role == "\"author\""){
-				var item_location_textbox = generate_location_textbox("item_location_textbox", checklistItem_id, "5px");
-				checklistItemText.appendChild(item_location_textbox);
-			}*/
-	
 
 			if (checklistName == "Essential"){
 				// create Input Elements
@@ -1364,6 +1377,19 @@ function separate_essential_attributes_based_on_IMRaD_tags(standardName, checkli
 		var results = checklistHTML.includes("<results>") ? checklistHTML.match(/<results>([\s\S]*?)\n\s*<\/?\w+>/i)[1] : "";
 		var discussion = checklistHTML.includes("<discussion>") ? checklistHTML.match(/<discussion>([\s\S]*?)\n\s*<\/?\w+>/i)[1] : "";
 		var other = checklistHTML.includes("<other>") ? checklistHTML.match(/<other>([\s\S]*?)\n\s*<\/?\w+>/i)[1] : "";
+		
+		intro = intro.replaceAll(/(?<=\S)(\n)/gm, standardName + "\n") + standardName;
+		method = method.replaceAll(/(?<=\S)(\n)/gm, standardName + "\n") + standardName;
+		results = results.replaceAll(/(?<=\S)(\n)/gm, standardName + "\n") + standardName;
+		discussion = discussion.replaceAll(/(?<=\S)(\n)/gm, standardName + "\n") + standardName;
+		other = other.replaceAll(/(?<=\S)(\n)/gm, standardName + "\n") + standardName;
+		
+		/*
+		console.log("Intro: " + intro);
+		console.log("Method: " + method);
+		console.log("Results: " + results);
+		console.log("Discussion: " + discussion);
+		console.log("Other: " + other);*/
 
 		tags = checklistHTML.match(/\n\s*<\w+>/g);
 		// No tags at all => treat as '<other>'
@@ -1447,7 +1473,8 @@ function preparation_to_convert_MD_to_HTML(standardTagName, checklistTagName, ch
 
 	// Transform Markdown tags to HTMLtags
 	checklistText = convert_MD_tags_to_HTML_tags(checklistText);
-	//console.log(checklistText);
+	console.log("Checklist text: " + checklistText);
+	
 	// Standard Files - Change from docs to link, change from .md file to nothing
 	checklistText = checklistText.replaceAll('https://github.com/acmsigsoft/EmpiricalStandards/blob/master/docs/standards/', '../docs/standards?standard=').replaceAll('.md', '');
 
@@ -1704,10 +1731,13 @@ function create_requirements_checklist(file){
 	}
 
 	// unshift() method adds new items to the beginning of an array, and returns the new length
-	if (!standard_keys.includes("\"General Standard\""))
+	if (!standard_keys.includes("\"General Standard\"")) {
 		standard_keys.unshift("\"General Standard\"");
+	}
 	
 	create_requirements_checklist_table(file);
+	
+	const standards_list = [];
 	
 	var i = 0;
 	for (let key of standard_keys){
@@ -1725,6 +1755,7 @@ function create_requirements_checklist(file){
 		
 		let standardName = "\"" + standardTag.getAttribute('name') + "\"";
 		standardName = standardName.replaceAll("\"", "");
+		standards_list.push(standardName);
 		console.log(standardName);
 		
 		var checklistTags = standardTag.getElementsByTagName("checklist");
@@ -1781,21 +1812,18 @@ function create_requirements_checklist(file){
 			}
 
 			if (checklistTag.getAttribute('name') == "Essential") {
-				//EssentialUL.appendChild(standard_header_rule);
 
-				if (i == 1)
+				if (i == 1) {
 					EssentialUL.appendChild(Yes_No);
-				//EssentialUL.appendChild(checklists);
+				}
 			}
 			else if (checklistTag.getAttribute('name') == "Desirable") {
-				//DesirableUL.appendChild(standard_header_rule);
 
 				// Change from Markdown to HTML elements
 				checklists = preparation_to_convert_MD_to_HTML(standardTag.getAttribute('name'), checklistTag.getAttribute('name'), checklistHTML, footnotes);
 				DesirableUL.appendChild(checklists);
 			}
 			else if (checklistTag.getAttribute('name') == "Extraordinary") {
-				//ExtraordinaryUL.appendChild(standard_header_rule);
 
 				// Change from Markdown to HTML elements
 				checklists = preparation_to_convert_MD_to_HTML(standardTag.getAttribute('name'), checklistTag.getAttribute('name'), checklistHTML, footnotes);
@@ -1803,15 +1831,19 @@ function create_requirements_checklist(file){
 			}
 		}
 	}
-	all_essential_IMRaD_items_innerHTML = "" + all_intro_items + "\n_hr_" + all_method_items + "\n_hr_" + all_results_items + "\n_hr_" + all_discussion_items + "\n_hr_" + all_other_items
-	all_essential_IMRaD_items_innerHTML = all_essential_IMRaD_items_innerHTML.replaceAll("\n_hr_", "").length > 0 ? all_essential_IMRaD_items_innerHTML : "";
+	all_essential_IMRaD_items_innerHTML = "" + all_intro_items + "\n_hr_" + all_method_items + "\n_hr_" + all_results_items + "\n_hr_" + all_discussion_items + "\n_hr_" + all_other_items;
 	
+	all_essential_IMRaD_items_innerHTML = all_essential_IMRaD_items_innerHTML.replaceAll("\n_hr_", "").length > 0 ? all_essential_IMRaD_items_innerHTML : "";
 	
 	// Notify testers in the case of unrecognized tags, no tags at all, or untagged attributes
 	notify_testers();
 	
+	console.log("IMRAD HTML: " + all_essential_IMRaD_items_innerHTML);
+	
+	console.log("Standards used: " + standards_list);
+	
 	// Change from Markdown to HTML elements
-	checklists = preparation_to_convert_MD_to_HTML("", 'Essential', all_essential_IMRaD_items_innerHTML, footnotes);
+	checklists = preparation_to_convert_MD_to_HTML(standards_list, 'Essential', all_essential_IMRaD_items_innerHTML, footnotes);
 	EssentialUL.appendChild(checklists);
 	
 	// Add Essential Attributes to the form
@@ -1907,6 +1939,15 @@ function generateStandardChecklist(file){
 
 	// return sorted list of Standards
 	standard_keys = sortStandards(standard_keys);
+	
+	// Check if the current checklist is being stored
+	if (localStorage.getItem(role) !== null) {
+		console.log(role + " checklist found in storage");
+		populate_checklist();
+	} else {
+		console.log("Begin storing " + role + " checklist");
+		localStorage.setItem(role, "");
+	}
 
 	// return the role (author, one-phase, two-phase)
 	role = getParameterByName('role');
@@ -1928,15 +1969,6 @@ function generateStandardChecklist(file){
 
 	// Create Checklist
 	var form = create_requirements_checklist(file);
-	
-	// Check if the current checklist is being stored
-	if (localStorage.getItem(role) !== null) {
-		console.log(role + " checklist found in storage");
-		populate_checklist();
-	} else {
-		console.log("Begin storing " + role + " checklist");
-		localStorage.setItem(role, "");
-	}
 
 	// Append header and form to container
 	container.appendChild(heading);
@@ -1959,6 +1991,11 @@ function generateStandardChecklist(file){
 	//This function is primarily responsible for controlling the displaying of the deviation blocks in the checklist.
 	generate_decision_message_block();
 }
+
+/*document.addEventListener("visibilitychange", () => {	
+	let storeform = document.getElementById("checklists").outerHTML;
+	localStorage.setItem(role + " form: ", storeform);
+});*/
 
 // Check if the completed checklist is valid (no missing items)
 function check_form_validity(event) {
