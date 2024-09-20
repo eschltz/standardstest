@@ -48,6 +48,8 @@ form:active {
 	background: none;
 	cursor: pointer;
 	margin-left: 20px;
+	margin-right: 20px;
+	float: right;
 }
 
 #clear_checklist:hover {

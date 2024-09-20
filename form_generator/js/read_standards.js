@@ -1111,8 +1111,6 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 		// replace all tab character(\t)
 		line_text = line.trim().replaceAll(" ", "").replaceAll("<br>", "").replaceAll("<br/>", "").replaceAll("\t", "");
 		
-		console.log("Line text: " + line_text);
-		
 		if (line_text != ""){
 			i++;
 
@@ -1124,26 +1122,7 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 				line_text = line_text.trim();
 			}
 			
-			checklistItem_id = standardName + "-" + checklistName + ":" + i;
-			
-			// Determine which standard to use for the current essential item item
-			if (checklistName == "Essential") {
-				for (let name of standardName) {
-					console.log("Name: " + name);
-					if (line_text.includes(name)) {
-						let regex = new RegExp(`(${name})$`, "g");
-						line_text = line_text.replace(regex, "");
-						checklistItem_id = name + "-" + checklistName + ":" + i;
-						break;
-					}
-				}
-			}
-			
-			console.log(checklistItem_id);
-			
 			var checklistItemLI = document.createElement("LI");
-			checklistItemLI.className = checklistItem_id;
-			
 			var checklistItemText = document.createElement("span");
 			
 			if (role == "\"author\"") {
@@ -1165,6 +1144,28 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 
 			// Replace line break and horizontal rule with empty string
 			line_text = line_text.replace(/(<br\/>_hr_)+/g, '');
+			
+			let checklistItem_class = "";
+			
+			// Determine which standard to use for the current essential item
+			if (checklistName == "Essential") {
+				for (let name of standardName) {
+					
+					if (line_text.includes(name)) {
+						console.log("Name: " + name);
+						let regex = new RegExp(`(${name})$`, "g");
+						line_text = line_text.replace(regex, "");
+						console.log("Text: " + line_text);
+						checklistItem_class = name + "-" + checklistName + ":" + i;
+						break;
+					}
+				}
+				checklistItem_id = "" + "-" + checklistName + ":" + i;
+			} else {
+				checklistItem_id = standardName + "-" + checklistName + ":" + i;
+			}
+			
+			checklistItemLI.className = checklistItem_class;
 
 			// Change the text to the string held in line_text
 			checklistItemLI.setAttribute("text", line_text);
@@ -1378,18 +1379,12 @@ function separate_essential_attributes_based_on_IMRaD_tags(standardName, checkli
 		var discussion = checklistHTML.includes("<discussion>") ? checklistHTML.match(/<discussion>([\s\S]*?)\n\s*<\/?\w+>/i)[1] : "";
 		var other = checklistHTML.includes("<other>") ? checklistHTML.match(/<other>([\s\S]*?)\n\s*<\/?\w+>/i)[1] : "";
 		
+		// Temporarily append standard name to each item for later classification
 		intro = intro.replaceAll(/(?<=\S)(\n)/gm, standardName + "\n") + standardName;
 		method = method.replaceAll(/(?<=\S)(\n)/gm, standardName + "\n") + standardName;
 		results = results.replaceAll(/(?<=\S)(\n)/gm, standardName + "\n") + standardName;
 		discussion = discussion.replaceAll(/(?<=\S)(\n)/gm, standardName + "\n") + standardName;
 		other = other.replaceAll(/(?<=\S)(\n)/gm, standardName + "\n") + standardName;
-		
-		/*
-		console.log("Intro: " + intro);
-		console.log("Method: " + method);
-		console.log("Results: " + results);
-		console.log("Discussion: " + discussion);
-		console.log("Other: " + other);*/
 
 		tags = checklistHTML.match(/\n\s*<\w+>/g);
 		// No tags at all => treat as '<other>'
@@ -1715,6 +1710,9 @@ function create_requirements_checklist(file){
 	var form = document.createElement("FORM");
 	form.id = "checklists";
 	form.name = "checklists";
+	
+	let clear_button = create_clear_checklist_button();
+	form.appendChild(clear_button);
 
 	// create Header for Essential Requirements with an unordered list
 	var EssentialUL = create_requirements_heading_with_UL("Essential");
@@ -1852,8 +1850,6 @@ function create_requirements_checklist(file){
 	// Create download button
 	var download = create_download_button();
 	
-	let clear_button = create_clear_checklist_button();
-	
 	var error_warning = document.createElement("div");
 	error_warning.className = "error_warning";
 	error_warning.id = "error_warning";
@@ -1899,7 +1895,6 @@ function create_requirements_checklist(file){
 	form.appendChild(DesirableUL);
 	form.appendChild(ExtraordinaryUL);
 	form.appendChild(download);
-	form.appendChild(clear_button);
 	form.appendChild(error_warning);
 	
 	return form;
