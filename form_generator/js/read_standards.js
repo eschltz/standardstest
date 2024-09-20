@@ -1153,7 +1153,7 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 					
 					if (line_text.includes(name)) {
 						console.log("Name: " + name);
-						let regex = new RegExp(`(${name})$`, "g");
+						let regex = new RegExp(`(${name})$|(${name}<br\/>)$`, "gm");
 						line_text = line_text.replace(regex, "");
 						console.log("Text: " + line_text);
 						checklistItem_class = name + "-" + checklistName + ":" + i;
