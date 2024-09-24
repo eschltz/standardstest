@@ -1149,23 +1149,14 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 			
 			// Determine which standard to use for the current essential item
 			if (checklistName == "Essential") {
-				for (let name of standardName) {
-					
-					if (line_text.includes(name)) {
-						console.log("Name: " + name);
-						let regex = new RegExp(`(${name})$|(${name}<br\/>)$`, "gm");
-						line_text = line_text.replace(regex, "");
-						console.log("Text: " + line_text);
-						checklistItem_class = name + "-" + checklistName + ":" + i;
-						break;
-					}
-				}
-				checklistItem_id = "" + "-" + checklistName + ":" + i;
+				console.log("IMRAD standard: ");
+				checklistItem_class = "-" + checklistName + ":" + i;
 			} else {
-				checklistItem_id = standardName + "-" + checklistName + ":" + i;
+				checklistItem_class = standardName + "-" + checklistName + ":" + i;
 			}
 			
 			checklistItemLI.className = checklistItem_class;
+			checklistItem_id = standardName + "-" + checklistName + ":" + i;
 
 			// Change the text to the string held in line_text
 			checklistItemLI.setAttribute("text", line_text);
@@ -1359,6 +1350,8 @@ function sortStandards(keys){
 }
 
 var footnotes = {};
+
+let imrad_order = [];
 all_intro_items = "";
 all_method_items = "";
 all_results_items = "";
@@ -1368,52 +1361,64 @@ unrecognized_tags = "";
 standards_with_no_tags = "";
 standards_with_untagged_attributes = "";
 
-function separate_essential_attributes_based_on_IMRaD_tags(standardName, checklistType, checklistHTML){
-	if (checklistType == "Essential"){
-		const IMRaD_tags = ["<intro>", "<method>", "<results>", "<discussion>", "<other>"]; // Known IMRaD tags
+function separate_essential_attributes_based_on_IMRaD_tags(standardName, checklistHTML){
+	const IMRaD_tags = ["<intro>", "<method>", "<results>", "<discussion>", "<other>"]; // Known IMRaD tags
+	let imrad_counts = [];
 
-		// Attributes of each IMRaD tag
-		var intro = checklistHTML.includes("<intro>") ? checklistHTML.match(/<intro>([\s\S]*?)\n\s*<\/?\w+>/i)[1] : "";
-		var method = checklistHTML.includes("<method>") ? checklistHTML.match(/<method>([\s\S]*?)\n\s*<\/?\w+>/i)[1] : "";
-		var results = checklistHTML.includes("<results>") ? checklistHTML.match(/<results>([\s\S]*?)\n\s*<\/?\w+>/i)[1] : "";
-		var discussion = checklistHTML.includes("<discussion>") ? checklistHTML.match(/<discussion>([\s\S]*?)\n\s*<\/?\w+>/i)[1] : "";
-		var other = checklistHTML.includes("<other>") ? checklistHTML.match(/<other>([\s\S]*?)\n\s*<\/?\w+>/i)[1] : "";
-		
-		// Temporarily append standard name to each item for later classification
-		intro = intro.replaceAll(/(?<=\S)(\n)/gm, standardName + "\n") + standardName;
-		method = method.replaceAll(/(?<=\S)(\n)/gm, standardName + "\n") + standardName;
-		results = results.replaceAll(/(?<=\S)(\n)/gm, standardName + "\n") + standardName;
-		discussion = discussion.replaceAll(/(?<=\S)(\n)/gm, standardName + "\n") + standardName;
-		other = other.replaceAll(/(?<=\S)(\n)/gm, standardName + "\n") + standardName;
-
-		tags = checklistHTML.match(/\n\s*<\w+>/g);
-		// No tags at all => treat as '<other>'
-		if (tags === null){
-			other = checklistHTML;
-			standards_with_no_tags += "[" + standardName + "]\n";
-		}
-		// Unrecognized tags => treat as '<other>'
-		else for (const tag of tags){
-			if (!IMRaD_tags.includes(tag.trim())){
-				unrecognized_tags += "[" + tag.trim() + " @ " + standardName + "]\n";
-				var unrecognized = checklistHTML.match(new RegExp(tag.trim()+"([\\s\\S]*?)<\\/?\\w+>", "i"))[1];
-				other = unrecognized + other;
-			}
-		}
-		// Attributes that do not belong under any tag => treat as '<other>'
-		untaged = checklistHTML.match(/^[\s\r\n]+-([\s\S]*?)\n(<\w+>)/i);
-		if(untaged != null){
-			other = "-" + untaged[1] + other;
-			standards_with_untagged_attributes += "[" + standardName + "]\n";
-		}
-
-		// Combine IMRaD tags of all standards
-		all_intro_items = all_intro_items + intro;
-		all_method_items = all_method_items + method;
-		all_results_items = all_results_items + results;
-		all_discussion_items = all_discussion_items + discussion;
-		all_other_items = all_other_items + other;
+	// If the given IMRaD tag is included, get and count its items
+	if (checklistHTML.includes("<intro>")) {
+		var intro = checklistHTML.match(/<intro>([\s\S]*?)\n\s*<\/?\w+>/i)[1];
+		imrad_counts.push(intro.match(/(\[\s\])/img).length);
 	}
+	if (checklistHTML.includes("<method>")) {
+		var method = checklistHTML.match(/<method>([\s\S]*?)\n\s*<\/?\w+>/i)[1];
+		imrad_counts.push(method.match(/(\[\s\])/img).length);
+	}
+	if (checklistHTML.includes("<results>")) {
+		var results = checklistHTML.match(/<results>([\s\S]*?)\n\s*<\/?\w+>/i)[1];
+		imrad_counts.push(results.match(/(\[\s\])/img).length);
+	}
+	if (checklistHTML.includes("<discussion>")) {
+		var discussion = checklistHTML.match(/<discussion>([\s\S]*?)\n\s*<\/?\w+>/i)[1];
+		imrad_counts.push(discussion.match(/(\[\s\])/img).length);
+	}
+	
+
+	var other = checklistHTML.includes("<other>") ? checklistHTML.match(/<other>([\s\S]*?)\n\s*<\/?\w+>/i)[1] : "";
+
+	tags = checklistHTML.match(/\n\s*<\w+>/g);
+	// No tags at all => treat as '<other>'
+	if (tags === null){
+		other = checklistHTML;
+		standards_with_no_tags += "[" + standardName + "]\n";
+	}
+	// Unrecognized tags => treat as '<other>'
+	else for (const tag of tags){
+		if (!IMRaD_tags.includes(tag.trim())){
+			unrecognized_tags += "[" + tag.trim() + " @ " + standardName + "]\n";
+			var unrecognized = checklistHTML.match(new RegExp(tag.trim()+"([\\s\\S]*?)<\\/?\\w+>", "i"))[1];
+			other = unrecognized + other;
+		}
+	}
+	// Attributes that do not belong under any tag => treat as '<other>'
+	untaged = checklistHTML.match(/^[\s\r\n]+-([\s\S]*?)\n(<\w+>)/i);
+	if(untaged != null){
+		other = "-" + untaged[1] + other;
+		standards_with_untagged_attributes += "[" + standardName + "]\n";
+	}
+	
+	if (checklistHTML.includes("<other>")) {
+		imrad_counts.push(other.match(/(\[\s\])/img).length);
+	}
+	
+	imrad_order.push(imrad_counts);
+
+	// Combine IMRaD tags of all standards
+	all_intro_items = all_intro_items + intro;
+	all_method_items = all_method_items + method;
+	all_results_items = all_results_items + results;
+	all_discussion_items = all_discussion_items + discussion;
+	all_other_items = all_other_items + other;
 }
 
 // Create Role Heading (Pre-Submission Checklist, Reviewer Checklist)
@@ -1544,6 +1549,8 @@ function clear_checklist(event) {
 	} else {
 		console.log("Clearing " + role + " checklist");
 		localStorage.setItem(role, "");
+		
+		// hide_deviation_block_and_show_location_textbox();
 	}
 }
 
@@ -1735,8 +1742,6 @@ function create_requirements_checklist(file){
 	
 	create_requirements_checklist_table(file);
 	
-	const standards_list = [];
-	
 	var i = 0;
 	for (let key of standard_keys){
 		i++;
@@ -1753,17 +1758,19 @@ function create_requirements_checklist(file){
 		
 		let standardName = "\"" + standardTag.getAttribute('name') + "\"";
 		standardName = standardName.replaceAll("\"", "");
-		standards_list.push(standardName);
-		console.log(standardName);
 		
 		var checklistTags = standardTag.getElementsByTagName("checklist");
 		for (let checklistTag of checklistTags){
+			
+			let checklistType = checklistTag.getAttribute('name');
 
 			// dealing with footnotes
 			checklistHTML = checklistTag.innerHTML.replaceAll("<sup>", "<sup>"+standardName+"--footnote--") // To make footnotes belong to their standards 
 
 			// Add all information for "all_intro_items", etc.
-			separate_essential_attributes_based_on_IMRaD_tags(standardTag.getAttribute('name'), checklistTag.getAttribute('name'), checklistHTML)
+			if (checklistType == "Essential") {
+				separate_essential_attributes_based_on_IMRaD_tags(standardTag.getAttribute('name'), checklistHTML);
+			}
 
 			// Reformat the checklists from MD to HTML
 			var Yes_No = document.createElement("div");
@@ -1809,19 +1816,19 @@ function create_requirements_checklist(file){
 				Yes_No.innerHTML = "&nbsp;yes no";
 			}
 
-			if (checklistTag.getAttribute('name') == "Essential") {
+			if (checklistType == "Essential") {
 
 				if (i == 1) {
 					EssentialUL.appendChild(Yes_No);
 				}
 			}
-			else if (checklistTag.getAttribute('name') == "Desirable") {
+			else if (checklistType == "Desirable") {
 
 				// Change from Markdown to HTML elements
 				checklists = preparation_to_convert_MD_to_HTML(standardTag.getAttribute('name'), checklistTag.getAttribute('name'), checklistHTML, footnotes);
 				DesirableUL.appendChild(checklists);
 			}
-			else if (checklistTag.getAttribute('name') == "Extraordinary") {
+			else if (checklistType == "Extraordinary") {
 
 				// Change from Markdown to HTML elements
 				checklists = preparation_to_convert_MD_to_HTML(standardTag.getAttribute('name'), checklistTag.getAttribute('name'), checklistHTML, footnotes);
@@ -1829,6 +1836,9 @@ function create_requirements_checklist(file){
 			}
 		}
 	}
+	
+	console.log("IMRAD order: " + imrad_order);
+	
 	all_essential_IMRaD_items_innerHTML = "" + all_intro_items + "\n_hr_" + all_method_items + "\n_hr_" + all_results_items + "\n_hr_" + all_discussion_items + "\n_hr_" + all_other_items;
 	
 	all_essential_IMRaD_items_innerHTML = all_essential_IMRaD_items_innerHTML.replaceAll("\n_hr_", "").length > 0 ? all_essential_IMRaD_items_innerHTML : "";
@@ -1838,10 +1848,8 @@ function create_requirements_checklist(file){
 	
 	console.log("IMRAD HTML: " + all_essential_IMRaD_items_innerHTML);
 	
-	console.log("Standards used: " + standards_list);
-	
 	// Change from Markdown to HTML elements
-	checklists = preparation_to_convert_MD_to_HTML(standards_list, 'Essential', all_essential_IMRaD_items_innerHTML, footnotes);
+	checklists = preparation_to_convert_MD_to_HTML("", 'Essential', all_essential_IMRaD_items_innerHTML, footnotes);
 	EssentialUL.appendChild(checklists);
 	
 	// Add Essential Attributes to the form
