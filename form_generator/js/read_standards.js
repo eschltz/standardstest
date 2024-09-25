@@ -1149,7 +1149,6 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 			
 			// Determine which standard to use for the current essential item
 			if (checklistName == "Essential") {
-				console.log("IMRAD standard: ");
 				checklistItem_class = "-" + checklistName + ":" + i;
 			} else {
 				checklistItem_class = standardName + "-" + checklistName + ":" + i;
@@ -1393,8 +1392,6 @@ function separate_essential_attributes_based_on_IMRaD_tags(standardName, checkli
 	}
 
 	var other = checklistHTML.includes("<other>") ? checklistHTML.match(/<other>([\s\S]*?)\n\s*<\/?\w+>/i)[1] : "";
-	
-	console.log("OTHER " + other);
 
 	tags = checklistHTML.match(/\n\s*<\w+>/g);
 	// No tags at all => treat as '<other>'
@@ -1410,17 +1407,18 @@ function separate_essential_attributes_based_on_IMRaD_tags(standardName, checkli
 			other = unrecognized + other;
 		}
 	}
-	console.log("OTHER " + other);
+
 	// Attributes that do not belong under any tag => treat as '<other>'
 	untaged = checklistHTML.match(/^[\s\r\n]+-([\s\S]*?)\n(<\w+>)/i);
 	if(untaged != null){
 		other = "-" + untaged[1] + other;
 		standards_with_untagged_attributes += "[" + standardName + "]\n";
 	}
-	console.log("OTHER " + other);
 	
 	let other_items = other.match(/(\[\s\])/img);
 	let other_count = other_items != null ? imrad_counts.push(other_items.length) : imrad_counts.push(0);
+	
+	console.log(standardName + " IMRAD count: " + imrad_counts);
 	
 	imrad_order.push(imrad_counts);
 
