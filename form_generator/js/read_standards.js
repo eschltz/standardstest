@@ -1152,28 +1152,42 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 			// Determine which standard to use for the current essential item
 			if (checklistName == "Essential") {										
 				let imrad_counts = imrad_order[imrad_count_index];
-				console.log("Current counts: " + imrad_counts);
-				
 				let tag_count = imrad_counts[0];
-				console.log("Current tag count: " +  tag_count);
+				console.log("Current counts: " + imrad_counts + "; Current tag count: " +  tag_count);
 				
-				if (tag_count == 0) {
-					imrad_counts.shift();
-					imrad_order[imrad_count_index] = imrad_counts;
-					console.log("Hit zero; Current counts: " + imrad_counts);
-					
-					if (imrad_count_index + 1 < standardName.length) {
-						imrad_count_index++;
-						console.log("Index: " + imrad_count_index + "; Move to next counter");
+				let found = false;
+				
+				// Find the current count
+				while (found == false) {
+					if (tag_count == 0) {
+						imrad_counts.shift();
+						imrad_order[imrad_count_index] = imrad_counts;
+
+						// If this isn't the last array of counts, move to the next one
+						if (imrad_count_index + 1 < standardName.length) {
+							imrad_count_index++;
+							console.log("Index: " + imrad_count_index + "; Move to next counter");
+							imrad_counts = imrad_order[imrad_count_index];
+							tag_count = imrad_counts[0];
+							console.log("Current counts: " + imrad_counts + "; Current tag count: " +  tag_count);
+							
+						// If this is the last array of counts, reset to the first
+						} else {
+							imrad_count_index = 0;
+							console.log("Index: " + imrad_count_index + "; Reset counter");
+							imrad_counts = imrad_order[imrad_count_index];
+							tag_count = imrad_counts[0];
+							console.log("Current counts: " + imrad_counts + "; Current tag count: " +  tag_count);
+						}
 					} else {
-						imrad_count_index = 0;
-						console.log("Index: " + imrad_count_index + "; Reset counter");
+						found = true;
 					}
 				}
 
 				checklistItem_class = standardName[imrad_count_index] + "-" + checklistName + ":" + i;
 				tag_count--;
 				imrad_counts[0] = tag_count;
+				imrad_order[imrad_count_index] = imrad_counts;
 				console.log("Class assigned; Current counts: " + imrad_counts);
 
 				checklistItem_id = "-" + checklistName + ":" + i;
