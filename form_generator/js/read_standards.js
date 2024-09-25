@@ -1385,6 +1385,8 @@ function separate_essential_attributes_based_on_IMRaD_tags(standardName, checkli
 	
 
 	var other = checklistHTML.includes("<other>") ? checklistHTML.match(/<other>([\s\S]*?)\n\s*<\/?\w+>/i)[1] : "";
+	
+	console.log("OTHER " + other);
 
 	tags = checklistHTML.match(/\n\s*<\w+>/g);
 	// No tags at all => treat as '<other>'
@@ -1400,12 +1402,14 @@ function separate_essential_attributes_based_on_IMRaD_tags(standardName, checkli
 			other = unrecognized + other;
 		}
 	}
+	console.log("OTHER " + other);
 	// Attributes that do not belong under any tag => treat as '<other>'
 	untaged = checklistHTML.match(/^[\s\r\n]+-([\s\S]*?)\n(<\w+>)/i);
 	if(untaged != null){
 		other = "-" + untaged[1] + other;
 		standards_with_untagged_attributes += "[" + standardName + "]\n";
 	}
+	console.log("OTHER " + other);
 	
 	if (checklistHTML.includes("<other>")) {
 		imrad_counts.push(other.match(/(\[\s\])/img).length);
