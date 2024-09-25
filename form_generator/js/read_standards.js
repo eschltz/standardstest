@@ -417,8 +417,8 @@ function show_deviation_block_and_hide_location_textbox() {
 		id = this.id.replace("checklist-radio:No:", "")
 	}
 	
-	const item_store = {name: "this-no", index: id};
-	localStorage.setItem(role, JSON.stringify(item_store));
+	console.log(this.parentElement);
+	localStorage.setItem(role, "storing");
 	
 	var deviation_block = document.getElementById("deviation_block:" + id);
 	if (deviation_block) {
@@ -452,9 +452,9 @@ function hide_deviation_block_and_show_location_textbox() {
 		id = this.id.replace("checklist-radio:Yes:", "");
 	}
 	hide_other_messages(id);
-	 
-	const item_store = {name: "this-yes", index: id};
-	localStorage.setItem(role, JSON.stringify(item_store));
+	
+	console.log(this.parentElement); 
+	localStorage.setItem(role, "storing");
 
 	// Hide all Deviation Blocks
 	var block = document.getElementById("deviation_block:" + id);
@@ -1153,7 +1153,6 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 			if (checklistName == "Essential") {										
 				let imrad_counts = imrad_order[imrad_count_index];
 				let tag_count = imrad_counts[0];
-				console.log("Current counts: " + imrad_counts + "; Current tag count: " +  tag_count);
 				
 				let found = false;
 				
@@ -1166,18 +1165,14 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 						// If this isn't the last array of counts, move to the next one
 						if (imrad_count_index + 1 < standardName.length) {
 							imrad_count_index++;
-							console.log("Index: " + imrad_count_index + "; Move to next counter");
 							imrad_counts = imrad_order[imrad_count_index];
 							tag_count = imrad_counts[0];
-							console.log("Current counts: " + imrad_counts + "; Current tag count: " +  tag_count);
 							
 						// If this is the last array of counts, reset to the first
 						} else {
 							imrad_count_index = 0;
-							console.log("Index: " + imrad_count_index + "; Reset counter");
 							imrad_counts = imrad_order[imrad_count_index];
 							tag_count = imrad_counts[0];
-							console.log("Current counts: " + imrad_counts + "; Current tag count: " +  tag_count);
 						}
 					} else {
 						found = true;
@@ -1188,7 +1183,6 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 				tag_count--;
 				imrad_counts[0] = tag_count;
 				imrad_order[imrad_count_index] = imrad_counts;
-				console.log("Class assigned; Current counts: " + imrad_counts);
 
 				checklistItem_id = "-" + checklistName + ":" + i;
 			} else {
