@@ -1368,21 +1368,29 @@ function separate_essential_attributes_based_on_IMRaD_tags(standardName, checkli
 	// If the given IMRaD tag is included, get and count its items
 	if (checklistHTML.includes("<intro>")) {
 		var intro = checklistHTML.match(/<intro>([\s\S]*?)\n\s*<\/?\w+>/i)[1];
-		imrad_counts.push(intro.match(/(\[\s\])/img).length);
+		
+		let intro_items = intro.match(/(\[\s\])/img);
+		let intro_count = intro_items != null ? imrad_counts.push(intro_items.length) : imrad_counts.push(0);
 	}
 	if (checklistHTML.includes("<method>")) {
 		var method = checklistHTML.match(/<method>([\s\S]*?)\n\s*<\/?\w+>/i)[1];
-		imrad_counts.push(method.match(/(\[\s\])/img).length);
+		
+		let method_items = method.match(/(\[\s\])/img);
+		let method_count = method_items != null ? imrad_counts.push(method_items.length) : imrad_counts.push(0);
 	}
 	if (checklistHTML.includes("<results>")) {
 		var results = checklistHTML.match(/<results>([\s\S]*?)\n\s*<\/?\w+>/i)[1];
-		imrad_counts.push(results.match(/(\[\s\])/img).length);
+		
+		let results_items = results.match(/(\[\s\])/img);
+		let results_count = results_items != null ? imrad_counts.push(results_items.length) : imrad_counts.push(0);
+		
 	}
 	if (checklistHTML.includes("<discussion>")) {
 		var discussion = checklistHTML.match(/<discussion>([\s\S]*?)\n\s*<\/?\w+>/i)[1];
-		imrad_counts.push(discussion.match(/(\[\s\])/img).length);
+		
+		let discussion_items = discussion.match(/(\[\s\])/img);
+		let discussion_count = discussion_items != null ? imrad_counts.push(discussion_items.length) : imrad_counts.push(0);		
 	}
-	
 
 	var other = checklistHTML.includes("<other>") ? checklistHTML.match(/<other>([\s\S]*?)\n\s*<\/?\w+>/i)[1] : "";
 	
@@ -1411,9 +1419,8 @@ function separate_essential_attributes_based_on_IMRaD_tags(standardName, checkli
 	}
 	console.log("OTHER " + other);
 	
-	if (checklistHTML.includes("<other>")) {
-		imrad_counts.push(other.match(/(\[\s\])/img).length);
-	}
+	let other_items = other.match(/(\[\s\])/img);
+	let other_count = other_items != null ? imrad_counts.push(other_items.length) : imrad_counts.push(0);
 	
 	imrad_order.push(imrad_counts);
 
