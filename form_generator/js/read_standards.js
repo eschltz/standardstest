@@ -1364,33 +1364,11 @@ function separate_essential_attributes_based_on_IMRaD_tags(standardName, checkli
 	const IMRaD_tags = ["<intro>", "<method>", "<results>", "<discussion>", "<other>"]; // Known IMRaD tags
 	let imrad_counts = [];
 
-	// If the given IMRaD tag is included, get and count its items
-	if (checklistHTML.includes("<intro>")) {
-		var intro = checklistHTML.match(/<intro>([\s\S]*?)\n\s*<\/?\w+>/i)[1];
-		
-		let intro_items = intro.match(/(\[\s\])/img);
-		let intro_count = intro_items != null ? imrad_counts.push(intro_items.length) : imrad_counts.push(0);
-	}
-	if (checklistHTML.includes("<method>")) {
-		var method = checklistHTML.match(/<method>([\s\S]*?)\n\s*<\/?\w+>/i)[1];
-		
-		let method_items = method.match(/(\[\s\])/img);
-		let method_count = method_items != null ? imrad_counts.push(method_items.length) : imrad_counts.push(0);
-	}
-	if (checklistHTML.includes("<results>")) {
-		var results = checklistHTML.match(/<results>([\s\S]*?)\n\s*<\/?\w+>/i)[1];
-		
-		let results_items = results.match(/(\[\s\])/img);
-		let results_count = results_items != null ? imrad_counts.push(results_items.length) : imrad_counts.push(0);
-		
-	}
-	if (checklistHTML.includes("<discussion>")) {
-		var discussion = checklistHTML.match(/<discussion>([\s\S]*?)\n\s*<\/?\w+>/i)[1];
-		
-		let discussion_items = discussion.match(/(\[\s\])/img);
-		let discussion_count = discussion_items != null ? imrad_counts.push(discussion_items.length) : imrad_counts.push(0);		
-	}
-
+	// Attributes of each IMRaD tag
+	var intro = checklistHTML.includes("<intro>") ? checklistHTML.match(/<intro>([\s\S]*?)\n\s*<\/?\w+>/i)[1] : "";
+	var method = checklistHTML.includes("<method>") ? checklistHTML.match(/<method>([\s\S]*?)\n\s*<\/?\w+>/i)[1] : "";
+	var results = checklistHTML.includes("<results>") ? checklistHTML.match(/<results>([\s\S]*?)\n\s*<\/?\w+>/i)[1] : "";
+	var discussion = checklistHTML.includes("<discussion>") ? checklistHTML.match(/<discussion>([\s\S]*?)\n\s*<\/?\w+>/i)[1] : "";
 	var other = checklistHTML.includes("<other>") ? checklistHTML.match(/<other>([\s\S]*?)\n\s*<\/?\w+>/i)[1] : "";
 
 	tags = checklistHTML.match(/\n\s*<\w+>/g);
@@ -1415,11 +1393,23 @@ function separate_essential_attributes_based_on_IMRaD_tags(standardName, checkli
 		standards_with_untagged_attributes += "[" + standardName + "]\n";
 	}
 	
+	// Count IMRaD items
+	let intro_items = intro.match(/(\[\s\])/img);
+	let intro_count = intro_items != null ? imrad_counts.push(intro_items.length) : imrad_counts.push(0);
+	
+	let method_items = method.match(/(\[\s\])/img);
+	let method_count = method_items != null ? imrad_counts.push(method_items.length) : imrad_counts.push(0);
+	
+	let results_items = results.match(/(\[\s\])/img);
+	let results_count = results_items != null ? imrad_counts.push(results_items.length) : imrad_counts.push(0);
+	
+	let discussion_items = discussion.match(/(\[\s\])/img);
+	let discussion_count = discussion_items != null ? imrad_counts.push(discussion_items.length) : imrad_counts.push(0);
+	
 	let other_items = other.match(/(\[\s\])/img);
 	let other_count = other_items != null ? imrad_counts.push(other_items.length) : imrad_counts.push(0);
 	
 	console.log(standardName + " IMRAD count: " + imrad_counts);
-	
 	imrad_order.push(imrad_counts);
 
 	// Combine IMRaD tags of all standards
