@@ -1100,6 +1100,7 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 	console.log("Lines: " + lines);
 
 	var i = 0;
+	var imrad_count_index = 0;
 
 	// IMRaD line break flag is set to equal false
 	var IMRaD_line_break = false;
@@ -1146,16 +1147,42 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 			line_text = line_text.replace(/(<br\/>_hr_)+/g, '');
 			
 			let checklistItem_class = "";
+			var checklistItem_id = "";
 			
 			// Determine which standard to use for the current essential item
-			if (checklistName == "Essential") {
-				checklistItem_class = "-" + checklistName + ":" + i;
+			if (checklistName == "Essential") {										
+				let imrad_counts = imrad_order[imrad_count_index];
+				console.log("Current counts: " + imrad_counts);
+				
+				let tag_count = imrad_counts[0];
+				console.log("Current tag count: " +  tag_count);
+				
+				if (tag_count == 0) {
+					imrad_counts.shift();
+					imrad_order[imrad_count_index] = imrad_counts;
+					console.log("Hit zero; Current counts: " + imrad_counts);
+					
+					if (imrad_count_index + 1 < standardName.length) {
+						imrad_count_index++;
+						console.log("Index: " + imrad_count_index + "; Move to next counter");
+					} else {
+						imrad_count_index = 0;
+						console.log("Index: " + imrad_count_index + "; Reset counter");
+					}
+				}
+
+				checklistItem_class = standardName[imrad_count_index] + "-" + checklistName + ":" + i;
+				tag_count--;
+				imrad_counts[0] = tag_count;
+				console.log("Class assigned; Current counts: " + imrad_counts);
+
+				checklistItem_id = "-" + checklistName + ":" + i;
 			} else {
 				checklistItem_class = standardName + "-" + checklistName + ":" + i;
+				checklistItem_id = standardName + "-" + checklistName + ":" + i;
 			}
 			
 			checklistItemLI.className = checklistItem_class;
-			checklistItem_id = standardName + "-" + checklistName + ":" + i;
 
 			// Change the text to the string held in line_text
 			checklistItemLI.setAttribute("text", line_text);
@@ -1350,7 +1377,7 @@ function sortStandards(keys){
 
 var footnotes = {};
 
-let imrad_order = [];
+var imrad_order = [];
 all_intro_items = "";
 all_method_items = "";
 all_results_items = "";
@@ -1741,6 +1768,8 @@ function create_requirements_checklist(file){
 	
 	create_requirements_checklist_table(file);
 	
+	let standards_list = [];
+	
 	var i = 0;
 	for (let key of standard_keys){
 		i++;
@@ -1757,6 +1786,7 @@ function create_requirements_checklist(file){
 		
 		let standardName = "\"" + standardTag.getAttribute('name') + "\"";
 		standardName = standardName.replaceAll("\"", "");
+		standards_list.push(standardName.replaceAll(/\s/g, ""));
 		
 		var checklistTags = standardTag.getElementsByTagName("checklist");
 		for (let checklistTag of checklistTags){
@@ -1848,7 +1878,7 @@ function create_requirements_checklist(file){
 	console.log("IMRAD HTML: " + all_essential_IMRaD_items_innerHTML);
 	
 	// Change from Markdown to HTML elements
-	checklists = preparation_to_convert_MD_to_HTML("", 'Essential', all_essential_IMRaD_items_innerHTML, footnotes);
+	checklists = preparation_to_convert_MD_to_HTML(standards_list, 'Essential', all_essential_IMRaD_items_innerHTML, footnotes);
 	EssentialUL.appendChild(checklists);
 	
 	// Add Essential Attributes to the form
