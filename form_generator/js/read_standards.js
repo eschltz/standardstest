@@ -417,7 +417,7 @@ function show_deviation_block_and_hide_location_textbox() {
 		id = this.id.replace("checklist-radio:No:", "")
 	}
 	
-	store_item(this);
+	//store_item(this);
 	
 	var deviation_block = document.getElementById("deviation_block:" + id);
 	if (deviation_block) {
@@ -452,7 +452,7 @@ function hide_deviation_block_and_show_location_textbox() {
 	}
 	hide_other_messages(id);
 	
-	store_item(this);
+	//store_item(this);
 
 	// Hide all Deviation Blocks
 	var block = document.getElementById("deviation_block:" + id);
@@ -1607,22 +1607,91 @@ function clear_checklist(event) {
 function populate_checklist() {
 	console.log("Populating " + role + " checklist");
 	
-	
 }
+
+document.addEventListener("visibilitychange", () => {
+	console.log("Storing checklist items.");
+	let items = document.querySelectorAll("#checklists ul ul li");
+	
+	for (let item of items) {
+		let storage = {};
+		
+		if (role != "\"author\"") {
+			if (item.children[0].checked) {
+				storage.checked = true;
+				localStorage.setItem(role + "-" + item.className, JSON.stringify(storage));
+			} else if (item.children[1].checked) {
+				storage.checked = false;
+				
+				let question_blocks = item.getElementsByClassName('question_block');
+				let reasonable_yes = question_blocks[0].getElementsByClassName('deviationRadioYes')[0];
+				let reasonable_no = question_blocks[0].getElementsByClassName('deviationRadioNo')[0];
+		
+				if (reasonable_yes.checked) {
+					storage.reasonable = true;
+				} else if (reasonable_no.checked) {
+					storage.reasonable = false;
+					
+					let types = question_blocks[1].getElementsByClassName('justificationRadioType');
+					if (types[0].checked) {
+						storage.deviationType = 1;
+					} else if (types[1] && types[1].checked) {
+						storage.deviationType = 2;
+					} else if (types[2] && types[2].checked) {
+						storage.deviationType = 3;
+					} else if (types[3] && types[3].checked) {
+						storage.deviationType = 4;
+					}
+					
+					let free_text = item.getElementsByClassName('question_block_free_Text')[0];
+					let free_text_content = free_text.getElementsByClassName('freeTextAnswer')[0];
+					
+					if (free_text_content.value != "") {
+						storage.freeText = free_text_content.value;
+					}
+				}
+				localStorage.setItem(role + "-" + item.className, JSON.stringify(storage));
+			}
+		} else {
+			let location_box = item.getElementsByClassName('item_location_textbox')[0];
+			let missing_button = item.getElementsByClassName('missing_checkbox')[0];
+			
+			if (location_box.value != "") {
+				storage.location = location_box.value;
+				localStorage.setItem(role + "-" + item.className, JSON.stringify(storage));
+			} else if (missing_button.checked) {
+				storage.location = false;
+				
+				let justification_box = item.getElementsByClassName('justification_location_textbox')[0];
+				let justification_button = item.getElementsByClassName('unjustified_checkbox')[0];
+				
+				if (justification_box.value != "") {
+					storage.justified = justification_box.value;
+				} else if (justification_button.checked) {
+					storage.justified = false;
+				}
+				localStorage.setItem(role + "-" + item.className, JSON.stringify(storage));
+			}
+		}
+	}
+});
 
 // Store a checklist item in localstorage
 function store_item(input) {
 	console.log("Storing item of " + role + " checklist");
+	console.log(input.id);
 	
 	let item;
+	let storage = {};
 	
 	if (role == "\"author\"") {
 		item = input.parentElement.parentElement;
+
 	} else {
 		item = input.parentElement;
 	}
-	
-	localStorage.setItem(role + "-" + item.className, item.outerHTML);
+
+	localStorage.setItem(role + "-" + item.className, storage);
 }
 
 // create Header with Unordered List (Essential, Desirable, Extraordinary)
