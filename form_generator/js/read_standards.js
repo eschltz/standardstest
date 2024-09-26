@@ -417,8 +417,7 @@ function show_deviation_block_and_hide_location_textbox() {
 		id = this.id.replace("checklist-radio:No:", "")
 	}
 	
-	console.log(this.parentElement);
-	localStorage.setItem(role, "storing");
+	store_item(this);
 	
 	var deviation_block = document.getElementById("deviation_block:" + id);
 	if (deviation_block) {
@@ -453,8 +452,7 @@ function hide_deviation_block_and_show_location_textbox() {
 	}
 	hide_other_messages(id);
 	
-	console.log(this.parentElement); 
-	localStorage.setItem(role, "storing");
+	store_item(this);
 
 	// Hide all Deviation Blocks
 	var block = document.getElementById("deviation_block:" + id);
@@ -1591,6 +1589,19 @@ function clear_checklist(event) {
 // Populate a checklist with saved input data
 function populate_checklist() {
 	console.log("Populating " + role + " checklist");
+}
+
+// Store a checklist item in localstorage
+function store_item(input) {
+	console.log("Storing item of " + role + " checklist");
+	
+	if (role == "\"author\"") {
+		let item = input.parentElement.parentElement;
+		localStorage.setItem(role + "-" + item.className, item);
+	} else {
+		let item = input.parentElement;
+		localStorage.setItem(role + "-" + item.className, item);
+	}
 }
 
 // create Header with Unordered List (Essential, Desirable, Extraordinary)
