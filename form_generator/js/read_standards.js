@@ -1098,7 +1098,10 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 	console.log("Lines: " + lines);
 
 	var i = 0;
+	
 	var imrad_count_index = 0;
+	var attribute_numbers = Array(standardName.length).fill(0);
+	console.log(attribute_numbers);
 
 	// IMRaD line break flag is set to equal false
 	var IMRaD_line_break = false;
@@ -1153,6 +1156,8 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 				let tag_count = imrad_counts[0];
 				
 				let found = false;
+				let num = attribute_numbers[imrad_count_index];
+				console.log(num);
 				
 				// Find the current count
 				while (found == false) {
@@ -1163,21 +1168,27 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 						// If this isn't the last array of counts, move to the next one
 						if (imrad_count_index + 1 < standardName.length) {
 							imrad_count_index++;
+							
 							imrad_counts = imrad_order[imrad_count_index];
 							tag_count = imrad_counts[0];
+							num = attribute_numbers[imrad_count_index];
 							
 						// If this is the last array of counts, reset to the first
 						} else {
 							imrad_count_index = 0;
+							
 							imrad_counts = imrad_order[imrad_count_index];
 							tag_count = imrad_counts[0];
+							num = attribute_numbers[imrad_count_index];
 						}
 					} else {
 						found = true;
+						num++;
+						attribute_numbers[imrad_count_index] = num;
 					}
 				}
 
-				checklistItem_class = standardName[imrad_count_index] + "-" + checklistName + ":" + i;
+				checklistItem_class = standardName[imrad_count_index] + "-" + checklistName + ":" + num;
 				tag_count--;
 				imrad_counts[0] = tag_count;
 				imrad_order[imrad_count_index] = imrad_counts;
@@ -1582,26 +1593,36 @@ function clear_checklist(event) {
 		console.log("Clearing " + role + " checklist");
 		localStorage.setItem(role, "");
 		
-		// hide_deviation_block_and_show_location_textbox();
+		// Clear all stored items for this checklist
+		let keys = Object.keys(localStorage);
+		for (let key in keys) {
+			if (key.includes(role)) {
+				localStorage.setItem(key, "");
+			}
+		}
 	}
 }
 
 // Populate a checklist with saved input data
 function populate_checklist() {
 	console.log("Populating " + role + " checklist");
+	
+	
 }
 
 // Store a checklist item in localstorage
 function store_item(input) {
 	console.log("Storing item of " + role + " checklist");
 	
+	let item;
+	
 	if (role == "\"author\"") {
-		let item = input.parentElement.parentElement;
-		localStorage.setItem(role + "-" + item.className, item);
+		item = input.parentElement.parentElement;
 	} else {
-		let item = input.parentElement;
-		localStorage.setItem(role + "-" + item.className, item);
+		item = input.parentElement;
 	}
+	
+	localStorage.setItem(role + "-" + item.className, item.outerHTML);
 }
 
 // create Header with Unordered List (Essential, Desirable, Extraordinary)
@@ -2042,11 +2063,6 @@ function generateStandardChecklist(file){
 	//This function is primarily responsible for controlling the displaying of the deviation blocks in the checklist.
 	generate_decision_message_block();
 }
-
-/*document.addEventListener("visibilitychange", () => {	
-	let storeform = document.getElementById("checklists").outerHTML;
-	localStorage.setItem(role + " form: ", storeform);
-});*/
 
 // Check if the completed checklist is valid (no missing items)
 function check_form_validity(event) {
