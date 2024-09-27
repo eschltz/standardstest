@@ -417,8 +417,6 @@ function show_deviation_block_and_hide_location_textbox() {
 		id = this.id.replace("checklist-radio:No:", "")
 	}
 	
-	//store_item(this);
-	
 	var deviation_block = document.getElementById("deviation_block:" + id);
 	if (deviation_block) {
 		deviation_block.style.display = (role == "\"author\"") ? "flex" : "block";
@@ -451,8 +449,6 @@ function hide_deviation_block_and_show_location_textbox() {
 		id = this.id.replace("checklist-radio:Yes:", "");
 	}
 	hide_other_messages(id);
-	
-	//store_item(this);
 
 	// Hide all Deviation Blocks
 	var block = document.getElementById("deviation_block:" + id);
@@ -1596,8 +1592,9 @@ function clear_checklist(event) {
 		// Clear all stored items for this checklist
 		let keys = Object.keys(localStorage);
 		for (let key in keys) {
+			console.log(key);
 			if (key.includes(role)) {
-				localStorage.setItem(key, "");
+				localStorage.removeItem(key, "");
 			}
 		}
 	}
@@ -1607,6 +1604,76 @@ function clear_checklist(event) {
 function populate_checklist() {
 	console.log("Populating " + role + " checklist");
 	
+	// Clear all stored items for this checklist
+	let keys = Object.keys(localStorage);
+	for (let key in keys) {
+		console.log(key);
+		if (key.includes(role)) {
+			let listClass = key.replace(role + "-", "");
+			let item = document.getElementsByClassName(listClass)[0];
+			
+			let state = JSON.parse(localStorage.getItem(key));
+			
+			if (role != "\"author\"") {
+				if (state.checked) {
+					item.children[0].click();
+					
+				} else if (!state.checked) {
+					item.children[1].click();
+					
+					let question_blocks = item.getElementsByClassName('question_block');
+					let reasonable_yes = question_blocks[0].getElementsByClassName('deviationRadioYes')[0];
+					let reasonable_no = question_blocks[0].getElementsByClassName('deviationRadioNo')[0];
+			
+					if (state.reasonable) {
+						reasonable_yes.click();
+						
+					} else if (!state.reasonable) {
+						reasonable_no.click();
+					
+						let types = question_blocks[1].getElementsByClassName('justificationRadioType');
+						
+						if (state.deviationType == 1) {
+							types[0].click();
+						} else if (state.deviationType == 2) {
+							types[1].click();
+						} else if (state.deviationType == 3) {
+							types[2].click();
+						} else if (state.deviationType == 4) {
+							types[3].click();
+						}
+					
+						let free_text = item.getElementsByClassName('question_block_free_Text')[0];
+						let free_text_content = free_text.getElementsByClassName('freeTextAnswer')[0];
+					
+						if (state.free_text != "") {
+							free_text_content = state.free_text;
+						}
+					}
+				}
+			} else {
+				let location_box = item.getElementsByClassName('item_location_textbox')[0];
+				let missing_button = item.getElementsByClassName('missing_checkbox')[0];
+				
+				if (state.location != "") {
+					location_box.value = state.location;
+
+				} else if (!state.location) {
+					missing_button.click();
+					
+					let justification_box = item.getElementsByClassName('justification_location_textbox')[0];
+					let justification_button = item.getElementsByClassName('unjustified_checkbox')[0];
+					
+					if (state.justified != "") {
+						justification_box.value = state.justified;
+						
+					} else if (!state.justified) {
+						justification_button.click();
+					}
+				}
+			}
+		}	
+	}
 }
 
 document.addEventListener("visibilitychange", () => {
@@ -1629,6 +1696,7 @@ document.addEventListener("visibilitychange", () => {
 		
 				if (reasonable_yes.checked) {
 					storage.reasonable = true;
+					
 				} else if (reasonable_no.checked) {
 					storage.reasonable = false;
 					
@@ -1659,6 +1727,7 @@ document.addEventListener("visibilitychange", () => {
 			if (location_box.value != "") {
 				storage.location = location_box.value;
 				localStorage.setItem(role + "-" + item.className, JSON.stringify(storage));
+				
 			} else if (missing_button.checked) {
 				storage.location = false;
 				
@@ -1667,6 +1736,7 @@ document.addEventListener("visibilitychange", () => {
 				
 				if (justification_box.value != "") {
 					storage.justified = justification_box.value;
+					
 				} else if (justification_button.checked) {
 					storage.justified = false;
 				}
@@ -1675,24 +1745,6 @@ document.addEventListener("visibilitychange", () => {
 		}
 	}
 });
-
-// Store a checklist item in localstorage
-function store_item(input) {
-	console.log("Storing item of " + role + " checklist");
-	console.log(input.id);
-	
-	let item;
-	let storage = {};
-	
-	if (role == "\"author\"") {
-		item = input.parentElement.parentElement;
-
-	} else {
-		item = input.parentElement;
-	}
-
-	localStorage.setItem(role + "-" + item.className, storage);
-}
 
 // create Header with Unordered List (Essential, Desirable, Extraordinary)
 function create_requirements_heading_with_UL(title){
