@@ -1591,7 +1591,7 @@ function clear_checklist(event) {
 		
 		// Clear all stored items for this checklist
 		let keys = Object.keys(localStorage);
-		for (let key in keys) {
+		for (let key of keys) {
 			console.log(key);
 			if (key.includes(role)) {
 				localStorage.removeItem(key, "");
@@ -1606,13 +1606,15 @@ function populate_checklist() {
 	
 	// Clear all stored items for this checklist
 	let keys = Object.keys(localStorage);
-	for (let key in keys) {
+	console.log(keys);
+	for (let key of keys) {
 		console.log(key);
 		if (key.includes(role)) {
 			let listClass = key.replace(role + "-", "");
 			let item = document.getElementsByClassName(listClass)[0];
 			
 			let state = JSON.parse(localStorage.getItem(key));
+			console.log(state);
 			
 			if (role != "\"author\"") {
 				if (state.checked) {
