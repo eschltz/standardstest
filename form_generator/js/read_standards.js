@@ -1593,7 +1593,7 @@ function clear_checklist(event) {
 		let keys = Object.keys(localStorage);
 		for (let key of keys) {
 			console.log(key);
-			if (key.includes(role)) {
+			if (key != role && key.includes(role)) {
 				localStorage.removeItem(key, "");
 			}
 		}
@@ -1609,9 +1609,11 @@ function populate_checklist() {
 	console.log(keys);
 	for (let key of keys) {
 		console.log(key);
-		if (key.includes(role)) {
+		if (key != role && key.includes(role)) {
 			let listClass = key.replace(role + "-", "");
+			console.log("Populating item: " + listClass);
 			let item = document.getElementsByClassName(listClass)[0];
+			console.log(item);
 			
 			let state = JSON.parse(localStorage.getItem(key));
 			console.log(state);
@@ -1645,11 +1647,11 @@ function populate_checklist() {
 							types[3].click();
 						}
 					
-						let free_text = item.getElementsByClassName('question_block_free_Text')[0];
-						let free_text_content = free_text.getElementsByClassName('freeTextAnswer')[0];
+						let free_text_box = item.getElementsByClassName('question_block_free_Text')[0];
+						let free_text_content = free_text_box.getElementsByClassName('freeTextAnswer')[0];
 					
-						if (state.free_text != "") {
-							free_text_content = state.free_text;
+						if (state.freeText != "") {
+							free_text_content.value = state.freeText;
 						}
 					}
 				}
@@ -2134,15 +2136,6 @@ function generateStandardChecklist(file){
 
 	// return sorted list of Standards
 	standard_keys = sortStandards(standard_keys);
-	
-	// Check if the current checklist is being stored
-	if (localStorage.getItem(role) !== null) {
-		console.log(role + " checklist found in storage");
-		populate_checklist();
-	} else {
-		console.log("Begin storing " + role + " checklist");
-		localStorage.setItem(role, "");
-	}
 
 	// return the role (author, one-phase, two-phase)
 	role = getParameterByName('role');
@@ -2182,6 +2175,15 @@ function generateStandardChecklist(file){
 		document.body.appendChild(container);
 	else
 		wrapper.appendChild(container);
+	
+	// Check if the current checklist is being stored
+	if (localStorage.getItem(role) !== null) {
+		console.log(role + " checklist found in storage");
+		populate_checklist();
+	} else {
+		console.log("Begin storing " + role + " checklist");
+		localStorage.setItem(role, "");
+	}
 	
 	//This function is primarily responsible for controlling the displaying of the deviation blocks in the checklist.
 	generate_decision_message_block();
