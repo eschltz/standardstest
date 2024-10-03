@@ -1650,7 +1650,7 @@ function populate_checklist() {
 						let free_text_box = item.getElementsByClassName('question_block_free_Text')[0];
 						let free_text_content = free_text_box.getElementsByClassName('freeTextAnswer')[0];
 					
-						if (state.freeText != "") {
+						if (Object.hasOwn(state, "freeText") && state.freeText != "") {
 							free_text_content.value = state.freeText;
 						}
 					}
@@ -1668,7 +1668,7 @@ function populate_checklist() {
 					let justification_box = item.getElementsByClassName('justification_location_textbox')[0];
 					let justification_button = item.getElementsByClassName('unjustified_checkbox')[0];
 					
-					if (state.justified != "") {
+					if (Object.hasOwn(state, "justified") && state.justified != "") {
 						justification_box.value = state.justified;
 						
 					} else if (!state.justified) {
