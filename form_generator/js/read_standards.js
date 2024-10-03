@@ -1597,6 +1597,20 @@ function clear_checklist(event) {
 				localStorage.removeItem(key, "");
 			}
 		}
+		
+		// If author, hide deviation blocks and display primary location boxes
+		if (role == "\"author\"") {
+			primary_locations = document.getElementsByClassName("item_location_textbox");
+			deviation_boxes = document.getElementsByClassName("question_block");
+			
+			for (let location_box of primary_locations) {
+				location_box.style.visibility = "visible";
+			}
+			
+			for (let deviation_box of deviation_boxes) {
+				deviation_box.style.display = "none";
+			}
+		}
 	}
 }
 
