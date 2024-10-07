@@ -1147,7 +1147,7 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 			var checklistItem_id = "";
 			
 			// Determine which standard to use for the current essential item
-			if (checklistName == "Essential") {										
+			if (checklistName == "Essential") {									
 				let imrad_counts = imrad_order[imrad_count_index];
 				let tag_count = imrad_counts[0];
 				
@@ -1191,7 +1191,7 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 
 				checklistItem_id = "-" + checklistName + ":" + i;
 			} else {
-				checklistItem_class = standardName + "-" + checklistName + ":" + i;
+				checklistItem_class = standardName.replaceAll(/\s/g, "") + "-" + checklistName + ":" + i;
 				checklistItem_id = standardName + "-" + checklistName + ":" + i;
 			}
 			
@@ -1614,6 +1614,12 @@ function clear_checklist(event) {
 	}
 }
 
+
+// Check if the key is nonessential
+function check_nonessential_keys(key) {
+	return key.includes("Desirable") || key.includes("Extraordinary");
+}
+
 // Populate a checklist with saved input data
 function populate_checklist() {
 	console.log("Populating " + role + " checklist");
@@ -1621,8 +1627,17 @@ function populate_checklist() {
 	// Clear all stored items for this checklist
 	let keys = Object.keys(localStorage);
 	console.log(keys);
+	
+	// Move nonessential keys to last
+	let nonessential = keys.filter(check_nonessential_keys);
+	for (let key of nonessential) {
+		let index = keys.indexOf(key);
+		keys.push(keys.splice(index, 1)[0]);
+	}
+	
 	for (let key of keys) {
 		console.log(key);
+		
 		if (key != role && key.includes(role)) {
 			let listClass = key.replace(role + "-", "");
 			console.log("Populating item: " + listClass);
@@ -2192,6 +2207,9 @@ function generateStandardChecklist(file){
 	else
 		wrapper.appendChild(container);
 	
+	//This function is primarily responsible for controlling the displaying of the deviation blocks in the checklist.
+	generate_decision_message_block();
+	
 	// Check if the current checklist is being stored
 	if (localStorage.getItem(role) !== null) {
 		console.log(role + " checklist found in storage");
@@ -2200,9 +2218,6 @@ function generateStandardChecklist(file){
 		console.log("Begin storing " + role + " checklist");
 		localStorage.setItem(role, "");
 	}
-	
-	//This function is primarily responsible for controlling the displaying of the deviation blocks in the checklist.
-	generate_decision_message_block();
 }
 
 // Check if the completed checklist is valid (no missing items)
