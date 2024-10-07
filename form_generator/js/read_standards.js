@@ -1717,11 +1717,12 @@ document.addEventListener("visibilitychange", () => {
 	
 	for (let item of items) {
 		let storage = {};
+		let key = role + "-" + item.className;
 		
 		if (role != "\"author\"") {
 			if (item.children[0].checked) {
 				storage.checked = true;
-				localStorage.setItem(role + "-" + item.className, JSON.stringify(storage));
+				localStorage.setItem(key, JSON.stringify(storage));
 			} else if (item.children[1].checked) {
 				storage.checked = false;
 				
@@ -1753,7 +1754,11 @@ document.addEventListener("visibilitychange", () => {
 						storage.freeText = free_text_content.value;
 					}
 				}
-				localStorage.setItem(role + "-" + item.className, JSON.stringify(storage));
+				localStorage.setItem(key, JSON.stringify(storage));
+			} else if (item.className.includes("Desirable") || item.className.includes("Extraordinary")) {
+				if (!item.children[0].checked) {
+					localStorage.removeItem(key, "");
+				}
 			}
 		} else {
 			let location_box = item.getElementsByClassName('item_location_textbox')[0];
@@ -1761,7 +1766,7 @@ document.addEventListener("visibilitychange", () => {
 			
 			if (location_box.value != "") {
 				storage.location = location_box.value;
-				localStorage.setItem(role + "-" + item.className, JSON.stringify(storage));
+				localStorage.setItem(key, JSON.stringify(storage));
 				
 			} else if (missing_button.checked) {
 				storage.location = false;
@@ -1775,7 +1780,7 @@ document.addEventListener("visibilitychange", () => {
 				} else if (justification_button.checked) {
 					storage.justified = false;
 				}
-				localStorage.setItem(role + "-" + item.className, JSON.stringify(storage));
+				localStorage.setItem(key, JSON.stringify(storage));
 			}
 		}
 	}
