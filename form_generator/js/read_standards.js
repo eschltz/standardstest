@@ -2557,7 +2557,7 @@ function saveFile(){
 	
 	let date_formatted = new Date(date_string);
 	generated_text += '\nGenerated: ' + date_generated.toDateString() + ', ';
-	generated_text += time_string.substr(0,4) + ' ' + time_string.substr(8,3) + ' AoE\n\n';
+	generated_text += time_string.slice(0, -6) + time_string.substr(8,3) + ' AoE\n\n';
 	
 	if (role != "\"author\"") {
 		generated_text += "=======\n" +
