@@ -1153,7 +1153,6 @@ function convert_MD_standard_checklists_to_html_standard_checklists(standardName
 				
 				let found = false;
 				let num = attribute_numbers[imrad_count_index];
-				console.log(num);
 				
 				// Find the current count
 				while (found == false) {
@@ -1449,7 +1448,6 @@ function separate_essential_attributes_based_on_IMRaD_tags(standardName, checkli
 	let other_items = other.match(/(\[\s\])/img);
 	let other_count = other_items != null ? imrad_counts.push(other_items.length) : imrad_counts.push(0);
 	
-	console.log(standardName + " IMRAD count: " + imrad_counts);
 	imrad_order.push(imrad_counts);
 
 	// Combine IMRaD tags of all standards
@@ -1592,7 +1590,6 @@ function clear_checklist(event) {
 		// Clear all stored items for this checklist
 		let keys = Object.keys(localStorage);
 		for (let key of keys) {
-			console.log(key);
 			if (key != role && key.includes(role)) {
 				localStorage.removeItem(key, "");
 			}
@@ -1626,7 +1623,6 @@ function populate_checklist() {
 	
 	// Clear all stored items for this checklist
 	let keys = Object.keys(localStorage);
-	console.log(keys);
 	
 	// Move nonessential keys to last
 	let nonessential = keys.filter(check_nonessential_keys);
@@ -1636,16 +1632,11 @@ function populate_checklist() {
 	}
 	
 	for (let key of keys) {
-		console.log(key);
 		
 		if (key != role && key.includes(role)) {
 			let listClass = key.replace(role + "-", "");
-			console.log("Populating item: " + listClass);
 			let item = document.getElementsByClassName(listClass)[0];
-			console.log(item);
-			
 			let state = JSON.parse(localStorage.getItem(key));
-			console.log(state);
 			
 			if (item != null) {
 				if (role != "\"author\"") {
@@ -1711,6 +1702,7 @@ function populate_checklist() {
 	}
 }
 
+// Save checklist state on visibility change
 document.addEventListener("visibilitychange", () => {
 	console.log("Storing checklist items.");
 	let items = document.querySelectorAll("#checklists ul ul li");
@@ -2047,7 +2039,6 @@ function create_requirements_checklist(file){
 			}
 
 			if (checklistType == "Essential") {
-
 				if (i == 1) {
 					EssentialUL.appendChild(Yes_No);
 				}
@@ -2067,16 +2058,12 @@ function create_requirements_checklist(file){
 		}
 	}
 	
-	console.log("IMRAD order: " + imrad_order);
-	
 	all_essential_IMRaD_items_innerHTML = "" + all_intro_items + "\n_hr_" + all_method_items + "\n_hr_" + all_results_items + "\n_hr_" + all_discussion_items + "\n_hr_" + all_other_items;
 	
 	all_essential_IMRaD_items_innerHTML = all_essential_IMRaD_items_innerHTML.replaceAll("\n_hr_", "").length > 0 ? all_essential_IMRaD_items_innerHTML : "";
 	
 	// Notify testers in the case of unrecognized tags, no tags at all, or untagged attributes
 	notify_testers();
-	
-	console.log("IMRAD HTML: " + all_essential_IMRaD_items_innerHTML);
 	
 	// Change from Markdown to HTML elements
 	checklists = preparation_to_convert_MD_to_HTML(standards_list, 'Essential', all_essential_IMRaD_items_innerHTML, footnotes);
