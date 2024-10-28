@@ -16,8 +16,14 @@ p, li, .tab a, a {
 	text-decoration: none;
 }
 
+button {
+	border: none;
+	border-radius: 5px;
+	padding: 5px;
+}
+
 summary {
-	font-size:1.5em;
+	font-size: 1.5em;
 	font-family: "Georgia";
 	color: #2b4d6f;
 }
@@ -189,8 +195,16 @@ legend {
 	background-color: white;
 	border-radius: 5px;
 	text-align: center;
-	padding: 10px;
-	top: 20%;
+	padding: 30px;
+	border: none;
+	width: 30vw;
+}
+
+.citation-modal p {
+	font-family: "Georgia";
+	color: #2b4d6f;
+	font-size: 1em;
+	font-weight: bold;
 }
 
 .citation-modal::backdrop {
@@ -202,11 +216,23 @@ legend {
 	border: none;
 	border-radius: 4px;
 	padding: 5px;
+	width: 65%;
 }
 
 .citation-text {
 	height: 200px;
 	width: 80%;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+.copy-citation {
+	display: block;
+	margin: auto;
+}
+
+.close-modal {
+	float: right;
 }
 
 .review-link {
