@@ -10,7 +10,7 @@
 	text-align: center;
 }
 
-.wrapper {
+.site-header .wrapper {
 	max-width: 100%;
 	padding: 0;
 	top: 20%;
@@ -33,9 +33,44 @@
 	color: white;
 }
 
+.last-page-link {
+	margin-right: 350px;
+}
+
+.cite-button {
+	color: white;
+	background-color: #2b4d6f;
+	padding: 8px;
+	border-radius: 5px;
+	border: 2px solid white;
+}
+
+.review-link {
+	color: #2b4d6f;
+	background-color: white;
+	padding: 10px;
+	border-radius: 5px;
+}
+
 .site-footer {
 	background-color: #2b4d6f;
 	min-height: 100px;
+	max-width: 100%;
+}
+
+.site-footer .wrapper {
+	color: #b6cce2;
+	text-align: center;
+}
+
+.license-link {
+	color: #73abf4;
+}
+
+.license-image {
+	height: 18px;
+	margin-left: 3px;
+	vertical-align: text-bottom;
 }
 
 .footer-link {

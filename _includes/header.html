@@ -11,14 +11,16 @@
 				</span>
 			</label>
 			<div class="trigger">
-				{%- for path in page_paths -%}
-					{%- assign my_page = site.pages | where: "path", path | first -%}
-					{%- if my_page.title -%}
-					<a class="page-link" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
-					{%- endif -%}
-				{%- endfor -%}
-				<button class="page-link" style="color: white;background-color: #2b4d6f;padding: 8px;border-radius: 5px;border: 2px solid white;">Cite</button>
-				<a class="page-link" href="https://eschltz.github.io/standardstest/tools/" style="color: #2b4d6f;background-color: white;padding: 10px;border-radius: 5px;">Review a paper</a>
+				
+				<a class="page-link" href="https://eschltz.github.io/standardstest/about/">About</a>
+				<a class="page-link" href="https://eschltz.github.io/standardstest/docs/standards">Standards</a>
+				<a class="page-link" href="https://eschltz.github.io/standardstest/docs/supplements">Supplements</a>
+				<a class="page-link" href="https://eschltz.github.io/standardstest/faq/">FAQ</a>
+				<a class="page-link" href="https://eschltz.github.io/standardstest/glossary">Glossary</a>
+				<a class="page-link last-page-link" href="https://eschltz.github.io/standardstest/people/">People</a>
+				
+				<button class="cite-button">Cite</button>
+				<a class="review-link" href="https://eschltz.github.io/standardstest/tools/">Review a paper</a>
 			</div>
 		</nav>
 	</div>
