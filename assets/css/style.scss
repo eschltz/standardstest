@@ -185,6 +185,30 @@ legend {
 	margin-right: 20px;
 }
 
+.citation-modal {
+	background-color: white;
+	border-radius: 5px;
+	text-align: center;
+	padding: 10px;
+	top: 20%;
+}
+
+.citation-modal::backdrop {
+	background-color: black;
+	opacity: 0.5;
+}
+
+.citation-formats {
+	border: none;
+	border-radius: 4px;
+	padding: 5px;
+}
+
+.citation-text {
+	height: 200px;
+	width: 80%;
+}
+
 .review-link {
 	color: #2b4d6f;
 	background-color: white;

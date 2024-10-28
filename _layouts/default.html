@@ -22,6 +22,22 @@
 		</main>
 		
 		{%- include footer.html -%}
+		
+		{%- include citation.html -%}
 
 	</body>
+	
+	<script>
+		let cite_button = document.getElementById("cite-button");
+		let citation_modal = document.getElementById("citation-modal");
+		let close_modal = document.getElementById("close-modal");
+		
+		cite_button.addEventListener("click", () => {
+			citation_modal.showModal();
+		});
+		
+		close_modal.addEventListener("click", () => {
+			citation_modal.close();
+		});
+	</script>
 </html>
