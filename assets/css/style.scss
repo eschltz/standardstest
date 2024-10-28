@@ -85,13 +85,17 @@ legend {
 	color: white;
 	min-height: 100px;
 	text-align: center;
+	position: relative;
 }
 
 .site-header .wrapper {
 	max-width: 100%;
-	padding: 0;
 	top: 20%;
 	position: absolute;
+	margin-right: auto;
+	margin-left: auto;
+	padding-right: 30px;
+	padding-left: 30px;
 }
 
 .site-title {
@@ -110,6 +114,7 @@ legend {
 	color: white;
 	float: right;
 	margin-right: 50px;
+	line-height: 54px;
 }
 
 .nav-trigger, .site-nav .menu-icon {
@@ -166,6 +171,7 @@ legend {
 
 .page-link {
 	color: white;
+	margin-right: 20px;
 }
 
 .last-page-link {
@@ -178,6 +184,7 @@ legend {
 	padding: 8px;
 	border-radius: 5px;
 	border: 2px solid white;
+	margin-right: 20px;
 }
 
 .review-link {
