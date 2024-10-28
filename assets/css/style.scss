@@ -1,6 +1,85 @@
 ---
 ---
 
+body {
+	margin: 0;
+}
+
+h1, h2, h3 {
+	font-family: "Georgia";
+	color: #2b4d6f;
+}
+
+p, li, .tab a, a {
+	font-size: 14px;
+	font-family: "Tahoma";
+	text-decoration: none;
+}
+
+summary {
+	font-size:1.5em;
+	font-family: "Georgia";
+	color: #2b4d6f;
+}
+
+details {
+	margin-bottom: 20px;
+	text-indent: -24px;
+	margin-left: 24px;
+}
+
+details p {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	text-indent: 0px;
+}
+
+main .wrapper a {
+	color: #2b4d6f;
+}
+
+strong {
+	margin-right: 20px;
+}
+
+.contributers p {
+	display: flex;
+}
+
+.contributers strong {
+	flex: 0 0 20%;
+}
+
+.contributers span {
+	flex: 0 0 35%;
+}
+
+form ul {
+	margin-top: 20px;
+}
+
+form ul ul {
+	margin-top: 10px;
+}
+
+form ul ul li {
+	margin-bottom: 5px;
+}
+
+fieldset {
+	margin-bottom: 30px;
+	border: 2px solid #2b4d6f;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+legend {
+	font-family: "Georgia";
+	color: #2b4d6f;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
 .site-header {
 	background-color: #2b4d6f;
 	color: white;
@@ -19,12 +98,70 @@
 	font-family: "Segoe UI";
 	color: white;
 	margin-left: 30px;
+	font-size: 26px;
+	font-weight: 300;
+	line-height: 54px;
+	letter-spacing: -1px;
+	margin-bottom: 0;
+	float: left;
 }
 
 .site-nav {
 	color: white;
 	float: right;
 	margin-right: 50px;
+}
+
+.nav-trigger, .site-nav .menu-icon {
+	display: none;
+}
+
+@media screen and (max-width: 600px) {
+	.site-nav {
+		position: absolute;
+		top: 9px;
+		right: 15px;
+		background-color: #2b4d6f;
+		border: 1px solid white;
+		border-radius: 5px;
+		text-align: right;
+	}
+	.site-nav label[for="nav-trigger"] {
+		display: block;
+		float: right;
+		width: 36px;
+		height: 36px;
+		z-index: 2;
+		cursor: pointer;
+	}
+	.site-nav .menu-icon {
+		display: block;
+		float: right;
+		width: 36px;
+		height: 26px;
+		line-height: 0;
+		padding-top: 10px;
+		text-align: center;
+	}
+	.site-nav .menu-icon>svg {
+		fill: white;
+	}
+	.site-nav input ~ .trigger {
+		clear: both;
+		display: none;
+	}
+	.site-nav input:checked ~ .trigger {
+		display: block;
+		padding-bottom: 5px;
+	}
+	.site-nav .page-link {
+		display: block;
+		padding: 5px 10px;
+		margin-left: 20px;
+	}
+	.site-nav .page-link:not(:last-child) {
+		margin-right: 0;
+	}
 }
 
 .page-link {
@@ -53,12 +190,13 @@
 .site-footer {
 	background-color: #2b4d6f;
 	min-height: 100px;
-	max-width: 100%;
+	padding: 30px 0;
 }
 
 .site-footer .wrapper {
 	color: #b6cce2;
 	text-align: center;
+	max-width: 100%;
 }
 
 .license-link {
@@ -73,78 +211,4 @@
 
 .footer-link {
 	color: #b6cce2;
-}
-
-h1, h2, h3 {
-  font-family: "Georgia";
-  color: #2b4d6f;
-}
-
-p, li, .tab a, a {
-  font-size: 14px;
-  font-family: "Tahoma";
-}
-
-summary {
-  font-size:1.5em;
-  font-family: "Georgia";
-  color: #2b4d6f;
-}
-
-details {
-  margin-bottom: 20px;
-  text-indent: -24px;
-  margin-left: 24px;
-}
-
-details p {
-  margin-top:20px;
-  margin-bottom: 20px;
-  text-indent: 0px;
-}
-
-main .wrapper a {
-  color:#2b4d6f;
-}
-
-strong {
-  margin-right:20px;
-}
-
-.contributers p {
-  display: flex;
-}
-
-.contributers strong {
-  flex: 0 0 20%;
-}
-
-.contributers span {
-  flex: 0 0 35%;
-}
-
-form ul {
-  margin-top: 20px;
-}
-
-form ul ul {
-  margin-top:10px;
-}
-
-form ul ul li {
-  margin-bottom:5px;
-}
-
-fieldset {
-  margin-bottom: 30px;
-  border: 2px solid #2b4d6f;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-legend {
-  font-family: "Georgia";
-  color: #2b4d6f;
-  padding-left: 5px;
-  padding-right: 5px;
 }
