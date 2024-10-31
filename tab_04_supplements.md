@@ -7,6 +7,13 @@ permalink: /docs/supplements
 <html>
 <head>
 
+	<style>
+		main .wrapper {
+			width: 100%;
+			display: flex;
+		}
+	</style>
+
 <script src="../form_generator/js/read_standards.js"></script>
 <script>
 function openSupplementFromURL(evt) {
