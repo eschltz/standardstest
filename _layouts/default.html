@@ -31,6 +31,7 @@
 		let cite_button = document.getElementById("cite-button");
 		let citation_modal = document.getElementById("citation-modal");
 		let close_modal = document.getElementById("close-modal");
+		let copy_button = document.getElementById("copy-citation");
 		
 		cite_button.addEventListener("click", () => {
 			citation_modal.showModal();
@@ -48,6 +49,7 @@
 		const ieee = "P. Ralph et al., \"Empirical Standards for Software Engineering Research,\" 2021, arXiv:2010.03525";
 		const ris = "TY  - ELEC\nAU  - P. Ralph et al.\nPY  - 2021\nTI  - Empirical Standards for Software Engineering Research\nID  - arXiv:2010.03525 [cs.SE]\nDO  - 10.48550/arXiv.2010.03525\nER  -";
 		
+		// Update citation text according to selected format
 		citation_formats.addEventListener("change", () => {
 			let option =  citation_formats.value;
 			if (option == "acm") {
@@ -61,6 +63,17 @@
 			} else if (option == "ris") {
 				document.getElementById("citation-text").value = ris;
 			}
+		});
+		
+		// Copy citation text according to clipboard
+		copy_button.addEventListener("click", () => {
+			let copy = document.getElementById("citation-text").value;
+			
+			navigator.clipboard.writeText(copy).then(function() {
+				console.log('Citation copied to clipboard.');
+			}, function(err) {
+				console.error('Could not copy citation to cliboard: ', err);
+			});
 		});
 		
 	</script>
