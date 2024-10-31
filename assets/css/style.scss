@@ -42,7 +42,7 @@ details p {
 }
 
 main .wrapper {
-	min-height: 70vh;
+	min-height: 60vh;
 	width: 80%;
 	margin: auto;
 	margin-top: 40px;
@@ -331,6 +331,10 @@ legend {
 
 .tab, .tab ul {
 	list-style-type: none;
+}
+
+.tab li ul li {
+	margin-top: 5px;
 }
 
 .tab h3 {
