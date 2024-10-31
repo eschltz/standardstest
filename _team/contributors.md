@@ -1,118 +1,126 @@
-## Contributors
+# Contributors
 
-### Editor-in-Chief
+## Editor-in-Chief
 
 **Paul Ralph**, *PhD (British Columbia), B.Sc. / B.Comm (Memorial),* is an award-winning scientist, author, consultant and Professor of Software Engineering at Dalhousie University in Halifax, Canada. Paul chaired the ACM SIGSOFT Paper and Peer Review Quality Initiative and has written extensively on research methodology for software engineering.
 
-### Content Contributors
+## Content Contributors
 
-**Nauman bin Ali**, Blekinge Institute of Technology, Sweden [Quantitative Simulations]
+<div class="contributers">
 
-**Sebastian Baltes**, University of Adelaide, Australia [Sampling]
+**Nauman bin Ali** <span>Blekinge Institute of Technology, Sweden</span><span>[Quantitative Simulations]</span>
 
-**David Bermbach**, TU Berlin, Germany [Benchmarking]
+**Sebastian Baltes** <span>University of Adelaide, Australia</span><span>[Sampling]</span>
 
-**Domenico Bianculli**, University of Luxemburg, Luxemburg [Engineering]
+**David Bermbach** <span>TU Berlin, Germany</span><span>[Benchmarking]</span>
 
-**Jeffrey C. Carver**, University of Alabama, USA [Replication]
+**Domenico Bianculli** <span>University of Luxemburg, Luxemburg</span><span>[Engineering]</span>
 
-**Preetha Chatterjee**, Drexel University, USA [Repository Mining]
+**Jeffrey C. Carver** <span>University of Alabama, USA</span><span>[Replication]</span>
 
-**Istvan David**, McMaster University, Canada [Replication]
+**Preetha Chatterjee** <span>Drexel University, USA</span><span>[Repository Mining]</span>
 
-**Jessica Diaz**, Technical University of Madrid, Spain [IRR/IRA]
+**Istvan David** <span>McMaster University, Canada</span><span>[Replication]</span>
 
-**Yvonne Dittrich**, IT University of Copenhagen, Denmark [Action Research]
+**Jessica Diaz** <span>Technical University of Madrid, Spain</span><span>[IRR/IRA]</span>
 
-**Neil Ernst**, University of Victoria, Canada [Pre-registration]
+**Yvonne Dittrich** <span>IT University of Copenhagen, Denmark</span><span>[Action Research]</span>
 
-**Michael Felderer**, University of Innsbruck, Austria [Action Research, Case Study]
+**Neil Ernst** <span>University of Victoria, Canada</span><span>[Pre-registration]</span>
 
-**Robert Feldt**, Chalmers University of Technology, Sweden [General]
+**Michael Felderer** <span>University of Innsbruck, Austria</span><span>[Action Research, Case Study]</span>
 
-**Antonio Filieri**, Imperial College London, UK [Engineering]
+**Robert Feldt** <span>Chalmers University of Technology, Sweden</span><span>[General]</span>
 
-**Breno Bernard Nicolau de França**, University of Campinas, Brazil [Quantitative Simulations]
+**Antonio Filieri** <span>Imperial College London, UK</span><span>[Engineering]</span>
 
-**Carlo Alberto Furia**, USI Lugano, Switzerland [Engineering]
+**Breno Bernard Nicolau de França** <span>University of Campinas, Brazil</span><span>[Quantitative Simulations]</span>
 
-**Gregory Gay**, Chalmers University / University of Gothenburg, Sweden [Optimization Studies]
+**Carlo Alberto Furia** <span>USI Lugano, Switzerland</span><span>[Engineering]</span>
 
-**Daniel German**, University of Victoria, Canada [Repository Mining]
+**Gregory Gay** <span>Chalmers University / University of Gothenburg, Sweden</span><span>[Optimization Studies]</span>
 
-**Nicolas Gold**, University College London, UK [Ethics]
+**Daniel German** <span>University of Victoria, Canada</span><span>[Repository Mining]</span>
 
-**Daniel Graziotin**, University of Stuttgart, Germany [Open Science]
+**Nicolas Gold** <span>University College London, UK</span><span>[Ethics]</span>
 
-**Wilhelm Hasselbring**, Kiel University, Germany [Benchmarking]
+**Daniel Graziotin** <span>University of Stuttgart, Germany</span><span>[Open Science]</span>
 
-**Pinjia He**, ETH Zurich, Switzerland [General]
+**Wilhelm Hasselbring** <span>Kiel University, Germany</span><span>[Benchmarking]</span>
 
-**Sören Henning**, Kiel University, Germany [Benchmarking]
+**Pinjia He** <span>ETH Zurich, Switzerland</span><span>[General]</span>
 
-**Rashina Hoda**, Monash University, Australia [Grounded Theory]
+**Sören Henning** <span>Kiel University, Germany</span><span>[Benchmarking]</span>
 
-**Natalia Juristo**, Technical University of Madrid, Spain [Controlled Experiment]
+**Rashina Hoda** <span>Monash University, Australia</span><span>[Grounded Theory]</span>
 
-**Barbara Kitchenham**, Keele University, UK [Systematic Reviews]
+**Natalia Juristo** <span>Technical University of Madrid, Spain</span><span>[Controlled Experiment]</span>
 
-**Valentina Lenarduzzi**, University of Oulu, Finland [Longitudinal Studies]
+**Barbara Kitchenham** <span>Keele University, UK</span><span>[Systematic Reviews]</span>
 
-**Jorge Martínez**, Universidad Politécnica de Madrid, Spain [IRR/IRA]
+**Valentina Lenarduzzi** <span>University of Oulu, Finland</span><span>[Longitudinal Studies]</span>
 
-**Jorge Melegati**, Free University of Bozen-Bolzano, Italy [Case Survey]
+**Jorge Martínez** <span>Universidad Politécnica de Madrid, Spain</span><span>[IRR/IRA]</span>
 
-**Daniel Mendez**, Blekinge Institute of Technology, Sweden, and fortiss GmbH, Germany [Questionnaire]
+**Jorge Melegati** <span>Free University of Bozen-Bolzano, Italy</span><span>[Case Survey]</span>
 
-**Tim Menzies**, NC State University, USA [Exploratory Data Science; Optimization Studies]
+**Daniel Mendez** <span>Blekinge Institute of Technology, Sweden, and fortiss GmbH, Germany</span><span>[Questionnaire]</span>
 
-**Rahul Mohanani**, The University of Jyväskylä, Finland [Qualitative Simulations]
+**Tim Menzies** <span>NC State University, USA</span><span>[Exploratory Data Science; Optimization Studies]</span>
 
-**Jefferson Molleri**, Simula Metropolitan Centre for Digital Engineering, Norway [Questionnaire]
+**Rahul Mohanani** <span>The University of Jyväskylä, Finland</span><span>[Qualitative Simulations]</span>
 
-**Dietmar Pfahl**, University of Tartu, Estonia [Quantitative Simulations]
+**Jefferson Molleri** <span>Simula Metropolitan Centre for Digital Engineering, Norway</span><span>[Questionnaire]</span>
 
-**Romain Robbes**, Free University of Bozen-Bolzano, Italy [Data Science]
+**Dietmar Pfahl** <span>University of Tartu, Estonia</span><span>[Quantitative Simulations]</span>
 
-**Daniel Russo**, Aalborg University, Denmark [Longitudinal Studies]
+**Romain Robbes** <span>Free University of Bozen-Bolzano, Italy</span><span>[Data Science]</span>
 
-**Nyyti Saarimäki**, Tampere University, Finland [Longitudinal Studies]
+**Daniel Russo** <span>Aalborg University, Denmark</span><span>[Longitudinal Studies]</span>
 
-**Federica Sarro**, University College London, UK [Optimization Studies]
+**Nyyti Saarimäki** <span>Tampere University, Finland</span><span>[Longitudinal Studies]</span>
 
-**Tushar Sharma**, Dalhousie University, Canada [Repository Mining]
+**Federica Sarro** <span>University College London, UK</span><span>[Optimization Studies]</span>
 
-**Janet Siegmund**, Chemnitz University of Technology, Germany [Pre-registration]
+**Tushar Sharma** <span>Dalhousie University, Canada</span><span>[Repository Mining]</span>
 
-**Diomidis Spinellis**, Athens University of Economics and Business, Greece [Systematic Reviews]
+**Janet Siegmund** <span>Chemnitz University of Technology, Germany</span><span>[Pre-registration]</span>
 
-**Miroslaw Staron**, University of Gothenburg, Sweden [Action Research]
+**Diomidis Spinellis** <span>Athens University of Economics and Business, Greece</span><span>[Systematic Reviews]</span>
 
-**Klaas Stol**, University College Cork, Ireland [Case Study]
+**Miroslaw Staron** <span>University of Gothenburg, Sweden</span><span>[Action Research]</span>
 
-**Margaret-Anne (Peggy) Storey**, University of Victoria, Canada [Multimethodology and Mixed Methods]
+**Klaas Stol** <span>University College Cork, Ireland</span><span>[Case Study]</span>
 
-**Davide Taibi**, Tampere University, Finland [Longitudinal Studies]
+**Margaret-Anne (Peggy) Storey** <span>University of Victoria, Canada</span><span>[Multimethodology and Mixed Methods]</span>
 
-**Damian Tamburri**, Eindhoven University of Technology, Netherlands [Case Study; Exploratory Data Science]
+**Davide Taibi** <span>Tampere University, Finland</span><span>[Longitudinal Studies]</span>
 
-**Marco Torchiano**, Polytechnic University of Turin, Italy [Information Visualization, Questionnaire]
+**Damian Tamburri** <span>Eindhoven University of Technology, Netherlands</span><span>[Case Study; Exploratory Data Science]</span>
 
-**Christoph Treude**, University of Melbourne, Australia [Grounded Theory]
+**Marco Torchiano** <span>Polytechnic University of Turin, Italy</span><span>[Information Visualization, Questionnaire]</span>
 
-**Burak Turhan**, Monash University, Australia [Controlled Experiment]
+**Christoph Treude** <span>University of Melbourne, Australia</span><span>[Grounded Theory]</span>
 
-**Xiaofeng Wang**, Free University of Bozen-Bolzano, Italy [Case Survey]
+**Burak Turhan** <span>Monash University, Australia</span><span>[Controlled Experiment]</span>
 
-**Sira Vegas**, Technical University of Madrid, Spain [Controlled Experiment]
+**Xiaofeng Wang** <span>Free University of Bozen-Bolzano, Italy</span><span>[Case Survey]</span>
 
-**Melina Vidoni**, The Australian National University, Australia [Repository Mining]
+**Sira Vegas** <span>Technical University of Madrid, Spain</span><span>[Controlled Experiment]</span>
 
-### Technical Contributors
+**Melina Vidoni** <span>The Australian National University, Australia</span><span>[Repository Mining]</span>
 
-**Arham Arshad**, Dalhousie University, Canada
+</div>
 
-**Taher Ghaleb**, Queen&#39;s University, Canada
+## Technical Contributors
 
-**Erin Schultz**, Dalhousie University, Canada
+<div class="contributers">
+
+**Arham Arshad** <span>Dalhousie University, Canada</span>
+
+**Taher Ghaleb** <span>Queen&#39;s University, Canada</span>
+
+**Erin Schultz** <span>Dalhousie University, Canada</span>
+
+</div>
 

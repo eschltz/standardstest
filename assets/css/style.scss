@@ -8,6 +8,7 @@ body {
 h1, h2, h3 {
 	font-family: "Georgia";
 	color: #2b4d6f;
+	font-weight: normal;
 }
 
 p, li, .tab a, a {
@@ -40,12 +41,13 @@ details p {
 	text-indent: 0px;
 }
 
-main .wrapper a {
-	color: #2b4d6f;
+main .wrapper {
+	width: 80%;
+	margin: auto;
 }
 
-strong {
-	margin-right: 20px;
+main .wrapper a {
+	color: #2b4d6f;
 }
 
 .contributers p {
