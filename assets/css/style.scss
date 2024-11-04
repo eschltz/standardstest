@@ -166,7 +166,7 @@ legend {
 	}
 }
 
-.page-link {
+.site-nav .page-link {
 	color: white;
 	margin-right: 20px;
 }
@@ -234,6 +234,198 @@ legend {
 	padding: 10px;
 	border-radius: 5px;
 	margin-right: 30px;
+}
+
+#intro-section {
+	padding-top: 30px;
+	height: 400px;
+	display: flex;
+}
+
+#intro-text {
+	margin-left: 170px;
+	flex: 0 0 40%;
+}
+
+#intro-text h1 {
+	font-size: 3em;
+	color: #2b4d6f;
+}
+
+#sigsoft-heading {
+	font-size: 0.5em;
+}
+
+#name-heading {
+	display: block;
+	font-weight: bold;
+	font-family: "Georgia";
+	margin-top: -10px;
+	line-height: 60px;
+}
+
+#intro-description {
+	margin-top: 60px;
+	color: #2b4d6f;
+}
+
+main .page-link {
+	color: white;
+	background-color: #2b4d6f;
+	padding: 10px;
+	border-radius: 5px;
+	margin-top: 70px;
+	display: block;
+	width: 120px;
+	text-align: center;
+}
+
+#intro-section #image-container {
+	margin-top: 50px;
+	margin-left: 50px;
+}
+
+#intro-section #image-container img {
+	height: 350px;
+	border-radius: 5px;
+}
+
+#feature-section {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	margin-top: 120px;
+	font-size: 18px;
+	background-color: #e6edf4;
+	padding: 20px;
+	padding-top: 100px;
+	padding-bottom: 100px;
+}
+
+.feature-box {
+	flex: 0 0 25%;
+	padding: 30px;
+	font-size: 1em;
+	border-radius: 5px;
+	background-color: white;
+	text-align: center;
+	transition: 0.3s;
+}
+
+.feature-box img {
+	height: 50px;
+	margin-bottom: 20px;
+}
+
+.feature-box h3 {
+	font-weight: bold;
+	font-size: 1.4em;
+	margin-bottom: 30px;
+	font-family: "Georgia";
+	color: #2b4d6f;
+}
+
+#instruction-section {
+	margin-top: 30px;
+	padding: 20px;
+	padding-top: 100px;
+	padding-bottom: 100px;
+}
+
+#instruction-section h2 {
+	font-weight: bold;
+	font-size: 2em;
+	text-align: center;
+	font-family: "Georgia";
+	color: #2b4d6f;
+}
+
+.instruction-box  {
+	height: 500px;
+	display: flex;
+	flex-wrap: wrap
+}
+
+.instructions-1 .instruction-text {
+	margin-top: 70px;
+	margin-left: 50px;
+	flex: 0 0 40%;
+}
+
+.instructions-1 .image-container {
+	flex: 0 0 40%;
+	margin-top: 70px;
+	margin-left: 150px;
+}
+
+.instructions-2 {
+	justify-content: space-around;
+}
+
+.instructions-2 .instruction-text {
+	margin-top: 70px;
+	text-align: right;
+	flex: 0 0 40%;
+}
+
+.instructions-2 .image-container {
+	flex: 0 0 50%;
+	margin-top: 80px;
+}
+
+.instructions-3 .image-container {
+	flex: 0 0 50%;
+	margin-left: 90px;
+	margin-top: 70px;
+}
+
+.instruction-text p {
+	margin-top: 30px;
+}
+
+.instruction-text p:first-child {
+	font-size: 2em;
+	font-family: "Georgia";
+	color: #2b4d6f;
+}
+
+#history-section {
+	margin-top: 60px;
+	padding: 20px;
+	padding-top: 130px;
+	padding-bottom: 100px;
+	text-align: center;
+	background-color: #e6edf4;
+}
+
+#history-section h2 {
+	font-weight: bold;
+	font-size: 2em;
+	font-family: "Georgia";
+	color: #2b4d6f;
+}
+
+#history-description {
+	width: 70%;
+	margin: auto;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+#history-section a {
+	font-size: 1.5em;
+}
+
+#ready-text {
+	text-align: center;
+	font-family: "Georgia"
+	color: #2b4d6f;
+	font-size: 2em;
+	margin-top: 100px;
+}
+
+.ready-link {
+	margin: auto;
 }
 
 .contributers p {
