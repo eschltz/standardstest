@@ -22,25 +22,25 @@ layout: default
 	</div>
 
     <div id="image-container">
-		<img src="Empirical%20Standards%20Landing%202_files/pexels-photo-1181248.webp">
+		<img src="https://images.pexels.com/photos/1181248/pexels-photo-1181248.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">
 	</div>
 </section>
 
 <section id="feature-section">
 	<div class="feature-box">
-		<img src="Empirical%20Standards%20Landing%202_files/9989300.png">
+		<img src="https://cdn-icons-png.flaticon.com/512/9989/9989300.png">
 		<h3>19 empirical standards to choose from</h3>
 		<p>Review manuscripts using many of the most common methods found in software engineering research</p>
 	</div>
 	
 	<div class="feature-box">
-		<img src="Empirical%20Standards%20Landing%202_files/5403820.png">
+		<img src="https://cdn-icons-png.flaticon.com/512/5403/5403820.png">
 		<h3>Unique checklists for authors and reviewers</h3>
 		<p>Choose from one of two checklist types suited to the different needs of authors and reviewers</p>
 	</div>
 	
 	<div class="feature-box">
-		<img src="Empirical%20Standards%20Landing%202_files/5403694.png">
+		<img src="https://cdn-icons-png.flaticon.com/512/5403/5403694.png">
 		<h3>Desirable and extraordinary attributes</h3>
 		<p>Recognize manuscripts that go above and beyond by highlighting their strengths</p>
 	</div>
@@ -56,13 +56,13 @@ layout: default
 		</div>
   
 		<div class="image-container">
-			<img src="Empirical%20Standards%20Landing%202_files/standard_selection_crop.PNG">
+			<img src="assets/img/standard_selection_crop.PNG">
 		</div>
 	</div>
 
 	<div class="instruction-box instructions-2">
 		<div class="image-container">
-			<img src="Empirical%20Standards%20Landing%202_files/filling_checklist_crop.PNG">
+			<img src="assets/img/filling_checklist_crop.PNG">
 		</div>
 	
 		<div class="instruction-text">
@@ -78,7 +78,7 @@ layout: default
 		</div>
 
 		<div class="image-container">
-			<img src="Empirical%20Standards%20Landing%202_files/downloaded_file_2.PNG">
+			<img src="assets/img/downloaded_file_crop.PNG">
 		</div>
 	</div>
 </section>
