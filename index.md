@@ -16,7 +16,9 @@ layout: default
 			<span id="name-heading">Empirical Standards for Software Engineering</span>
 		</h1>
 	   	
-		<div id="intro-description">The Empirical Standards lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque maximus ullamcorper viverra. Mauris vitae purus dignissim metus ullamcorper posuere.</div>
+		<div id="intro-description">
+			<p>The Empirical Standards lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque maximus ullamcorper viverra. Mauris vitae purus dignissim metus ullamcorper posuere.</p>
+		</div>
 		
 		<a class="page-link" href="https://eschltz.github.io/standardstest/tools/" style="color: white;background-color: #2b4d6f;padding: 10px;border-radius: 5px;font-size: 16px;">Review a paper</a>
 	</div>
