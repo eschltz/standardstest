@@ -342,10 +342,13 @@ main .page-link {
 	flex-wrap: wrap
 }
 
-.instructions-1 .instruction-text {
+.instruction-text {
 	margin-top: 70px;
-	margin-left: 50px;
 	flex: 0 0 40%;
+}
+
+.instructions-1 .instruction-text, .instructions-3 .instruction-text {
+	margin-left: 50px;
 }
 
 .instructions-1 .image-container {
@@ -359,9 +362,7 @@ main .page-link {
 }
 
 .instructions-2 .instruction-text {
-	margin-top: 70px;
 	text-align: right;
-	flex: 0 0 40%;
 }
 
 .instructions-2 .image-container {
@@ -373,6 +374,10 @@ main .page-link {
 	flex: 0 0 50%;
 	margin-left: 90px;
 	margin-top: 70px;
+}
+
+.instruction-box .image-container img {
+	max-width: 100%;
 }
 
 .instruction-text p {
@@ -423,7 +428,7 @@ main .page-link {
 	margin-top: 100px;
 }
 
-.ready-link {
+main .ready-link {
 	margin: auto;
 }
 
