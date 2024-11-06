@@ -170,8 +170,8 @@ form:active {
 	color: red;
 	background: none;
 	cursor: pointer;
-	margin-left: 20px;
 	margin-right: 20px;
+	margin-top: 15px;
 	float: right;
 }
 
