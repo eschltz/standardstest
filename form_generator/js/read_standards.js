@@ -577,6 +577,7 @@ function generate_question_block_with_yes_no_radio_answers(id, class_name, quest
 		question_block.appendChild(deviation_not_justified);
 	} else {
 		question_block.classList.add("reviewer_yes_no_block");
+		deviation_block.className = "reviewer_reasonable_block";
 		
 		let question_text = document.createElement("span");
 		question_text.innerHTML = "&rdsh;&nbsp; " + question;

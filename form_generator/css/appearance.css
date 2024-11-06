@@ -98,7 +98,7 @@ form:active {
 	display: none;
 }
 
-.reviewer_yes_no_block div:first-child {
+.reviewer_reasonable_block {
 	border: 1px solid #ccc;
 	border-radius: 5px;
 }
