@@ -13,6 +13,8 @@ form:active {
 
 #Essential, #Desirable, #Extraordinary {
 	padding: 0px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
 }
 
 .item_list {

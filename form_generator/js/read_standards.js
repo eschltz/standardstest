@@ -1557,15 +1557,21 @@ document.addEventListener("visibilitychange", () => {
 
 // create Header with Unordered List (Essential, Desirable, Extraordinary)
 function create_requirements_heading_with_UL(title) {
-	var H3_ = document.createElement("H3");
-	var UL_ = document.createElement("UL");
-
-	H3_.className = "checklist_heading";
-	H3_.innerHTML = title;
-	UL_.id = title;
-	UL_.appendChild(H3_);
 	
-	return UL_;
+	if (title == "Essential") {
+		var heading = document.createElement("h3");
+		var checklist = document.createElement("ul");
+	} else {
+		var heading = document.createElement("summary");
+		var checklist = document.createElement("details");
+	}
+	
+	heading.className = "checklist_heading";
+	heading.innerHTML = title;
+	checklist.id = title;
+	checklist.appendChild(heading);
+	
+	return checklist;
 }
 
 // collect footnotes

@@ -53,15 +53,15 @@ main a {
 	color: #2b4d6f;
 }
 
-form ul {
+form ul, form details {
 	margin-top: 20px;
 }
 
-form ul ul {
+form ul ul, form details ul {
 	margin-top: 10px;
 }
 
-form ul ul li {
+form ul ul li, form details ul li {
 	margin-bottom: 5px;
 }
 
