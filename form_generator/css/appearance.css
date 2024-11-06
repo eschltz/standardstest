@@ -8,11 +8,10 @@ form:active {
 .checklist_heading {
 	padding: 0px;
 	margin: 0px;
-	text-indent: -0.3em;
 }
 
 #Essential, #Desirable, #Extraordinary {
-	padding: 0px;
+	padding: 10px;
 	border: 1px solid #ccc;
 	border-radius: 5px;
 }
@@ -29,12 +28,10 @@ form:active {
 
 .reviewer_essential_items {
 	padding-left: 1.2em;
-	text-indent: -2.4em;
 }
 
 .reviewer_nonessential_items {
 	padding-left: 0em;
-	text-indent: -1.3em;
 }
 
 .checklist_labels {

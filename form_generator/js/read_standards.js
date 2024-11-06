@@ -1564,6 +1564,7 @@ function create_requirements_heading_with_UL(title) {
 	} else {
 		var heading = document.createElement("summary");
 		var checklist = document.createElement("details");
+		checklist.setAttribute("open", "");
 	}
 	
 	heading.className = "checklist_heading";
