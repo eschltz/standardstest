@@ -98,9 +98,15 @@ form:active {
 	display: none;
 }
 
+.reviewer_yes_no_block div:first-child {
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
 .type_block {
-	text-indent: -1.1em;
 	display: none;
+	border: 1px solid #ccc;
+	border-radius: 5px;
 }
 
 .question_text_container {
@@ -121,6 +127,8 @@ form:active {
 .question_block_free_Text {
 	padding: 0px;
 	display: none;
+	border: 1px solid #ccc;
+	border-radius: 5px;
 }
 
 .unjustified_warning {

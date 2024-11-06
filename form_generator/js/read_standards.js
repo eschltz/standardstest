@@ -577,7 +577,9 @@ function generate_question_block_with_yes_no_radio_answers(id, class_name, quest
 		question_block.appendChild(deviation_not_justified);
 	} else {
 		question_block.classList.add("reviewer_yes_no_block");
-		question_block.innerHTML = "&rdsh;&nbsp; " + question;
+		
+		let question_text = document.createElement("span");
+		question_text.innerHTML = "&rdsh;&nbsp; " + question;
 		
 		// For reviewers, create yes-no radio buttons
 		var deviationRadioYes = document.createElement("input");
@@ -602,6 +604,7 @@ function generate_question_block_with_yes_no_radio_answers(id, class_name, quest
 		deviationLabelNo.innerHTML = "no";
 		deviationLabelNo.htmlFor = deviationRadioNo.id;
 		
+		deviation_block.appendChild(question_text);
 		deviation_block.appendChild(deviationRadioYes);
 		deviation_block.appendChild(deviationLabelYes);
 		deviation_block.appendChild(deviationRadioNo);
@@ -1814,7 +1817,7 @@ function create_requirements_checklist(file) {
 				Yes_No.appendChild(location_label);
 				Yes_No.appendChild(missing_label);
 			} else {
-				Yes_No.innerHTML = "&nbsp;yes no";
+				Yes_No.innerHTML = "&nbsp;Yes No";
 			}
 
 			if (checklistType == "Essential") {
