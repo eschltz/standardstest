@@ -544,7 +544,6 @@ function generate_question_block_with_yes_no_radio_answers(id, class_name, quest
 	question_block.className = "question_block";
 	
 	var deviation_block = document.createElement("div");
-	deviation_block.innerHTML = "&nbsp;&nbsp;&nbsp;";
 
 	if (role == "\"author\"") {
 		question_block.classList.add("author_yes_no_block");
@@ -725,7 +724,7 @@ function generate_free_text_question(id, class_name, question, checklistItem_id)
     question_block.className = "question_block_free_Text";
 
     var questionText = document.createElement("div"); // Create a div for the question
-    questionText.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&rdsh;&nbsp;  " + question;
+    questionText.innerHTML = "&rdsh;&nbsp;  " + question;
 
     var answerInput = document.createElement("div"); // Create a div for the input answer
     answerInput.className = "freeTextContainer";
