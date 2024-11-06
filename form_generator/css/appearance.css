@@ -1,5 +1,6 @@
 form {
 	font-size: 120%;
+	color: #444444;
 }
 form:active {
 	color: blue;
@@ -11,7 +12,7 @@ form:active {
 }
 
 #Essential, #Desirable, #Extraordinary {
-	padding: 10px;
+	padding: 20px;
 	border: 1px solid #ccc;
 	border-radius: 5px;
 }
@@ -22,8 +23,8 @@ form:active {
 }
 
 .author_items {
-	text-indent: 2em hanging;
-	margin-left: 0;
+	text-indent: 1em hanging;
+	padding-left: 0;
 }
 
 .reviewer_essential_items, .reviewer_nonessential_items {
@@ -39,12 +40,15 @@ form:active {
 }
 
 .checklist_labels {
-	font-size: 80%;
+	font-size: 70%;
 	font-weight: bold;
+	font-family: "Tahoma";
+	margin-top: 10px;
 }
 
 .author_labels {
 	display: flex;
+	font-family: "Tahoma";
 }
 
 .attribute_label, .item_text {
