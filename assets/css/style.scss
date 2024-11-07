@@ -132,76 +132,6 @@ th, tr:nth-child(even){
 	display: none;
 }
 
-@media screen and (max-width: 600px) {
-	.site-nav {
-		position: absolute;
-		top: 9px;
-		right: 15px;
-		background-color: #2b4d6f;
-		border: 1px solid white;
-		border-radius: 5px;
-		text-align: right;
-		line-height: 30px;
-	}
-	
-	.site-nav label[for="nav-trigger"] {
-		display: block;
-		float: right;
-		width: 36px;
-		height: 36px;
-		z-index: 2;
-		cursor: pointer;
-	}
-	
-	.site-nav .menu-icon {
-		display: block;
-		float: right;
-		width: 36px;
-		height: 26px;
-		line-height: 0;
-		padding-top: 10px;
-		text-align: center;
-	}
-	
-	.site-nav .menu-icon>svg {
-		fill: white;
-	}
-	
-	.site-nav input ~ .trigger {
-		clear: both;
-		display: none;
-	}
-	
-	.site-nav input:checked ~ .trigger {
-		display: block;
-		padding-bottom: 5px;
-	}
-	
-	.site-nav .page-link {
-		display: block;
-		padding: 5px 10px;
-		margin-left: 20px;
-	}
-	
-	.site-nav .page-link:not(:last-child) {
-		margin-right: 0;
-	}
-	
-	.cite-button {
-		display: block;
-		margin: 0;
-		border: none;
-		margin-left: 80px;
-		padding: 10px;
-	}
-	
-	.review-link {
-		background-color: #2b4d6f;
-		color: white;
-		padding: 10px;
-	}
-}
-
 .site-nav .page-link {
 	color: white;
 	margin-right: 20px;
@@ -513,60 +443,6 @@ main .ready-link {
 	display: none
 }
 
-@media screen and (max-width: 780px) {
-	.standards-list, .supplements-list {
-		left: 15px;
-		background-color: #fdfdfd;
-		border: 1px solid #e8e8e8;
-		border-radius: 5px;
-		text-align: left;
-		position: fixed;
-		top: 120px;
-	}
-  
-	.supplements-list {
-		padding-left: 0;
-		text-indent: 0;
-	}
-  
-	#Display {
-		flex: 100%;
-		word-break: break-word;
-	}
-  
-	.standards-list label[for="toc-trigger"], .supplements-list label[for="toc-trigger"] {
-		display: block;
-		float: left;
-		width: 36px;
-		height: 36px;
-		cursor: pointer;
-	}
-  
-	.standards-list .menu-icon, .supplements-list .menu-icon {
-		display: block;
-		float: left;
-		width: 36px;
-		padding-top: 9px;
-		text-align: center;
-	}
-  
-	.standards-list .menu-icon>svg, .supplements-list .menu-icon>svg {
-		fill: #424242;
-	}
-  
-	.standards-list input ~ .tab, .supplements-list input ~ .tab {
-		clear: both;
-		display: none;
-		overflow: scroll;
-		max-height: 75vh;
-	}
-  
-	.standards-list input:checked ~ .tab, .supplements-list input:checked ~ .tab {
-		display: block;
-		padding-bottom: 5px;
-	}
-}
-
 .tablinks {
 	padding: 4px 10px;
 	font-size: 16px;
@@ -628,4 +504,128 @@ main .ready-link {
 
 .footer-link {
 	color: #b6cce2;
+}
+
+@media screen and (max-width: 600px) {
+	.site-nav {
+		position: absolute;
+		top: 9px;
+		right: 15px;
+		background-color: #2b4d6f;
+		border: 1px solid white;
+		border-radius: 5px;
+		text-align: right;
+		line-height: 30px;
+	}
+	
+	.site-nav label[for="nav-trigger"] {
+		display: block;
+		float: right;
+		width: 36px;
+		height: 36px;
+		z-index: 2;
+		cursor: pointer;
+	}
+	
+	.site-nav .menu-icon {
+		display: block;
+		float: right;
+		width: 36px;
+		height: 26px;
+		line-height: 0;
+		padding-top: 10px;
+		text-align: center;
+	}
+	
+	.site-nav .menu-icon>svg {
+		fill: white;
+	}
+	
+	.site-nav input ~ .trigger {
+		clear: both;
+		display: none;
+	}
+	
+	.site-nav input:checked ~ .trigger {
+		display: block;
+		padding-bottom: 5px;
+	}
+	
+	.site-nav .page-link {
+		display: block;
+		padding: 5px 10px;
+		margin-left: 20px;
+	}
+	
+	.site-nav .page-link:not(:last-child) {
+		margin-right: 0;
+	}
+	
+	.cite-button {
+		display: block;
+		margin: 0;
+		border: none;
+		margin-left: 80px;
+		padding: 10px;
+	}
+	
+	.review-link {
+		background-color: #2b4d6f;
+		color: white;
+		padding: 10px;
+	}
+}
+
+@media screen and (max-width: 780px) {
+	.standards-list, .supplements-list {
+		left: 15px;
+		background-color: #fdfdfd;
+		border: 1px solid #e8e8e8;
+		border-radius: 5px;
+		text-align: left;
+		position: fixed;
+		top: 120px;
+	}
+  
+	.supplements-list {
+		padding-left: 0;
+		text-indent: 0;
+	}
+  
+	#Display {
+		flex: 100%;
+		word-break: break-word;
+	}
+  
+	.standards-list label[for="toc-trigger"], .supplements-list label[for="toc-trigger"] {
+		display: block;
+		float: left;
+		width: 36px;
+		height: 36px;
+		cursor: pointer;
+	}
+  
+	.standards-list .menu-icon, .supplements-list .menu-icon {
+		display: block;
+		float: left;
+		width: 36px;
+		padding-top: 9px;
+		text-align: center;
+	}
+  
+	.standards-list .menu-icon>svg, .supplements-list .menu-icon>svg {
+		fill: #424242;
+	}
+  
+	.standards-list input ~ .tab, .supplements-list input ~ .tab {
+		clear: both;
+		display: none;
+		overflow: scroll;
+		max-height: 75vh;
+	}
+  
+	.standards-list input:checked ~ .tab, .supplements-list input:checked ~ .tab {
+		display: block;
+		padding-bottom: 5px;
+	}
 }
