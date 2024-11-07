@@ -1485,7 +1485,7 @@ function populate_checklist() {
 // Save checklist state on visibility change
 document.addEventListener("visibilitychange", () => {
 	console.log("Storing checklist items.");
-	let items = document.querySelectorAll("#checklists ul ul li");
+	let items = document.querySelectorAll("#checklists ul ul li, #checklists details ul li");
 	
 	for (let item of items) {
 		let storage = {};
@@ -2110,7 +2110,7 @@ function saveFile() {
 	var type4_list = "";
 	
 	for (let list of checklists.children) {
-		if(list.tagName == 'UL' & list.style.display != 'none') {
+		if(list.tagName == 'UL' & list.style.display != 'none' || list.tagName == 'details' & list.style.display != 'none') {
 			for (let ul of list.children) {
 				if(ul.tagName == 'UL'){
 					var i = 0;
