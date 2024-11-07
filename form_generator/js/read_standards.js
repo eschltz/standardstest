@@ -1485,7 +1485,7 @@ function populate_checklist() {
 // Save checklist state on visibility change
 document.addEventListener("visibilitychange", () => {
 	console.log("Storing checklist items.");
-	let items = document.querySelectorAll("#checklists ul ul li, #checklists details ul li");
+	let items = document.querySelectorAll(".item_list li");
 	
 	for (let item of items) {
 		let storage = {};
@@ -2109,187 +2109,187 @@ function saveFile() {
 	var type3_list = "";
 	var type4_list = "";
 	
-	for (let list of checklists.children) {
-		if(list.tagName == 'UL' & list.style.display != 'none' || list.tagName == 'details' & list.style.display != 'none') {
-			for (let ul of list.children) {
-				if(ul.tagName == 'UL'){
-					var i = 0;
-					for (let li of ul.children) {
-						if (li.tagName != 'LI') {
-						   continue;
-						}
-						i++;
-						var li_text = li.getAttribute("text").trim();
-						var regex = /<a+\n*.+<\/a>/g;
-						if (li_text.match(regex) != null)
-							li_text = li_text.replace(regex, "");
+	let lists = document.querySelectorAll("#Essential, #Desirable, #Extraordinary");
+	
+	for (let list of lists) {
+		for (let ul of list.children) {
+			if(ul.tagName == 'UL'){
+				var i = 0;
+				for (let li of ul.children) {
+					if (li.tagName != 'LI') {
+					   continue;
+					}
+					i++;
+					var li_text = li.getAttribute("text").trim();
+					var regex = /<a+\n*.+<\/a>/g;
+					if (li_text.match(regex) != null)
+						li_text = li_text.replace(regex, "");
 
-						var regex2 = /\{sup\}.+\{\/sup\}/g;
-						var regex3 = /<br\/>/g;
-						var regex4 = /<\/b>/g;
-						var regex5 = /<b>/g;
-						var regex6 = /[\r\n]+/g;
-						var regex7 =/ \(.+?\)/g;
-						var regex8 = /<i>/g;
-						var regex9 = /<\/i>/g;
+					var regex2 = /\{sup\}.+\{\/sup\}/g;
+					var regex3 = /<br\/>/g;
+					var regex4 = /<\/b>/g;
+					var regex5 = /<b>/g;
+					var regex6 = /[\r\n]+/g;
+					var regex7 =/ \(.+?\)/g;
+					var regex8 = /<i>/g;
+					var regex9 = /<\/i>/g;
 
-						if (li_text.match(regex2) != null)
-							li_text = li_text.replace(regex2, "");
-						if (li_text.match(regex3) != null)
-							li_text = li_text.replace(regex3,"\n");
-						if (li_text.match(regex4) != null)
-							li_text = li_text.replace(regex4,"");
-						if (li_text.match(regex5) != null)
-							li_text = li_text.replace(regex5,"");
-						if (li_text.match(regex6) != null)
-							li_text = li_text.replace(regex6,"");
-						if (li_text.match(regex7) != null)
-							li_text = li_text.replace(regex7,"");
-						if (li_text.match(regex8) != null)
-							li_text = li_text.replace(regex8,"");
-						if (li_text.match(regex9) != null)
-							li_text = li_text.replace(regex9,"");
-						
-						var location_value = "";
-						var location_textbox = li.getElementsByClassName('item_location_textbox');
+					if (li_text.match(regex2) != null)
+						li_text = li_text.replace(regex2, "");
+					if (li_text.match(regex3) != null)
+						li_text = li_text.replace(regex3,"\n");
+					if (li_text.match(regex4) != null)
+						li_text = li_text.replace(regex4,"");
+					if (li_text.match(regex5) != null)
+						li_text = li_text.replace(regex5,"");
+					if (li_text.match(regex6) != null)
+						li_text = li_text.replace(regex6,"");
+					if (li_text.match(regex7) != null)
+						li_text = li_text.replace(regex7,"");
+					if (li_text.match(regex8) != null)
+						li_text = li_text.replace(regex8,"");
+					if (li_text.match(regex9) != null)
+						li_text = li_text.replace(regex9,"");
+					
+					var location_value = "";
+					var location_textbox = li.getElementsByClassName('item_location_textbox');
 
-						if (list.id == 'Essential'){
-							if (role != "\"author\"" && li.children[0].checked) {
-								essential_list +=  'Y' + '\t   ' + li_text + '\r\n';
-							} else if (role == "\"author\"" && location_textbox[0].value != "") {
-								if (location_textbox.length == 1) {
-									location_value = location_textbox[0].value;
-								}
-																
-								essential_list += "  " + (location_value != "" ? location_value : "");
-								
-								// Determine whether to push item text to new line based on location text length
-								if (location_value.length < 6) {
-									essential_list += '\t\t' + li_text + '\r\n';
-								} else if (location_value.length < 14) {
-									essential_list += '\t' + li_text + '\r\n';
-								} else {
-									essential_list += '\r\n\t\t' + li_text + '\r\n';
-								}
-								
+					if (list.id == 'Essential'){
+						if (role != "\"author\"" && li.children[0].checked) {
+							essential_list +=  'Y' + '\t   ' + li_text + '\r\n';
+						} else if (role == "\"author\"" && location_textbox[0].value != "") {
+							if (location_textbox.length == 1) {
+								location_value = location_textbox[0].value;
+							}
+															
+							essential_list += "  " + (location_value != "" ? location_value : "");
+							
+							// Determine whether to push item text to new line based on location text length
+							if (location_value.length < 6) {
+								essential_list += '\t\t' + li_text + '\r\n';
+							} else if (location_value.length < 14) {
+								essential_list += '\t' + li_text + '\r\n';
 							} else {
-								var reasonable_deviation = li.getElementsByClassName('deviationRadioYes')[0];						
-								location_textbox = li.getElementsByClassName('justification_location_textbox');
+								essential_list += '\r\n\t\t' + li_text + '\r\n';
+							}
+							
+						} else {
+							var reasonable_deviation = li.getElementsByClassName('deviationRadioYes')[0];						
+							location_textbox = li.getElementsByClassName('justification_location_textbox');
+							
+							// store for the free_text_question
+							var questionDiv  = li.getElementsByClassName("question_block_free_Text");
+							
+							if (questionDiv[0]) {
+								var question_text = questionDiv[0].querySelector('div:first-child').textContent.trim().replace(/^\W+/g, '');
+								console.log(question_text)
+								var inputCollection  = li.getElementsByClassName('freeTextAnswer');
+								console.log(inputCollection);
 								
-								// store for the free_text_question
-								var questionDiv  = li.getElementsByClassName("question_block_free_Text");
-								
-								if (questionDiv[0]) {
-									var question_text = questionDiv[0].querySelector('div:first-child').textContent.trim().replace(/^\W+/g, '');
-									console.log(question_text)
-									var inputCollection  = li.getElementsByClassName('freeTextAnswer');
-									console.log(inputCollection);
-									
-									if (inputCollection[0]) {
-										var input_text = inputCollection[0].value;
-									}
-								}
-
-								if (location_textbox[0] && location_textbox[0].value != "" || reasonable_deviation && reasonable_deviation.checked) {
-									if (location_textbox.length == 1) {
-										location_value = location_textbox[0].value;
-									}
-									
-									if (role == "\"author\"") {
-										essential_list += "  " + (location_value != "" ? location_value : "");
-										
-										// Determine whether to push item text to new line based on location text length
-										if (location_value.length < 6) {
-											essential_list += '\t\t' + li_text + ' (justified deviation)\r\n';
-										} else if (location_value.length < 14) {
-											essential_list += '\t' + li_text + ' (justified deviation)\r\n';
-										} else {
-											essential_list += '\r\n\t\t' + li_text + ' (justified deviation)\r\n';
-										}
-										
-									} else {
-										essential_list += 'R' + '\t   ' + li_text + '\r\n';
-									}
-									
-								} else {
-									var fixable_deviation = li.getElementsByClassName('justificationRadioType');
-									
-									if (fixable_deviation.length != 0){
-										if (fixable_deviation[0].checked) {
-											type1_list += '1\t   ' + li_text + '\r\n';
-											if(input_text !== ""){
-												type1_list += ' \t   ' + question_text + '\r\n';
-												type1_list += ' \t    \t   ' + input_text + '\r\n';
-											}
-										} else if (fixable_deviation[1].checked) {
-											type2_list += '2\t   ' + li_text + '\r\n';
-											if(input_text !== ""){
-												type2_list += ' \t   ' + question_text + '\r\n';
-												type2_list += ' \t    \t   ' + input_text + '\r\n';
-											}
-										}  else if (fixable_deviation[2].checked) {
-											type3_list += '3\t   ' + li_text + '\r\n';
-											if(input_text !== ""){
-												type3_list += ' \t   ' + question_text + '\r\n';
-												type3_list += ' \t    \t   ' + input_text + '\r\n';
-											}
-										}  else if (fixable_deviation[3].checked) {
-											type4_list += '4\t   ' + li_text + '\r\n';
-											if(input_text !== ""){
-												type4_list += ' \t   ' + question_text + '\r\n';
-												type4_list += ' \t    \t   ' + input_text + '\r\n';
-											}
-										}
-									} else {
-										essential_list += (role == "\"author\"" ? '  *' : ' ') + '\t\t' + li_text;
-										essential_list += (role == "\"author\"" ? ' (unjustified deviation)\r\n' : '\r\n');
-									}
+								if (inputCollection[0]) {
+									var input_text = inputCollection[0].value;
 								}
 							}
-						}
-						else if (list.id == 'Desirable') {
-							if (li.children[0].checked || role == "\"author\"" && location_textbox[0].value != "") {
-								include_desirable = true;
 
+							if (location_textbox[0] && location_textbox[0].value != "" || reasonable_deviation && reasonable_deviation.checked) {
 								if (location_textbox.length == 1) {
 									location_value = location_textbox[0].value;
-									desirable_list += "  " + (location_value != "" ? location_value : "");
+								}
+								
+								if (role == "\"author\"") {
+									essential_list += "  " + (location_value != "" ? location_value : "");
 									
 									// Determine whether to push item text to new line based on location text length
 									if (location_value.length < 6) {
-										desirable_list += '\t\t' + li_text + '\r\n';
+										essential_list += '\t\t' + li_text + ' (justified deviation)\r\n';
 									} else if (location_value.length < 14) {
-										desirable_list += '\t' + li_text + '\r\n';
+										essential_list += '\t' + li_text + ' (justified deviation)\r\n';
 									} else {
-										desirable_list += '\r\n\t\t' + li_text + '\r\n';
+										essential_list += '\r\n\t\t' + li_text + ' (justified deviation)\r\n';
+									}
+									
+								} else {
+									essential_list += 'R' + '\t   ' + li_text + '\r\n';
+								}
+								
+							} else {
+								var fixable_deviation = li.getElementsByClassName('justificationRadioType');
+								
+								if (fixable_deviation.length != 0){
+									if (fixable_deviation[0].checked) {
+										type1_list += '1\t   ' + li_text + '\r\n';
+										if(input_text !== ""){
+											type1_list += ' \t   ' + question_text + '\r\n';
+											type1_list += ' \t    \t   ' + input_text + '\r\n';
+										}
+									} else if (fixable_deviation[1].checked) {
+										type2_list += '2\t   ' + li_text + '\r\n';
+										if(input_text !== ""){
+											type2_list += ' \t   ' + question_text + '\r\n';
+											type2_list += ' \t    \t   ' + input_text + '\r\n';
+										}
+									}  else if (fixable_deviation[2].checked) {
+										type3_list += '3\t   ' + li_text + '\r\n';
+										if(input_text !== ""){
+											type3_list += ' \t   ' + question_text + '\r\n';
+											type3_list += ' \t    \t   ' + input_text + '\r\n';
+										}
+									}  else if (fixable_deviation[3].checked) {
+										type4_list += '4\t   ' + li_text + '\r\n';
+										if(input_text !== ""){
+											type4_list += ' \t   ' + question_text + '\r\n';
+											type4_list += ' \t    \t   ' + input_text + '\r\n';
+										}
 									}
 								} else {
-									desirable_list +=  'Y' + '\t   ' + li_text + '\r\n';
+									essential_list += (role == "\"author\"" ? '  *' : ' ') + '\t\t' + li_text;
+									essential_list += (role == "\"author\"" ? ' (unjustified deviation)\r\n' : '\r\n');
 								}
 							}
-						} else if (li.children[0].checked || role == "\"author\"" && location_textbox[0].value != "") {
-							include_extraordinary = true;
+						}
+					}
+					else if (list.id == 'Desirable') {
+						if (li.children[0].checked || role == "\"author\"" && location_textbox[0].value != "") {
+							include_desirable = true;
 
 							if (location_textbox.length == 1) {
 								location_value = location_textbox[0].value;
-								extraordinary_list += "  " + (location_value != "" ? location_value : "");
+								desirable_list += "  " + (location_value != "" ? location_value : "");
 								
 								// Determine whether to push item text to new line based on location text length
 								if (location_value.length < 6) {
-									extraordinary_list += '\t\t' + li_text + '\r\n';
+									desirable_list += '\t\t' + li_text + '\r\n';
 								} else if (location_value.length < 14) {
-									extraordinary_list += '\t' + li_text + '\r\n';
+									desirable_list += '\t' + li_text + '\r\n';
 								} else {
-									extraordinary_list += '\r\n\t\t' + li_text + '\r\n';
+									desirable_list += '\r\n\t\t' + li_text + '\r\n';
 								}
 							} else {
-								extraordinary_list +=  'Y' + '\t   ' + li_text + '\r\n';
+								desirable_list +=  'Y' + '\t   ' + li_text + '\r\n';
 							}
 						}
+					} else if (li.children[0].checked || role == "\"author\"" && location_textbox[0].value != "") {
+						include_extraordinary = true;
 
+						if (location_textbox.length == 1) {
+							location_value = location_textbox[0].value;
+							extraordinary_list += "  " + (location_value != "" ? location_value : "");
+							
+							// Determine whether to push item text to new line based on location text length
+							if (location_value.length < 6) {
+								extraordinary_list += '\t\t' + li_text + '\r\n';
+							} else if (location_value.length < 14) {
+								extraordinary_list += '\t' + li_text + '\r\n';
+							} else {
+								extraordinary_list += '\r\n\t\t' + li_text + '\r\n';
+							}
+						} else {
+							extraordinary_list +=  'Y' + '\t   ' + li_text + '\r\n';
+						}
 					}
 
 				}
+
 			}
 		}
 	}
