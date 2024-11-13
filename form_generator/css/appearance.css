@@ -88,6 +88,10 @@ form:active {
 	border: 2px solid red;
 }
 
+.checklistRadioNo {
+	margin-left: 12px;
+}
+
 .author_yes_no_block {
 	flex: 0 0 100%;
 	display: none;
@@ -251,6 +255,10 @@ form:active {
 
 .btn-link:focus {
 	outline: auto;
+}
+
+.more-info-list {
+	padding: 0;
 }
 
 .more-info-list li {

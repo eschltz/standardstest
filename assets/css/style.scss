@@ -117,12 +117,9 @@ th, tr:nth-child(even){
 	font-weight: 300;
 	line-height: 54px;
 	letter-spacing: -1px;
-	margin-bottom: 0;
-	float: left;
 }
 
 .site-nav {
-	color: white;
 	float: right;
 	margin-right: 50px;
 	line-height: 54px;
@@ -138,7 +135,7 @@ th, tr:nth-child(even){
 }
 
 .site-nav .last-page-link {
-	margin-right: 320px;
+	margin-right: 20vw;
 }
 
 .cite-button {
@@ -512,11 +509,29 @@ main .ready-link {
 	display: block;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1300px) {
+	.site-nav .last-page-link {
+		margin-right: 16vw;
+	}
+}
+
+@media screen and (max-width: 1150px) {
+	.site-nav .last-page-link {
+		margin-right: 11vw;
+	}
+}
+
+@media screen and (max-width: 1050px) {
+	.site-nav .last-page-link {
+		margin-right: 5vw;
+	}
+}
+
+@media screen and (max-width: 1000px) {
 	.site-nav {
 		position: absolute;
 		top: 9px;
-		right: 15px;
+		right: 0px;
 		background-color: #2b4d6f;
 		border: 1px solid white;
 		border-radius: 5px;
