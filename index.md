@@ -90,7 +90,7 @@ layout: default
 	
 	<p id="history-description" style="width: 70%;margin: auto;font-size: 1em;margin-top: 50px;"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc molestie ante quis libero auctor suscipit. Sed lacinia sapien sed sem consequat rhoncus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla varius arcu mi, accumsan sollicitudin nisl ornare sit amet. Nulla mauris ligula, scelerisque elementum blandit et, commodo sit amet libero. Morbi tincidunt id metus sed maximus. Integer in enim interdum, dapibus lectus at, maximus metus. Donec vitae libero nisl.</p>
 	
-	<a href="#">Read the Empirical Standards report →</a>
+	<a href="https://arxiv.org/abs/2010.03525">Read the Empirical Standards report →</a>
 </section>
 
 <p id="ready-text">Ready to try?</p>

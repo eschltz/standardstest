@@ -1911,6 +1911,7 @@ function create_for_more_info_part(standard_keys) {
 	
 	var standards_path = "../docs/standards?standard="
 	var more_info_UL = document.createElement("UL");
+	more_info_UL.className = "more-info-list";
 
 	// Adding Standards as a list with a link to the correct page
 	for (let key of standard_keys){
