@@ -511,10 +511,16 @@ main .ready-link {
 }
 
 @media screen and (max-width: 1050px) {
-	.instruction-text, .image-container {
+	.instruction-text, .instructions-1 .image-container,
+	.instructions-2 .image-container,
+	.instructions-3 .image-container {
 		flex: 0 0 100%;
 		margin: 0;
 		margin-top: 20px;
+	}
+	
+	.instruction-text {
+		margin-left: 20px;
 	}
 }
 
