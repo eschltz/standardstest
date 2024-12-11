@@ -256,7 +256,7 @@ main .page-link {
 }
 
 #intro-section #image-container img {
-	height: 350px;
+	max-height: 25vw;
 	border-radius: 5px;
 }
 
@@ -318,25 +318,14 @@ main .page-link {
 
 .instruction-text {
 	margin-top: 70px;
-	flex: 0 0 40%;
-}
-
-.instructions-1 .instruction-text, .instructions-3 .instruction-text {
 	margin-left: 50px;
+	flex: 0 0 40%;
 }
 
 .instructions-1 .image-container {
 	flex: 0 0 40%;
 	margin-top: 70px;
 	margin-left: 150px;
-}
-
-.instructions-2 {
-	justify-content: space-around;
-}
-
-.instructions-2 .instruction-text {
-	text-align: right;
 }
 
 .instructions-2 .image-container {
@@ -515,9 +504,18 @@ main .ready-link {
 		margin-right: 14vw;
 	}
 }
+
 @media screen and (max-width: 1100px) {
 	.site-nav .last-page-link {
 		margin-right: 7vw;
+	}
+}
+
+@media screen and (max-width: 1050px) {
+	instruction-text, .image-container {
+		flex: 0 0 100%;
+		margin: 0;
+		margin-top: 20px;
 	}
 }
 
@@ -592,6 +590,13 @@ main .ready-link {
 	
 	.citation-modal {
 		width: 50vw;
+	}
+}
+
+@media screen and (max-width: 850px) {
+	.feature-box {
+		flex: 0 0 100%;
+		margin-top: 30px;
 	}
 }
 

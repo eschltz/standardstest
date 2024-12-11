@@ -62,14 +62,14 @@ layout: default
 		</div>
 	</div>
 
-	<div class="instruction-box instructions-2">
-		<div class="image-container">
-			<img src="assets/img/filling_checklist_crop.PNG">
-		</div>
-	
+	<div class="instruction-box instructions-2">	
 		<div class="instruction-text">
 			<p>2. Review</p>
 			<p>Complete the checklist for the manuscript under review. Authors can indicate the location of each checklist item, while reviewers can indicate whether items are present and provide detailed feedback if they are missing.</p>
+		</div>
+		
+		<div class="image-container">
+			<img src="assets/img/filling_checklist_crop.PNG">
 		</div>
 	</div>
 	
