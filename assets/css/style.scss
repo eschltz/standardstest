@@ -323,19 +323,19 @@ main .page-link {
 .instructions-1 .image-container {
 	flex: 0 0 40%;
 	margin-top: 70px;
-	margin-left: 150px;
+	margin-left: 10vw;
 }
 
 .instructions-2 .image-container {
 	flex: 0 0 50%;
 	margin-top: 80px;
-	margin-left: 90px;
+	margin-left: 5vw;
 }
 
 .instructions-3 .image-container {
 	flex: 0 0 50%;
-	margin-left: 90px;
 	margin-top: 70px;
+	margin-left: 5vw;
 }
 
 .instruction-box .image-container img {
@@ -508,9 +508,7 @@ main .ready-link {
 	.site-nav .last-page-link {
 		margin-right: 7vw;
 	}
-}
-
-@media screen and (max-width: 1050px) {
+	
 	.instruction-text, .instructions-1 .image-container,
 	.instructions-2 .image-container,
 	.instructions-3 .image-container {
