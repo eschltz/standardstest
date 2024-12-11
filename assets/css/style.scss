@@ -201,7 +201,6 @@ th, tr:nth-child(even){
 
 #intro-section {
 	padding-top: 30px;
-	height: 400px;
 	display: flex;
 }
 
@@ -279,7 +278,6 @@ main .page-link {
 	border-radius: 5px;
 	background-color: white;
 	text-align: center;
-	transition: 0.3s;
 }
 
 .feature-box img {
@@ -331,6 +329,7 @@ main .page-link {
 .instructions-2 .image-container {
 	flex: 0 0 50%;
 	margin-top: 80px;
+	margin-left: 90px;
 }
 
 .instructions-3 .image-container {
@@ -512,7 +511,7 @@ main .ready-link {
 }
 
 @media screen and (max-width: 1050px) {
-	instruction-text, .image-container {
+	.instruction-text, .image-container {
 		flex: 0 0 100%;
 		margin: 0;
 		margin-top: 20px;
@@ -590,6 +589,21 @@ main .ready-link {
 	
 	.citation-modal {
 		width: 50vw;
+	}
+	
+	#intro-text {
+		flex: 0 0 100%;
+		text-align: center;
+		margin: auto;
+	}
+	
+	#intro-text a {
+		margin: auto;
+		margin-top: 70px;
+	}
+	
+	#image-container img {
+		display: none;
 	}
 }
 
