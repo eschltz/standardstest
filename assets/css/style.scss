@@ -516,10 +516,6 @@ main .ready-link {
 		margin: 0;
 		margin-top: 20px;
 	}
-	
-	.instruction-text {
-		margin-left: 20px;
-	}
 }
 
 @media screen and (max-width: 1000px) {
@@ -608,6 +604,11 @@ main .ready-link {
 	
 	#image-container img {
 		display: none;
+	}
+	
+	#intro-text h1, #intro-description {
+		padding-left: 50px;
+		padding-right: 50px;
 	}
 }
 
