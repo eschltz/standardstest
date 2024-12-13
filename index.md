@@ -24,25 +24,25 @@ layout: default
 	</div>
 
     <div id="image-container">
-		<img src="https://images.pexels.com/photos/1181248/pexels-photo-1181248.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">
+		<img src="assets/img/landing-image.jpg">
 	</div>
 </section>
 
 <section id="feature-section">
 	<div class="feature-box">
-		<img src="https://cdn-icons-png.flaticon.com/512/9989/9989300.png">
+		<img src="assets/img/ruler.png">
 		<h3>19 empirical standards to choose from</h3>
 		<p>Review manuscripts using many of the most common methods found in software engineering research</p>
 	</div>
 	
 	<div class="feature-box">
-		<img src="https://cdn-icons-png.flaticon.com/512/5403/5403820.png">
+		<img src="assets/img/research.png">
 		<h3>Unique checklists for authors and reviewers</h3>
 		<p>Choose from one of two checklist types suited to the different needs of authors and reviewers</p>
 	</div>
 	
 	<div class="feature-box">
-		<img src="https://cdn-icons-png.flaticon.com/512/5403/5403694.png">
+		<img src="assets/img/medal.png">
 		<h3>Desirable and extraordinary attributes</h3>
 		<p>Recognize manuscripts that go above and beyond by highlighting their strengths</p>
 	</div>
