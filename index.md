@@ -140,7 +140,7 @@ layout: default
 		
 		<div class="timeline-box left">
 			<p class="timeline-date">JUNE 2023</p>
-			<p class="timeline-content"> Field experiment at EASE showing standards improve reliability</p>
+			<p class="timeline-content">Field experiment at EASE showing standards improve reliability</p>
 		</div>
 		
 		<div class="timeline-box right">
@@ -151,10 +151,7 @@ layout: default
 		<div class="timeline-box left">
 			<p class="timeline-content">Empirical standards listed on EQUATOR Network</p>
 		</div>
-	
 	</div>
-	
-	<a href="https://arxiv.org/abs/2010.03525">Read the Empirical Standards report →</a>
 </section>
 
 <p id="ready-text">Ready to try?</p>

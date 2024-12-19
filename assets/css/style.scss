@@ -370,6 +370,10 @@ main .page-link {
 	font-size: 2em;
 	font-family: "Georgia";
 	color: #2b4d6f;
+	border-bottom: 3px solid #2b4f6f;
+	width: 300px;
+	padding-bottom: 20px;
+	margin: 0 auto;
 }
 
 .timeline {
@@ -384,8 +388,8 @@ main .page-link {
 	position: absolute;
 	width: 3px;
 	background-color: #2b4d6f;
-	top: 0;
-	bottom: 0;
+	top: -50px;
+	bottom: -150px;
 	left: 50%;
 }
 
@@ -449,11 +453,11 @@ main .page-link {
 }
 
 .timeline-box.left .timeline-date {
-  right: -95px;
+  right: -125px;
 }
 
 .timeline-box.right .timeline-date {
-  left: -105px;
+  left: -125px;
 }
 
 .timeline-content {
@@ -466,7 +470,7 @@ main .page-link {
 	text-align: left;
 }
 
-.timeline-content p a {
+.timeline-content a {
 	font-size: 1em;
 	color: #2a7ae2;
 	display: block;
