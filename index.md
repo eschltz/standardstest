@@ -64,6 +64,9 @@ layout: default
 	<div>
 		<h3>Acceptable deviations</h3>
 		<p>Circumstances where the paper is permitted to deviate from a standard</p>
+		<div class="example-container">
+			Example
+		</div>
 	</div>
 	
 	<div>
@@ -102,7 +105,7 @@ layout: default
 	<div class="timeline">
 		<div class="timeline-box left">
 			<p class="timeline-date">MAY ## 2019</p>
-			<p class="timeline-content">At ICSE town hall, SIGSOFT launches the "Improving paper and peer review quality initiative"</p>
+			<p class="timeline-content">At ICSE town hall, SIGSOFT launches the "Improving Paper and Peer Review Quality Initiative"</p>
 		</div>
 		
 		<div class="timeline-box right">
@@ -135,7 +138,7 @@ layout: default
 		
 		<div class="timeline-box right">
 			<p class="timeline-date">JUNE 2021</p>
-			<p class="timeline-content">First recommendation of standards in a conference (EASE 2021)</p>
+			<p class="timeline-content">First recommendation of the standards in a conference (EASE 2021)</p>
 		</div>
 		
 		<div class="timeline-box left">
@@ -143,8 +146,11 @@ layout: default
 			<p class="timeline-content">Field experiment at EASE showing standards improve reliability</p>
 		</div>
 		
+		<div id="timeline-roadmap">
+			<h3>ROADMAP</h3>
+		</div>
+		
 		<div class="timeline-box right">
-			<p class="timeline-date">ROADMAP</p>
 			<p class="timeline-content">EASE experiment and standards published in journal</p>
 		</div>
 		
