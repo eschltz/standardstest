@@ -374,9 +374,9 @@ main .page-link {
 
 .timeline {
 	position: relative;
-	width: 100%;
 	max-width: 1200px;
 	margin: 0 auto;
+	margin-top: 50px;
 }
 
 .timeline::after {
@@ -410,7 +410,7 @@ main .page-link {
 	width: 15px;
 	height: 15px;
 	top: calc(50% - 8px);
-	right: -8px;
+	right: -10px;
 	background: white;
 	border: 2px solid #2b4d6f;
 	border-radius: 16px;
@@ -453,7 +453,7 @@ main .page-link {
 }
 
 .timeline-box.right .timeline-date {
-  left: -95px;
+  left: -105px;
 }
 
 .timeline-content {
@@ -464,6 +464,21 @@ main .page-link {
 	padding: 30px;
 	font-size: 16px;
 	text-align: left;
+}
+
+.timeline-content p a {
+	font-size: 1em;
+	color: #2a7ae2;
+	display: block;
+	margin-top: 30px;
+}
+
+.left .timeline-content {
+	margin-right: 57px;
+}
+
+.right .timeline-content {
+	margin-left: 57px;
 }
 
 #history-section a {
