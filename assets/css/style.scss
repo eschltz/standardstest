@@ -249,7 +249,7 @@ main .page-link {
 	border-radius: 5px;
 	margin-top: 70px;
 	display: block;
-	width: 120px;
+	width: 150px;
 	text-align: center;
 }
 
@@ -393,6 +393,7 @@ main .page-link {
 	position: relative;
 	background-color: inherit;
 	width: 50%;
+	margin-bottom: 50px;
 }
 
 .left {
@@ -438,7 +439,7 @@ main .page-link {
 .timeline-box .timeline-date {
 	position: absolute;
 	display: inline-block;
-	top: calc(50% - 8px);
+	top: calc(50% - 23px);
 	text-align: center;
 	font-size: 14px;
 	font-weight: bold;
@@ -448,11 +449,11 @@ main .page-link {
 }
 
 .timeline-box.left .timeline-date {
-  right: -75px;
+  right: -95px;
 }
 
 .timeline-box.right .timeline-date {
-  left: -75px;
+  left: -95px;
 }
 
 .timeline-content {
@@ -460,7 +461,9 @@ main .page-link {
 	background-color: white;
 	border: 2px solid #2b4d6f;
 	border-radius: 5px;
-	padding: 20px;
+	padding: 30px;
+	font-size: 16px;
+	text-align: left;
 }
 
 #history-section a {
