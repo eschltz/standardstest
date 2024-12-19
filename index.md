@@ -64,9 +64,6 @@ layout: default
 	<div>
 		<h3>Acceptable deviations</h3>
 		<p>Circumstances where the paper is permitted to deviate from a standard</p>
-		<div class="example-container">
-			Example
-		</div>
 	</div>
 	
 	<div>
