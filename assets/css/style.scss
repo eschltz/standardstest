@@ -463,8 +463,6 @@ main .page-link {
 .timeline-content {
 	position: relative;
 	background-color: white;
-	border: 2px solid #2b4d6f;
-	border-radius: 5px;
 	padding: 30px;
 	font-size: 16px;
 	text-align: left;
@@ -479,18 +477,20 @@ main .page-link {
 
 .left .timeline-content {
 	margin-right: 57px;
+	border-right: 3px solid #2b4d6f;
 }
 
 .right .timeline-content {
 	margin-left: 57px;
+	border-left: 3px solid #2b4d6f;
 }
 
-#history-section a {
+/*#history-section a {
 	font-size: 1.3em;
 	color: #2a7ae2;
 	display: block;
 	margin-top: 50px;
-}
+}*/
 
 #ready-text {
 	text-align: center;
