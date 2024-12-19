@@ -104,7 +104,7 @@ layout: default
 	
 	<div class="timeline">
 		<div class="timeline-box left">
-			<p class="timeline-date">MAY ## 2019</p>
+			<p class="timeline-date">MAY 29 2019</p>
 			<p class="timeline-content">At ICSE town hall, SIGSOFT launches the "Improving Paper and Peer Review Quality Initiative"</p>
 		</div>
 		
@@ -117,7 +117,7 @@ layout: default
 			<p class="timeline-date">OCT 7 2020</p>
 			<p class="timeline-content">
 				Empirical Standards Report made accessible on arXiv <!-- Link to report -->
-				<a href="https://arxiv.org/abs/2010.03525">Read the Empirical Standards report →</a>
+				<a href="https://arxiv.org/abs/2010.03525">Read the Empirical Standards Report →</a>
 			</p>
 		</div>
 		
@@ -147,7 +147,7 @@ layout: default
 		</div>
 		
 		<div id="timeline-roadmap">
-			<h3>ROADMAP</h3>
+			<h3>Roadmap</h3>
 		</div>
 		
 		<div class="timeline-box right">
