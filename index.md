@@ -101,45 +101,44 @@ layout: default
 	
 	<div class="timeline">
 		<div class="timeline-box left">
-			<p>May 2019</p>
+			<p class="timeline-date">May 2019</p>
 			<p class="timeline-content">At ICSE town hall, SIGSOFT launches the "Improving paper and peer review quality initiative"</p>
 		</div>
 		
 		<div class="timeline-box right">
-			<p>2019/2020</p>
+			<p class="timeline-date">2019/2020</p>
 			<p class="timeline-content">First draft standard</p>
 		</div>
 		
 		<div class="timeline-box left">
-			<p>Oct 7, 2020</p>
+			<p class="timeline-date">Oct 7, 2020</p>
 			<p class="timeline-content">Empirical Standards Report made accessible on arXiv <!-- Link to report --></p>
 		</div>
 		
 		<div class="timeline-box right">
-			<p>Jan 14, 2021</p>
+			<p class="timeline-date">Jan 14, 2021</p>
 			<p class="timeline-content">First 9 standards made available on GitHub for public comment <!-- Link to git repo --></p>
 			<!-- https://github.com/acmsigsoft/EmpiricalStandards/blob/bf2bfaecc5a9e7659e66237994da7f93433c1e45/empiricalStandards.md#grounded-theory -->
 		</div>
 		
 		<div class="timeline-box left">
-			<p>May 11, 2021</p>
+			<p class="timeline-date">May 11, 2021</p>
 			<p class="timeline-content">First review checklists available on the web</p>
 			<!-- https://github.com/acmsigsoft/EmpiricalStandards/commit/3462acf033baa670f4dd869be1d85d642688da51 -->
 		</div>
 		
 		<div class="timeline-box right">
-			<p>June 2021</p>
+			<p class="timeline-date">June 2021</p>
 			<p class="timeline-content">First recommendation of standards in a conference (EASE 2021)</p>
 		</div>
 		
 		<div class="timeline-box left">
-			<p>June 2023</p>
+			<p class="timeline-date">June 2023</p>
 			<p class="timeline-content"> Field experiment at EASE showing standards improve reliability</p>
 		</div>
 		
-		<h3>Roadmap</h3>
-		
 		<div class="timeline-box right">
+			<p class="timeline-date">Roadmap</p>
 			<p class="timeline-content">EASE experiment and standards published in journal</p>
 		</div>
 		
