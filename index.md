@@ -51,16 +51,40 @@ layout: default
 <section id="instruction-section">
 	<h2>Features of the standards</h2>
 	
-	<!--
-	    - Application (where the standard does and does not apply)
-		- Specific Attributes (the properties of a manuscript that make it publishable)
-		- General Quality Criteria (qualitative and quantitative quality criteria the paper should meet)
-		- Acceptable Deviations (circumstances where the paper may deviate from a standard)
-		- Antipatterns (common problems with this methodology that papers should avoid)
-		- Invalid criticisms (unreasonable arguments against a paper that reviewers should not make)
-		- Suggested Readings (additional scholarship on the method upon which the standard is based)
-		- Exemplars (good examples of the method authors should emulate)
-	-->
+	<div>
+		<h3>Specific attributes</h3>
+		<p>A list of properties the paper should possess, grouped into essential, desirable, and extraordinary</p>
+	</div>
+	
+	<div>
+		<h3>General quality criteria</h3>
+		<p>Qualitative and quantitative quality criteria the paper should meet, such as multivocality and generalizability</p>
+	</div>
+	
+	<div>
+		<h3>Acceptable deviations</h3>
+		<p>Circumstances where the paper is permitted to deviate from a standard</p>
+	</div>
+	
+	<div>
+		<h3>Antipatterns</h3>
+		<p>Common problems with this methodology that papers should avoid</p>
+	</div>
+	
+	<div>
+		<h3>Invalid criticisms</h3>
+		<p>Unreasonable arguments against a paper that reviewers should not make</p>
+	</div>
+	
+	<div>
+		<h3>Suggested readings</h3>
+		<p>Additional scholarship on the method upon which the standard is based</p>
+	</div>
+	
+	<div>
+		<h3>Exemplars</h3>
+		<p>Good examples of the method that authors should emulate</p>
+	</div>
 	
 	<div class="instruction-box instructions-2">	
 		<div class="instruction-text">
@@ -75,25 +99,55 @@ layout: default
 <section id="history-section">
 	<h2>History</h2>
 	
-	<p id="history-description">
-		1. May 2019 - At ICSE town hall, SIGSOFT launches the "Improving paper and peer review quality initiative"
+	<div>
+		<div>
+			<p>May 2019>
+			<p>At ICSE town hall, SIGSOFT launches the "Improving paper and peer review quality initiative"</p>
+		</div>
 		
-		2. First draft standard
+		<div>
+			<p>2019/2020</p>
+			<p>First draft standard</p>
+		</div>
 		
-		3. Oct 7, 2020 - Empirical Standards Report made accessible on arXiv
+		<div>
+			<p>Oct 7, 2020</p>
+			<p>Empirical Standards Report made accessible on arXiv <!-- Link to report --></p>
+		</div>
 		
-		4. 2021 - Standards made available on GitHub for public comment
+		<div>
+			<p>Jan 14, 2021</p>
+			<p>First 9 standards made available on GitHub for public comment <!-- Link to git repo --></p>
+			<!-- https://github.com/acmsigsoft/EmpiricalStandards/blob/bf2bfaecc5a9e7659e66237994da7f93433c1e45/empiricalStandards.md#grounded-theory -->
+		</div>
 		
-		5. 2021 - First review checklists available on the web
+		<div>
+			<p>May 11, 2021</p>
+			<p>First review checklists available on the web</p>
+			<!-- https://github.com/acmsigsoft/EmpiricalStandards/commit/3462acf033baa670f4dd869be1d85d642688da51 -->
+		</div>
 		
-		6. First recommendation of standards in a conference
+		<div>
+			<p>June 2021</p>
+			<p>First recommendation of standards in a conference (EASE 2021)</p>
+		</div>
 		
-		7. June 2023 - Field experiment at EASE showing standards improve reliability
+		<div>
+			<p>June 2023</p>
+			<p> Field experiment at EASE showing standards improve reliability</p>
+		</div>
 		
-		8. ROADMAP
-			i. EASE experiment and standards published in journal
-			ii. Empirical standards listed on EQUATOR Network
-	</p>
+		<h3>Roadmap</h3>
+		
+		<div>
+			<p>i. EASE experiment and standards published in journal</p>
+		</div>
+		
+		<div>
+			<p>ii. Empirical standards listed on EQUATOR Network</p>
+		</div>
+	
+	</div>
 	
 	<a href="https://arxiv.org/abs/2010.03525">Read the Empirical Standards report →</a>
 </section>
