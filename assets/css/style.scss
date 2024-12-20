@@ -323,13 +323,14 @@ main .page-link {
 }
 
 .feature-list-example {
-	padding: 20px;
-	box-shadow: 1px 1px 5px 1px #ccc;
-	transition: 0.3s;
+	padding: 10px;
 }
 
 .feature-list-example p {
 	font-size: 1em;
+	box-shadow: 1px 1px 5px 1px #ccc;
+	transition: 0.3s;
+	padding: 15px;
 }
 
 .feature-list-example p q {
@@ -357,7 +358,7 @@ main .page-link {
 	padding: 10px;
 }
 
-.instruction-box img:hover, .feature-list-example:hover {
+.instruction-box img:hover, .feature-list-example p:hover {
 	box-shadow: 0 10px 10px #ccc;
 }
 
