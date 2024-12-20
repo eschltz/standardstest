@@ -93,12 +93,13 @@ layout: default
 			Customized diagnostics help reviewers make more reasonable and actionable suggestions.</p>
 			
 			<ul class="benefit-list">
-				<li style="font-size: 1.0em;margin-bottom: 30px;">More effective, transparent peer reviews</li>
-				<li style="font-size: 1.0em;margin-bottom: 30px;">Faster publication times</li>
-				<li style="font-size: 1.0em;margin-bottom: 30px;">Reduced reviewer workload</li>
-				<li style="font-size: 1.0em;margin-bottom: 30px;">Higher-quality papers</li>
+				<li>More effective, transparent peer reviews</li>
+				<li>Faster publication times</li>
+				<li>Reduced reviewer workload</li>
+				<li>Higher-quality papers</li>
 			</ul>
-	</ul>
+			
+			<img src="assets/img/filling_checklist_crop.PNG">
 		</div>
 	</div>
 	
