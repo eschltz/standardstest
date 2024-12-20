@@ -64,7 +64,7 @@ layout: default
 	<div class="feature-list-item">
 		<div class="feature-list-text">
 			<h3>General quality criteria</h3>
-			<p>Qualitative and quantitative quality criteria the paper should meet, such as multivocality and generalizability</p>
+			<p>Qualitative and quantitative quality criteria the paper should meet</p>
 		</div>
 		<div class="feature-list-example">
 			<p><q cite="https://www2.sigsoft.org/EmpiricalStandards/docs/standards?standard=Experiments#">Conclusion validity, construct validity, internal validity, reliability, objectivity, reproducibility.</q> (Experiment)</p>
@@ -117,7 +117,7 @@ layout: default
 			<p>Good examples of the method that authors should emulate</p>
 		</div>
 		<div class="feature-list-example">
-			<p><q cite="https://www2.sigsoft.org/EmpiricalStandards/docs/standards?standard=MetaScience#">Natalia Juristo and Ana M. Moreno. 2001. Basics of Software Engineering Experimentation. Springer Science & Business Media.</q> (Meta Science)</p>
+			<p><q cite="https://www2.sigsoft.org/EmpiricalStandards/docs/standards?standard=CaseStudy">Diomidis Spinellis and Paris C. Avgeriou. Evolution of the Unix System Architecture: An Exploratory Case Study. IEEE Transactions on Software Engineering. (2019).</q> (Case Study)</p>
 		</div>
 	</div>
 	
