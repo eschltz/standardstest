@@ -51,39 +51,74 @@ layout: default
 <section id="instruction-section">
 	<h2>Features of the standards</h2>
 	
-	<div>
-		<h3>Specific attributes</h3>
-		<p>A list of properties the paper should possess, grouped into essential, desirable, and extraordinary</p>
+	<div class="feature-list-item">
+		<div class="feature-list-text">
+			<h3>Specific attributes</h3>
+			<p>A list of properties the paper should possess, grouped into essential, desirable, and extraordinary</p>
+		</div>
+		<div class="feature-list-example">
+			<p><q cite="https://www2.sigsoft.org/EmpiricalStandards/docs/standards?standard=EngineeringResearch#">Conceptually evaluates the proposed artifact; discusses its strengths, weaknesses and limitations.</q> (Engineering Research)</p>
+		</div>
 	</div>
 	
-	<div>
-		<h3>General quality criteria</h3>
-		<p>Qualitative and quantitative quality criteria the paper should meet, such as multivocality and generalizability</p>
+	<div class="feature-list-item">
+		<div class="feature-list-text">
+			<h3>General quality criteria</h3>
+			<p>Qualitative and quantitative quality criteria the paper should meet, such as multivocality and generalizability</p>
+		</div>
+		<div class="feature-list-example">
+			<p><q cite="https://www2.sigsoft.org/EmpiricalStandards/docs/standards?standard=Experiments#">Conclusion validity, construct validity, internal validity, reliability, objectivity, reproducibility.</q> (Experiment)</p>
+		</div>
 	</div>
 	
-	<div>
-		<h3>Acceptable deviations</h3>
-		<p>Circumstances where the paper is permitted to deviate from a standard</p>
+	<div class="feature-list-item">
+		<div class="feature-list-text">
+			<h3>Acceptable deviations</h3>
+			<p>Circumstances where the paper is permitted to deviate from a standard</p>
+		</div>
+		<div class="feature-list-example">
+			<p><q cite="https://www2.sigsoft.org/EmpiricalStandards/docs/standards?standard=OptimizationStudies#">Reporting significance tests (e.g., Mann-Whitney Wilcoxon test) without effect size tests.</q> (Optimization Study)</p>
+		</div>
 	</div>
 	
-	<div>
-		<h3>Antipatterns</h3>
-		<p>Common problems with this methodology that papers should avoid</p>
+	<div class="feature-list-item">
+		<div class="feature-list-text">
+			<h3>Antipatterns</h3>
+			<p>Common problems with this methodology that papers should avoid</p>
+		</div>
+		<div class="feature-list-example">
+			<p><q cite="https://www2.sigsoft.org/EmpiricalStandards/docs/standards?standard=GroundedTheory#">Data analysis focusing on counting words, codes, concepts, or categories instead of interpreting.</q> (Grounded Theory)</p>
+		</div>
 	</div>
 	
-	<div>
-		<h3>Invalid criticisms</h3>
-		<p>Unreasonable arguments against a paper that reviewers should not make</p>
+	<div class="feature-list-item">
+		<div class="feature-list-text">
+			<h3>Invalid criticisms</h3>
+			<p>Unreasonable arguments against a paper that reviewers should not make</p>
+		</div>
+		<div class="feature-list-example">
+			<p><q cite="https://www2.sigsoft.org/EmpiricalStandards/docs/standards?standard=Replication#">The replication merely confirms the findings of the original study; no inconsistencies are reported.</q> (Replication)</p>
+		</div>
 	</div>
 	
-	<div>
-		<h3>Suggested readings</h3>
-		<p>Additional scholarship on the method upon which the standard is based</p>
+	<div class="feature-list-item">
+		<div class="feature-list-text">
+			<h3>Suggested readings</h3>
+			<p>Additional scholarship on the method upon which the standard is based</p>
+		</div>
+		<div class="feature-list-example">
+			<p><q cite="https://www2.sigsoft.org/EmpiricalStandards/docs/standards?standard=SystematicReviews#">"Barbara Kitchenham and Stuart Charters. 2007. Guidelines for performing Systematic Literature Reviews in Software Engineering."</q> (Systematic Review)</p>
+		</div>
 	</div>
 	
-	<div>
-		<h3>Exemplars</h3>
-		<p>Good examples of the method that authors should emulate</p>
+	<div class="feature-list-item">
+		<div class="feature-list-text">
+			<h3>Exemplars</h3>
+			<p>Good examples of the method that authors should emulate</p>
+		</div>
+		<div class="feature-list-example">
+			<p><q cite="https://www2.sigsoft.org/EmpiricalStandards/docs/standards?standard=MetaScience#">Natalia Juristo and Ana M. Moreno. 2001. Basics of Software Engineering Experimentation. Springer Science & Business Media.</q> (Meta Science)</p>
+		</div>
 	</div>
 	
 	<div class="instruction-box instructions-2">	

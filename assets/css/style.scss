@@ -307,8 +307,33 @@ main .page-link {
 	font-weight: bold;
 	font-size: 2em;
 	text-align: center;
-	font-family: "Georgia";
-	color: #2b4d6f;
+	margin-bottom: 80px;
+}
+
+.feature-list-item {
+	display: flex;
+	margin-bottom: 20px;
+	margin-left: 50px;
+	margin-right: 50px;
+}
+
+.feature-list-text {
+	flex: 0 0 50%;
+	margin-right: 30px;
+}
+
+.feature-list-example {
+	padding: 20px;
+	box-shadow: 1px 1px 5px 1px #ccc;
+	transition: 0.3s;
+}
+
+.feature-list-example p {
+	font-size: 1em;
+}
+
+.feature-list-example p q {
+	font-weight: bold;
 }
 
 #instruction-section div h3 {
@@ -332,7 +357,7 @@ main .page-link {
 	padding: 10px;
 }
 
-.instruction-box img:hover {
+.instruction-box img:hover, .feature-list-example:hover {
 	box-shadow: 0 10px 10px #ccc;
 }
 
