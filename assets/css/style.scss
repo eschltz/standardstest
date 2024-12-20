@@ -323,32 +323,22 @@ main .page-link {
 	flex-wrap: wrap
 }
 
+.instruction-box img {
+	height: 250px;
+	box-shadow: 1px 1px 5px 1px #ccc;
+	transition: 0.3s;
+	margin: auto;
+	margin-top: 100px;
+}
+
+.instruction-box img:hover {
+	box-shadow: 0 10px 10px #ccc;
+}
+
 .instruction-text {
 	margin-top: 70px;
 	margin-left: 50px;
-	flex: 0 0 40%;
-}
-
-.instructions-1 .image-container {
-	flex: 0 0 40%;
-	margin-top: 70px;
-	margin-left: 10vw;
-}
-
-.instructions-2 .image-container {
-	flex: 0 0 50%;
-	margin-top: 80px;
-	margin-left: 5vw;
-}
-
-.instructions-3 .image-container {
-	flex: 0 0 50%;
-	margin-top: 70px;
-	margin-left: 5vw;
-}
-
-.instruction-box .image-container img {
-	max-width: 100%;
+	flex: 0 0 35%;
 }
 
 .instruction-text p {

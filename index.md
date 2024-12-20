@@ -98,9 +98,8 @@ layout: default
 				<li>Reduced reviewer workload</li>
 				<li>Higher-quality papers</li>
 			</ul>
-			
-			<img src="assets/img/filling_checklist_crop.PNG">
 		</div>
+		<img src="assets/img/filling_checklist_crop.PNG">
 	</div>
 	
 </section>
