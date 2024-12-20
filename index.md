@@ -91,6 +91,14 @@ layout: default
 			<p>Interactive checklists</p>
 			<p>Interactive checklists based on the standards make peer review more specific, technical, and reliable.
 			Customized diagnostics help reviewers make more reasonable and actionable suggestions.</p>
+			
+			<ul class="benefit-list">
+				<li style="font-size: 1.0em;margin-bottom: 30px;">More effective, transparent peer reviews</li>
+				<li style="font-size: 1.0em;margin-bottom: 30px;">Faster publication times</li>
+				<li style="font-size: 1.0em;margin-bottom: 30px;">Reduced reviewer workload</li>
+				<li style="font-size: 1.0em;margin-bottom: 30px;">Higher-quality papers</li>
+			</ul>
+	</ul>
 		</div>
 	</div>
 	
