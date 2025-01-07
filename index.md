@@ -77,7 +77,7 @@ layout: default
 			<p>Circumstances where the paper is permitted to deviate from a standard</p>
 		</div>
 		<div class="feature-list-example">
-			<p><q cite="https://www2.sigsoft.org/EmpiricalStandards/docs/standards?standard=OptimizationStudies#">Reporting significance tests (e.g., Mann-Whitney Wilcoxon test) without effect size tests.</q> (Optimization Study)</p>
+			<p><q cite="https://www2.sigsoft.org/EmpiricalStandards/docs/standards?standard=DataScience#">Data not shared because it is impractical (e.g. too large) or unethical (e.g. too sensitive)</q> (Data Science)</p>
 		</div>
 	</div>
 	
@@ -107,7 +107,7 @@ layout: default
 			<p>Additional scholarship on the method upon which the standard is based</p>
 		</div>
 		<div class="feature-list-example">
-			<p><q cite="https://www2.sigsoft.org/EmpiricalStandards/docs/standards?standard=SystematicReviews#">"Barbara Kitchenham and Stuart Charters. 2007. Guidelines for performing Systematic Literature Reviews in Software Engineering."</q> (Systematic Review)</p>
+			<p><q cite="https://www2.sigsoft.org/EmpiricalStandards/docs/standards?standard=SystematicReviews#">Barbara Kitchenham and Stuart Charters. 2007. Guidelines for performing Systematic Literature Reviews in Software Engineering.</q> (Systematic Review)</p>
 		</div>
 	</div>
 	
