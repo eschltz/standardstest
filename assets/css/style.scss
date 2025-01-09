@@ -344,13 +344,13 @@ main .page-link {
 }
 
 .instruction-box  {
-	height: 500px;
+	min-height: 500px;
 	display: flex;
 	flex-wrap: wrap
 }
 
 .instruction-box img {
-	height: 280px;
+	height: 18vw;
 	box-shadow: 1px 1px 5px 1px #ccc;
 	transition: 0.3s;
 	margin: auto;
@@ -676,6 +676,21 @@ main .ready-link {
 	.site-nav .last-page-link {
 		margin-right: 14vw;
 	}
+	
+	.instruction-box  {
+		display: flex;
+		flex-wrap: wrap
+	}
+	
+	.instruction-text {
+		margin-left: 0px;
+		text-align: center;
+	}
+
+	.instruction-box img {
+		height: 250px;
+		margin-top: 30px
+	}
 }
 
 @media screen and (max-width: 1100px) {
@@ -844,5 +859,22 @@ main .ready-link {
 	.standards-list input:checked ~ .tab, .supplements-list input:checked ~ .tab {
 		display: block;
 		padding-bottom: 5px;
+	}
+}
+
+@media screen and (max-width: 650px) {
+	.feature-list-item {
+		display: block;
+		text-align: center;
+	}
+
+	.feature-list-text {
+		margin-right: 0px;
+	}
+
+	.feature-list-example {
+		padding: 0px;
+		padding-bottom: 20px;
+		padding-top: 10px;
 	}
 }
