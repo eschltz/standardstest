@@ -144,17 +144,17 @@ layout: default
 	
 	<div class="timeline">
 		<div class="timeline-box left">
-			<p class="timeline-date">MAY 29 2019</p>
+			<p class="timeline-date">MAY 2019</p>
 			<p class="timeline-content">At ICSE town hall, SIGSOFT launches the "Improving Paper and Peer Review Quality Initiative"</p>
 		</div>
 		
 		<div class="timeline-box right">
-			<p class="timeline-date">### ## 2019</p>
-			<p class="timeline-content">First draft standard</p>
+			<p class="timeline-date">MAY 2020</p>
+			<p class="timeline-content">First 8 empirical standards drafted</p>
 		</div>
 		
 		<div class="timeline-box left">
-			<p class="timeline-date">OCT 7 2020</p>
+			<p class="timeline-date">OCT 2020</p>
 			<p class="timeline-content">
 				Empirical Standards Report made accessible on arXiv <!-- Link to report -->
 				<a href="https://arxiv.org/abs/2010.03525">Read the Empirical Standards Report →</a>
@@ -162,23 +162,23 @@ layout: default
 		</div>
 		
 		<div class="timeline-box right">
-			<p class="timeline-date">JAN 14 2021</p>
+			<p class="timeline-date">JAN 2021</p>
 			<p class="timeline-content">
-				First 9 standards made available on GitHub for public comment <!-- Link to git repo -->
+				First 8 standards made available on GitHub for public comment <!-- Link to git repo -->
 				<a href="https://github.com/acmsigsoft/EmpiricalStandards">Visit GitHub repository →</a>
 			</p>
 			<!-- https://github.com/acmsigsoft/EmpiricalStandards/blob/bf2bfaecc5a9e7659e66237994da7f93433c1e45/empiricalStandards.md#grounded-theory -->
 		</div>
 		
 		<div class="timeline-box left">
-			<p class="timeline-date">MAY 11 2021</p>
+			<p class="timeline-date">MAY 2021</p>
 			<p class="timeline-content">First review checklists available on the web</p>
 			<!-- https://github.com/acmsigsoft/EmpiricalStandards/commit/3462acf033baa670f4dd869be1d85d642688da51 -->
 		</div>
 		
 		<div class="timeline-box right">
 			<p class="timeline-date">JUNE 2021</p>
-			<p class="timeline-content">First recommendation of the standards in a conference (EASE 2021)</p>
+			<p class="timeline-content">First recommendation of the standards by a conference (EASE 2021)</p>
 		</div>
 		
 		<div class="timeline-box left">
