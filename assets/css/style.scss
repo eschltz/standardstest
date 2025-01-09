@@ -331,10 +331,17 @@ main .page-link {
 	box-shadow: 1px 1px 5px 1px #ccc;
 	transition: 0.3s;
 	padding: 15px;
+	padding-bottom: 30px;
 }
 
 .feature-list-example p q {
 	font-weight: bold;
+	font-family: "Courier New", monospace;
+}
+
+.feature-list-example p span {
+	font-size: 0.85em;
+	float: right;
 }
 
 #instruction-section div h3 {

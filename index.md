@@ -57,7 +57,7 @@ layout: default
 			<p>A list of properties the paper should possess, grouped into essential, desirable, and extraordinary</p>
 		</div>
 		<div class="feature-list-example">
-			<p><q cite="https://www2.sigsoft.org/EmpiricalStandards/docs/standards?standard=EngineeringResearch#">Conceptually evaluates the proposed artifact; discusses its strengths, weaknesses and limitations.</q> (Engineering Research)</p>
+			<p><q cite="https://www2.sigsoft.org/EmpiricalStandards/docs/standards?standard=EngineeringResearch#">Conceptually evaluates the proposed artifact; discusses its strengths, weaknesses and limitations.</q><br><br><span>Engineering Research</span></p>
 		</div>
 	</div>
 	
@@ -67,7 +67,7 @@ layout: default
 			<p>Qualitative and quantitative quality criteria the paper should meet</p>
 		</div>
 		<div class="feature-list-example">
-			<p><q cite="https://www2.sigsoft.org/EmpiricalStandards/docs/standards?standard=Experiments#">Conclusion validity, construct validity, internal validity, reliability, objectivity, reproducibility.</q> (Experiment)</p>
+			<p><q cite="https://www2.sigsoft.org/EmpiricalStandards/docs/standards?standard=Experiments#">Conclusion validity, construct validity, internal validity, reliability, objectivity, reproducibility.</q><br><br><span>Experiment</span></p>
 		</div>
 	</div>
 	
@@ -77,7 +77,7 @@ layout: default
 			<p>Circumstances where the paper is permitted to deviate from a standard</p>
 		</div>
 		<div class="feature-list-example">
-			<p><q cite="https://www2.sigsoft.org/EmpiricalStandards/docs/standards?standard=DataScience#">Data not shared because it is impractical (e.g. too large) or unethical (e.g. too sensitive)</q> (Data Science)</p>
+			<p><q cite="https://www2.sigsoft.org/EmpiricalStandards/docs/standards?standard=DataScience#">Data not shared because it is impractical (e.g. too large) or unethical (e.g. too sensitive)</q><br><br><span>Data Science</span></p>
 		</div>
 	</div>
 	
@@ -87,7 +87,7 @@ layout: default
 			<p>Common problems with this methodology that papers should avoid</p>
 		</div>
 		<div class="feature-list-example">
-			<p><q cite="https://www2.sigsoft.org/EmpiricalStandards/docs/standards?standard=GroundedTheory#">Data analysis focusing on counting words, codes, concepts, or categories instead of interpreting.</q> (Grounded Theory)</p>
+			<p><q cite="https://www2.sigsoft.org/EmpiricalStandards/docs/standards?standard=GroundedTheory#">Data analysis focusing on counting words, codes, concepts, or categories instead of interpreting.</q><br><br><span>Grounded Theory</span></p>
 		</div>
 	</div>
 	
@@ -97,7 +97,7 @@ layout: default
 			<p>Unreasonable arguments against a paper that reviewers should not make</p>
 		</div>
 		<div class="feature-list-example">
-			<p><q cite="https://www2.sigsoft.org/EmpiricalStandards/docs/standards?standard=Replication#">The replication merely confirms the findings of the original study; no inconsistencies are reported.</q> (Replication)</p>
+			<p><q cite="https://www2.sigsoft.org/EmpiricalStandards/docs/standards?standard=Replication#">The replication merely confirms the findings of the original study; no inconsistencies are reported.</q><br><br><span>Replication</span></p>
 		</div>
 	</div>
 	
@@ -107,7 +107,7 @@ layout: default
 			<p>Additional scholarship on the method upon which the standard is based</p>
 		</div>
 		<div class="feature-list-example">
-			<p><q cite="https://www2.sigsoft.org/EmpiricalStandards/docs/standards?standard=SystematicReviews#">Barbara Kitchenham and Stuart Charters. 2007. Guidelines for performing Systematic Literature Reviews in Software Engineering.</q> (Systematic Review)</p>
+			<p><q cite="https://www2.sigsoft.org/EmpiricalStandards/docs/standards?standard=SystematicReviews#">Barbara Kitchenham and Stuart Charters. 2007. Guidelines for performing Systematic Literature Reviews in Software Engineering.</q><br><br><span>Systematic Review</span></p>
 		</div>
 	</div>
 	
@@ -117,7 +117,7 @@ layout: default
 			<p>Good examples of the method that authors should emulate</p>
 		</div>
 		<div class="feature-list-example">
-			<p><q cite="https://www2.sigsoft.org/EmpiricalStandards/docs/standards?standard=CaseStudy">Diomidis Spinellis and Paris C. Avgeriou. Evolution of the Unix System Architecture: An Exploratory Case Study. IEEE Transactions on Software Engineering. (2019).</q> (Case Study)</p>
+			<p><q cite="https://www2.sigsoft.org/EmpiricalStandards/docs/standards?standard=CaseStudy">Diomidis Spinellis and Paris C. Avgeriou. Evolution of the Unix System Architecture: An Exploratory Case Study. IEEE Transactions on Software Engineering. (2019).</q><br><br><span>Case Study</span></p>
 		</div>
 	</div>
 	
