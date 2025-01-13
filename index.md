@@ -35,7 +35,7 @@ layout: default
 	</div>
 	
 	<div class="feature-box">
-		<img src="/assets/img/list.png">
+		<img src="assets/img/list.png">
 		<h3>Checklists for authors and reviewers</h3>
 		<p>Use standards-based checklists to improve your methods, papers, and peer reviews</p>
 	</div>
