@@ -10,7 +10,6 @@ layout: default
 
 <section id="intro-section">
 	<div id="intro-text">
-	
 		<h1>
 			<span id="sigsoft-heading">ACM SIGSOFT</span>
 			<span id="name-heading">Empirical Standards for Software Engineering</span>
@@ -20,7 +19,7 @@ layout: default
 			<p>The ACM SIGSOFT Empirical Standards are the official evidence standards (models of a community's expectations for conducting and reporting studies) for software engineering research.</p>
 		</div>
 		
-		<a class="page-link" href="https://eschltz.github.io/standardstest/tools/" style="color: white;background-color: #2b4d6f;padding: 10px;border-radius: 5px;font-size: 16px;">Review a paper</a>
+		<a class="page-link" href="https://www2.sigsoft.org/EmpiricalStandards/tools/">Review a paper</a>
 	</div>
 
     <div id="image-container">
@@ -30,19 +29,19 @@ layout: default
 
 <section id="feature-section">
 	<div class="feature-box">
-		<img src="https://cdn-icons-png.flaticon.com/512/9989/9989300.png">
+		<img src="/assets/img/ruler.png">
 		<h3>19 empirical standards to choose from</h3>
 		<p>Different kinds of research have different norms, so each common research method has a unique standard</p>
 	</div>
 	
 	<div class="feature-box">
-		<img src="https://cdn-icons-png.flaticon.com/512/5403/5403820.png">
+		<img src="/assets/img/list.png">
 		<h3>Checklists for authors and reviewers</h3>
 		<p>Use standards-based checklists to improve your methods, papers, and peer reviews</p>
 	</div>
 	
 	<div class="feature-box">
-		<img src="https://cdn-icons-png.flaticon.com/512/5403/5403694.png">
+		<img src="/assets/img/medal.png">
 		<h3>Desirable and extraordinary attributes</h3>
 		<p>Standards and checklists clearly differentiate must-haves from exceptional research</p>
 	</div>
@@ -121,7 +120,7 @@ layout: default
 		</div>
 	</div>
 	
-	<div class="instruction-box instructions-2">	
+	<div class="instruction-box">	
 		<div class="instruction-text">
 			<p>Interactive checklists</p>
 			<p>Interactive checklists based on the standards make peer review more specific, technical, and reliable.
@@ -202,5 +201,5 @@ layout: default
 
 <p id="ready-text">Ready to try?</p>
 
-<a class="page-link ready-link" href="https://eschltz.github.io/standardstest/tools/">Try a checklist</a>
+<a class="page-link ready-link" href="https://www2.sigsoft.org/EmpiricalStandards/tools/">Try a checklist</a>
 
