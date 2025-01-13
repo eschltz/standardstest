@@ -23,13 +23,13 @@ layout: default
 	</div>
 
     <div id="image-container">
-		<img src="https://images.pexels.com/photos/1181248/pexels-photo-1181248.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">
+		<img src="assets/img/landing-image.jpg">
 	</div>
 </section>
 
 <section id="feature-section">
 	<div class="feature-box">
-		<img src="/assets/img/ruler.png">
+		<img src="assets/img/ruler.png">
 		<h3>19 empirical standards to choose from</h3>
 		<p>Different kinds of research have different norms, so each common research method has a unique standard</p>
 	</div>
@@ -41,7 +41,7 @@ layout: default
 	</div>
 	
 	<div class="feature-box">
-		<img src="/assets/img/medal.png">
+		<img src="assets/img/medal.png">
 		<h3>Desirable and extraordinary attributes</h3>
 		<p>Standards and checklists clearly differentiate must-haves from exceptional research</p>
 	</div>
