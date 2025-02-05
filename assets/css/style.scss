@@ -26,11 +26,11 @@ button, .button {
 	border: none;
 	border-radius: 5px;
 	padding: 5px;
-	background-color: #dedee4;
 }
 
-select {
+button, .button, select {
 	background-color: #dedee4;
+	color: black;
 }
 
 summary {
