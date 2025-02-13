@@ -424,6 +424,13 @@ function clear_checklist(event) {
 			for (let location_box of primary_locations) {
 				location_box.style.visibility = "visible";
 			}
+		} else {
+			// If reviewer, hide free text boxes
+			text_boxes = document.getElementsByClassName("question_block_free_Text");
+			
+			for (let text_box of text_boxes) {
+				text_box.style.display = "none";
+			}
 		}
 		
 		// Hide deviation boxes
