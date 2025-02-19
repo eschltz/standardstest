@@ -425,7 +425,7 @@ function clearChecklist(event) {
 			}
 		} else {
 			// If reviewer, hide free text boxes
-			textBoxes = document.getElementsByClassName("question_block_free_Text");
+			textBoxes = document.getElementsByClassName("question_block_free_text");
 			
 			for (let textBox of textBoxes) {
 				textBox.style.display = "none";

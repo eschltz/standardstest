@@ -16,10 +16,10 @@ function generateDecisionMessageBlock() {
 	console.log("Test: " + checklistYesNotCheckedCount + " yeses not counted; " + checklistNoCheckedCount + " nos counted; " + deviationYesCheckedCount + " deviation yeses counted; ");
 
 	// Count the number of types (type1, type2, type3, type4)
-	justificationType1CheckedCount = $('input[class="justificationRadioType"][type="radio"][value="type1"]:checked').length;
-	justificationType2CheckedCount = $('input[class="justificationRadioType"][type="radio"][value="type2"]:checked').length;
-	justificationType3CheckedCount = $('input[class="justificationRadioType"][type="radio"][value="type3"]:checked').length;
-	justificationType4CheckedCount = $('input[class="justificationRadioType"][type="radio"][value="type4"]:checked').length;
+	justificationType1CheckedCount = $('input[class="justification_radio_type"][type="radio"][value="type1"]:checked').length;
+	justificationType2CheckedCount = $('input[class="justification_radio_type"][type="radio"][value="type2"]:checked').length;
+	justificationType3CheckedCount = $('input[class="justification_radio_type"][type="radio"][value="type3"]:checked').length;
+	justificationType4CheckedCount = $('input[class="justification_radio_type"][type="radio"][value="type4"]:checked').length;
 
 	var message = "";
 

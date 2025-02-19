@@ -122,12 +122,12 @@ form:active {
 	margin-left: 1em;
 }
 
-.freeTextAnswer {
+.free_text_answer {
 	width: 500px;
 	height: 70px;
 }
 
-.freeTextContainer {
+.free_text_container {
 	overflow: auto;
 	padding-left: 1.2em;
 }
