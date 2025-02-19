@@ -571,7 +571,7 @@ main .page_link {
 	margin-top: 100px;
 }
 
-main .ready-link {
+main .ready_link {
 	margin: auto;
 }
 
@@ -589,14 +589,14 @@ main .ready-link {
 	margin-right: 5px;
 }
 
-.standards-list, .supplements-list {
+.standards_list, .supplements_list {
 	flex: 0 0 260px;
 	align-self: flex-start;
 	top: 30px;
 	position: sticky;
 }
 
-.supplements-list {
+.supplements_list {
 	padding-left: 30px;
 	text-indent: -30px;
 }
@@ -605,8 +605,8 @@ main .ready-link {
 	flex: 20%;
 }
 
-.standards-list .nav_trigger, .standards-list .menu_icon,
-.supplements-list .nav_trigger, .supplements-list .menu_icon {
+.standards_list .nav_trigger, .standards_list .menu_icon,
+.supplements_list .nav_trigger, .supplements_list .menu_icon {
 	display: none
 }
 
@@ -811,7 +811,7 @@ main .ready-link {
 }
 
 @media screen and (max-width: 780px) {
-	.standards-list, .supplements-list {
+	.standards_list, .supplements_list {
 		left: 15px;
 		background-color: #fdfdfd;
 		border: 1px solid #e8e8e8;
@@ -821,7 +821,7 @@ main .ready-link {
 		top: 120px;
 	}
   
-	.supplements-list {
+	.supplements_list {
 		padding-left: 0;
 		text-indent: 0;
 	}
@@ -831,7 +831,7 @@ main .ready-link {
 		word-break: break-word;
 	}
   
-	.standards-list label[for="toc-trigger"], .supplements-list label[for="toc-trigger"] {
+	.standards_list label[for="toc_trigger"], .supplements_list label[for="toc_trigger"] {
 		display: block;
 		float: left;
 		width: 36px;
@@ -839,7 +839,7 @@ main .ready-link {
 		cursor: pointer;
 	}
   
-	.standards-list .menu_icon, .supplements-list .menu_icon {
+	.standards_list .menu_icon, .supplements_list .menu_icon {
 		display: block;
 		float: left;
 		width: 36px;
@@ -847,18 +847,18 @@ main .ready-link {
 		text-align: center;
 	}
   
-	.standards-list .menu_icon>svg, .supplements-list .menu_icon>svg {
+	.standards_list .menu_icon>svg, .supplements_list .menu_icon>svg {
 		fill: #424242;
 	}
   
-	.standards-list input ~ .tab, .supplements-list input ~ .tab {
+	.standards_list input ~ .tab, .supplements_list input ~ .tab {
 		clear: both;
 		display: none;
 		overflow: scroll;
 		max-height: 75vh;
 	}
   
-	.standards-list input:checked ~ .tab, .supplements-list input:checked ~ .tab {
+	.standards_list input:checked ~ .tab, .supplements_list input:checked ~ .tab {
 		display: block;
 		padding-bottom: 5px;
 	}

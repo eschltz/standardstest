@@ -221,7 +221,7 @@ function generateQuestionBlockWithTypeRadioAnswers(id, class_name, question, che
     
         // Actual Text of the Radio button
 		// Adding tooltip to type Radio button
-		deviationLabelType.innerHTML = "<div class=\"tooltip\">type "+type[i]+ "<span class=\"tooltiptext\"> "+dict[type[i]]+"</span></div>" + "&nbsp;&nbsp;";
+		deviationLabelType.innerHTML = "<div class=\"tooltip\">type "+type[i]+ "<span class=\"tooltip_text\"> "+dict[type[i]]+"</span></div>" + "&nbsp;&nbsp;";
     
         // For Labels
         // Click on the label, click that radio button

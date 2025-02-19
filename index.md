@@ -201,5 +201,5 @@ layout: default
 
 <p id="ready_text">Ready to try?</p>
 
-<a class="page_link ready-link" href="https://www2.sigsoft.org/EmpiricalStandards/tools/">Try a checklist</a>
+<a class="page_link ready_link" href="https://www2.sigsoft.org/EmpiricalStandards/tools/">Try a checklist</a>
 
