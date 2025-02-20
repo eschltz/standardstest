@@ -324,6 +324,12 @@ function saveFile() {
 	generatedText += '\nGenerated: ' + dateGenerated.toDateString() + ', ';
 	generatedText += timeString.slice(0, -6) + timeString.substr(8,3) + ' AoE\n\n';
 	
+	let attentionCheck = document.getElementsByClassName("attentionFail")[0];
+	if (attentionCheck.checked) {
+		
+		generatedText += "Note: the creator of this review failed the attention check. The editor should consider the possibility that the review is invalid.\n\n";
+	}
+	
 	if (role != "\"author\"") {
 		generatedText += "=======\n" +
 		"Legend\n" +

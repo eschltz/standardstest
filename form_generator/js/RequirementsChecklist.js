@@ -772,6 +772,11 @@ function convertMDStandardChecklistsToHTMLStandardChecklists(standardName, check
 			checklists.appendChild(checklistItemLI);
 		}
 	}
+	
+	if (checklistName == "Essential" && role != "\"author\"") {
+		addAttentionCheck(checklists);
+	}
+	
 	return checklists;
 }
 
@@ -785,4 +790,39 @@ function encodeKey(content) {
 	// now remove all the non-alphabetic and non-numeric characters
 	content = content.replace(/[^a-zA-Z0-9]/g, '');
 	return content;
+}
+
+// Insert an attention check item near the middle of review checklists
+function addAttentionCheck(checklist) {
+	
+	// Get approximate middle position of checklist
+	let count = checklist.childElementCount;
+	let middle = Math.floor(count / 2);
+	
+	let attentionCheck = document.createElement("LI");
+	
+	let attentionText = document.createElement("span");
+	attentionText.innerHTML = "&nbsp;This is an attention check item. Select 'no'.";
+	attentionText.classList.add("item_text");
+	
+	let attentionYesInput = document.createElement("input");
+	attentionYesInput.id = "checklist-radio:Yes:" + "test";
+	attentionYesInput.className = "checklistRadioYes attentionFail";
+	attentionYesInput.name = "checklist-radio:" + "test";					
+	attentionYesInput.type = "radio";
+	attentionYesInput.value = "yes";
+					
+	let attentionNoInput = document.createElement("input");
+	attentionNoInput.id = "checklist-radio:No:" + "test";
+	attentionNoInput.className = "checklistRadioNo";
+	attentionNoInput.name = "checklist-radio:" + "test";
+	attentionNoInput.type = "radio";
+	attentionNoInput.value = "no";
+	
+	attentionCheck.appendChild(attentionYesInput);
+	attentionCheck.appendChild(attentionNoInput);
+	attentionCheck.appendChild(attentionText);
+	
+	// Insert the attention check after the middle list item
+	checklist.children[middle].insertAdjacentElement("afterend", attentionCheck);
 }
