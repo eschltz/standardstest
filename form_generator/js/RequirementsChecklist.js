@@ -668,7 +668,7 @@ function convertMDStandardChecklistsToHTMLStandardChecklists(standardName, check
 				} else {
 					userInputYes = document.createElement("input");
 					userInputYes.id = "checklist-radio:Yes:" + checklistItemID;
-					userInputYes.className = "checklistRadioYes";
+					userInputYes.className = "checklist_radio_yes";
 					userInputYes.name = "checklist-radio:" + checklistItemID;
 					
 					// in the case of YES, hide the deviation block
@@ -680,7 +680,7 @@ function convertMDStandardChecklistsToHTMLStandardChecklists(standardName, check
 					
 					userInputNo = document.createElement("input");
 					userInputNo.id = "checklist-radio:No:" + checklistItemID;
-					userInputNo.className = "checklistRadioNo";
+					userInputNo.className = "checklist_radio_no";
 					userInputNo.name = "checklist-radio:" + checklistItemID;
 					userInputNo.onclick = showDeviationBlockHideLocationTextbox;
 					userInputNo.type = "radio";
@@ -800,24 +800,25 @@ function addAttentionCheck(checklist) {
 	let middle = Math.floor(count / 2);
 	
 	let attentionCheck = document.createElement("LI");
+	attentionCheck.className = "attention_item";
 	
 	let attentionText = document.createElement("span");
-	attentionText.innerHTML = "&nbsp;This is an attention check item. Select 'no'.";
+	attentionText.innerHTML = "&nbsp;this is an attention check item. Select 'no'.";
 	attentionText.classList.add("item_text");
 	
 	let attentionYesInput = document.createElement("input");
-	attentionYesInput.id = "checklist-radio:Yes:" + "test";
-	attentionYesInput.className = "checklistRadioYes attentionFail";
-	attentionYesInput.name = "checklist-radio:" + "test";					
+	attentionYesInput.id = "attention_yes";				
 	attentionYesInput.type = "radio";
 	attentionYesInput.value = "yes";
 					
 	let attentionNoInput = document.createElement("input");
-	attentionNoInput.id = "checklist-radio:No:" + "test";
-	attentionNoInput.className = "checklistRadioNo";
-	attentionNoInput.name = "checklist-radio:" + "test";
+	attentionNoInput.id = "attention_no";
+	attentionNoInput.className = "attention_pass";
 	attentionNoInput.type = "radio";
 	attentionNoInput.value = "no";
+	
+	attentionYesInput.onclick = toggleAttentionCheck;
+	attentionNoInput.onclick = toggleAttentionCheck;
 	
 	attentionCheck.appendChild(attentionYesInput);
 	attentionCheck.appendChild(attentionNoInput);
