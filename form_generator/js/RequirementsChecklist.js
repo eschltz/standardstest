@@ -13,13 +13,13 @@ function createRequirementsChecklist(file) {
 	form.appendChild(clearButton);
 
 	// create Header for Essential Requirements with an unordered list
-	var EssentialUL = createRequirementsHeadingWithUL("Essential");
+	var EssentialUL = createRequirementsHeadingWithContainer("Essential");
 
 	// create Header for Desirable Requirements with an unordered list
-	var DesirableUL = createRequirementsHeadingWithUL("Desirable");
+	var DesirableUL = createRequirementsHeadingWithContainer("Desirable");
 
 	// create Header for Extraordinary Requirements with an unordered list
-	var ExtraordinaryUL = createRequirementsHeadingWithUL("Extraordinary");
+	var ExtraordinaryUL = createRequirementsHeadingWithContainer("Extraordinary");
 
 	if (role != "\"author\"") {
 		DesirableUL.className = "hide_display";
@@ -256,17 +256,24 @@ function createRequirementsChecklistTable(file) {
 	return;
 }
 
-// create Header with Unordered List (Essential, Desirable, Extraordinary)
-function createRequirementsHeadingWithUL(title) {
-	var heading = document.createElement("H3");
-	var unorderedList = document.createElement("UL");
+// create container with checklist heading (Essential, Desirable, Extraordinary)
+function createRequirementsHeadingWithContainer(title) {
+	
+	if (title == "Essential") {
+		let heading = document.createElement("H3");
+		let container = document.createElement("UL");
+	} else {
+		let heading = document.createElement("summary");
+		let container = document.createElement("details");
+		container.setAttribute("open", "");
+	}
 
 	heading.className = "checklist_heading";
 	heading.innerHTML = title;
-	unorderedList.id = title;
-	unorderedList.appendChild(heading);
+	container.id = title;
+	container.appendChild(heading);
 
-	return unorderedList;
+	return container;
 }
 
 function createDownloadConfigurationButton() {
@@ -668,7 +675,7 @@ function convertMDStandardChecklistsToHTMLStandardChecklists(standardName, check
 				} else {
 					userInputYes = document.createElement("input");
 					userInputYes.id = "checklist-radio:Yes:" + checklistItemID;
-					userInputYes.className = "checklistRadioYes";
+					userInputYes.className = "checklist_radio_yes";
 					userInputYes.name = "checklist-radio:" + checklistItemID;
 					
 					// in the case of YES, hide the deviation block
@@ -680,7 +687,7 @@ function convertMDStandardChecklistsToHTMLStandardChecklists(standardName, check
 					
 					userInputNo = document.createElement("input");
 					userInputNo.id = "checklist-radio:No:" + checklistItemID;
-					userInputNo.className = "checklistRadioNo";
+					userInputNo.className = "checklist_radio_no";
 					userInputNo.name = "checklist-radio:" + checklistItemID;
 					userInputNo.onclick = showDeviationBlockHideLocationTextbox;
 					userInputNo.type = "radio";
@@ -772,6 +779,11 @@ function convertMDStandardChecklistsToHTMLStandardChecklists(standardName, check
 			checklists.appendChild(checklistItemLI);
 		}
 	}
+	
+	if (checklistName == "Essential" && role != "\"author\"") {
+		addAttentionCheck(checklists);
+	}
+	
 	return checklists;
 }
 
@@ -785,4 +797,56 @@ function encodeKey(content) {
 	// now remove all the non-alphabetic and non-numeric characters
 	content = content.replace(/[^a-zA-Z0-9]/g, '');
 	return content;
+}
+
+// Insert an attention check item near the middle of review checklists
+function addAttentionCheck(checklist) {
+	
+	// Get approximate middle position of checklist
+	let count = checklist.childElementCount;
+	let position = Math.floor(count / 2);
+	
+	let attentionCheck = document.createElement("LI");
+	attentionCheck.className = "attention_item";
+	
+	let attentionText = document.createElement("span");
+	attentionText.innerHTML = "&nbsp;this is an attention check item. Select 'no'.";
+	attentionText.classList.add("item_text");
+	
+	let attentionYesInput = document.createElement("input");
+	attentionYesInput.id = "attention_yes";				
+	attentionYesInput.type = "radio";
+	attentionYesInput.value = "yes";
+					
+	let attentionNoInput = document.createElement("input");
+	attentionNoInput.id = "attention_no";
+	attentionNoInput.className = "attention_pass";
+	attentionNoInput.type = "radio";
+	attentionNoInput.value = "no";
+	
+	attentionYesInput.onclick = toggleAttentionCheck;
+	attentionNoInput.onclick = toggleAttentionCheck;
+	
+	attentionCheck.appendChild(attentionYesInput);
+	attentionCheck.appendChild(attentionNoInput);
+	attentionCheck.appendChild(attentionText);
+	
+	position = randomizeAttentionPosition(position);
+	
+	// Insert the attention check after the middle list item
+	checklist.children[position].insertAdjacentElement("afterend", attentionCheck);
+}
+
+// Randomize the location of the attention check item by ~3 spaces up or down
+function randomizeAttentionPosition(position) {
+	let offset = Math.floor(Math.random() * 4);
+	let direction = Math.floor(Math.random() * 2);
+	
+	if (direction == 0) {
+		position -= offset;
+	} else {
+		position += offset;
+	}
+	
+	return position;
 }
