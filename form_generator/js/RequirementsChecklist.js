@@ -259,12 +259,15 @@ function createRequirementsChecklistTable(file) {
 // create container with checklist heading (Essential, Desirable, Extraordinary)
 function createRequirementsHeadingWithContainer(title) {
 	
+	var heading;
+	var container;
+	
 	if (title == "Essential") {
-		let heading = document.createElement("H3");
-		let container = document.createElement("UL");
+		heading = document.createElement("H3");
+		container = document.createElement("UL");
 	} else {
-		let heading = document.createElement("summary");
-		let container = document.createElement("details");
+		heading = document.createElement("summary");
+		container = document.createElement("details");
 		container.setAttribute("open", "");
 	}
 
