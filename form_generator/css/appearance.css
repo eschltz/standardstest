@@ -147,11 +147,7 @@ form:active {
 }
 
 .hide_display {
-	display: none;
-}
-
-.show_display {
-	display: block;
+	display: none !important;
 }
 
 .message_style_1 {
