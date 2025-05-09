@@ -368,9 +368,8 @@ function toggleAttentionCheck() {
 // Switch between yes-no interface and location interface
 function toggleChecklistDisplay(event) {
 	let toggleOption = this.options[this.selectedIndex].value;
-	console.log(toggleOption);
 	
-	let locationContainers = document.querySelector("author_list_item > location_container");
+	let locationContainers = document.querySelectorAll(".author_list_item > .location_container");
 	let missingContainers = document.getElementsByClassName("missing_container");
 	let presentContainers = document.getElementsByClassName("present_container");
 	
@@ -379,7 +378,7 @@ function toggleChecklistDisplay(event) {
 		let missingLabel = document.getElementById("missing_label");
 		missingLabel.classList.add("hide_display");
 		
-		for (let i = 1; i < locationContainers.length; i++) {
+		for (let i = 0; i < locationContainers.length; i++) {
 			locationContainers[i].classList.add("hide_display");
 			missingContainers[i].classList.add("hide_display");
 			presentContainers[i].classList.remove("hide_display");
