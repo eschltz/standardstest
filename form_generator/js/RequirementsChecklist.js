@@ -588,7 +588,7 @@ function convertMDStandardChecklistsToHTMLStandardChecklists(standardName, check
 			var checklistItemID = "";
 			
 			// Determine which standard to use for the current essential item
-			if (checklistName == "Essential") {									
+			if (checklistName == "Essential") {								
 				let imradCounts = imradOrder[imradCountIndex];
 				let tag_count = imradCounts[0];
 				
@@ -690,7 +690,7 @@ function convertMDStandardChecklistsToHTMLStandardChecklists(standardName, check
 					
 					presentCheckBox = document.createElement("input");
 					presentCheckBox.type = "checkbox";
-					presentCheckBox.id = "present_checkbox" + checklistItemID;
+					presentCheckBox.id = "present_checkbox:" + checklistItemID;
 					presentCheckBox.className = "present_checkbox";
 					presentCheckBox.value = lineText;
 					
@@ -792,7 +792,7 @@ function convertMDStandardChecklistsToHTMLStandardChecklists(standardName, check
 					
 					presentCheckBox = document.createElement("input");
 					presentCheckBox.type = "checkbox";
-					presentCheckBox.id = "present_checkbox" + checklistItemID;
+					presentCheckBox.id = "present_checkbox:" + checklistItemID;
 					presentCheckBox.className = "present_checkbox";
 					presentCheckBox.value = lineText;
 				
