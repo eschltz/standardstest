@@ -123,7 +123,7 @@ function saveFile() {
 	var type4List = "";
 	
 	for (let list of checklists.children) {
-		if(list.tagName == 'UL' & list.style.display != 'none') {
+		if (list.tagName == 'UL' && list.style.display != 'none' || list.tagName == 'DETAILS' && list.style.display != 'none') {
 			for (let ul of list.children) {
 				if(ul.tagName == 'UL'){
 					var i = 0;
@@ -188,7 +188,7 @@ function saveFile() {
 								}
 								
 							} else if (role == "\"author\"" && locationType == "Present?") {
-								essentialList += (role == "\"author\"" ? '*' : ' ') + '\t\t' + itemText;
+								essentialList += (role == "\"author\"" ? '*' : ' ') + '\t   ' + itemText;
 								essentialList += (role == "\"author\"" ? ' (unjustified deviation)\r\n' : '\r\n');
 								
 							} else {
