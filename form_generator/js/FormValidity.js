@@ -168,9 +168,9 @@ function saveFile() {
 						let presentCheckbox = li.getElementsByClassName('present_checkbox');
 
 						if (list.id == 'Essential'){
-							if (role != "\"author\"" && li.children[0].checked
-							|| role == "\"author\"" && locationType == "Present?" && presentCheckbox[0].checked) {
+							if (role != "\"author\"" && li.children[0].checked || role == "\"author\"" && locationType == "Present?" && presentCheckbox[0].checked) {
 								essentialList +=  'Y' + '\t   ' + itemText + '\r\n';
+								
 							} else if (role == "\"author\"" && locationType != "Present?" && locationTextbox[0].value != "") {
 								if (locationTextbox.length == 1) {
 									locationValue = locationTextbox[0].value;
@@ -186,6 +186,10 @@ function saveFile() {
 								} else {
 									essentialList += '\r\n\t\t' + itemText + '\r\n';
 								}
+								
+							} else if (role == "\"author\"" && locationType == "Present?") {
+								essentialList += (role == "\"author\"" ? '*' : ' ') + '\t\t' + itemText;
+								essentialList += (role == "\"author\"" ? ' (unjustified deviation)\r\n' : '\r\n');
 								
 							} else {
 								var reasonableDeviation = li.getElementsByClassName('deviationRadioYes')[0];						
@@ -256,15 +260,13 @@ function saveFile() {
 											}
 										}
 									} else {
-										essentialList += (role == "\"author\"" && locationType != "Present?" ? '  *' : ' ') + '\t\t' + itemText;
+										essentialList += (role == "\"author\"" ? '  *' : ' ') + '\t\t' + itemText;
 										essentialList += (role == "\"author\"" ? ' (unjustified deviation)\r\n' : '\r\n');
 									}
 								}
 							}
-						}
-						else if (list.id == 'Desirable') {
-							if (li.children[0].checked || role == "\"author\"" && locationType != "Present?" && locationTextbox[0].value != ""
-							|| role == "\"author\"" && locationType == "Present?" && presentCheckbox[0].checked) {
+						} else if (list.id == 'Desirable') {
+							if (li.children[0].checked || role == "\"author\"" && locationType != "Present?" && locationTextbox[0].value != "" || role == "\"author\"" && locationType == "Present?" && presentCheckbox[0].checked) {
 								includeDesirable = true;
 
 								if (locationTextbox.length == 1 && locationType != "Present?") {
@@ -283,8 +285,7 @@ function saveFile() {
 									desirableList +=  'Y' + '\t   ' + itemText + '\r\n';
 								}
 							}
-						} else if (li.children[0].checked || role == "\"author\"" && locationType != "Present?" && locationTextbox[0].value != ""
-							|| role == "\"author\"" && locationType == "Present?" && presentCheckbox[0].checked) {
+						} else if (li.children[0].checked || role == "\"author\"" && locationType != "Present?" && locationTextbox[0].value != "" || role == "\"author\"" && locationType == "Present?" && presentCheckbox[0].checked) {
 							includeExtraordinary = true;
 
 							if (locationTextbox.length == 1 && locationType != "Present?") {
