@@ -63,6 +63,11 @@ function populateChecklist() {
 				} else {
 					let locationBox = item.getElementsByClassName('item_location_textbox')[0];
 					let missingButton = item.getElementsByClassName('missing_checkbox')[0];
+					let presentCheckBox = item.getElementsByClassName('present_checkbox')[0];
+					
+					if (state.present) {
+						presentCheckBox.click();
+					}
 
 					if (state.location != "") {
 						locationBox.value = state.location;

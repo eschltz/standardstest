@@ -133,10 +133,16 @@ document.addEventListener("visibilitychange", () => {
 		} else {
 			let locationBox = item.getElementsByClassName('item_location_textbox')[0];
 			let missingButton = item.getElementsByClassName('missing_checkbox')[0];
+			let presentCheckBox = item.getElementsByClassName('present_checkbox')[0];
+			
+			if (presentCheckBox.checked) {
+				storage.present = true;
+				localStorage.setItem(key, JSON.stringify(storage));
+			}
 
 			if (locationBox.value != "") {
-				storage.location = locationBox.value;
-				localStorage.setItem(key, JSON.stringify(storage));
+					storage.location = locationBox.value;
+					localStorage.setItem(key, JSON.stringify(storage));
 
 			} else if (missingButton.checked) {
 				storage.location = false;
@@ -151,6 +157,8 @@ document.addEventListener("visibilitychange", () => {
 					storage.justified = false;
 				}
 				localStorage.setItem(key, JSON.stringify(storage));
+			} else {
+				localStorage.removeItem(key, "");
 			}
 		}
 	}
