@@ -211,7 +211,7 @@ function saveFile() {
 								essentialList += (locationValue != "" ? locationValue : "");
 								
 								// Determine whether to push item text to new line based on location text length
-								if (locationValue.length < 6) {
+								if (locationValue.length < 8) {
 									essentialList += '\t\t' + itemText + '\r\n';
 								} else if (locationValue.length < 14) {
 									essentialList += '\t' + itemText + '\r\n';
@@ -292,7 +292,7 @@ function saveFile() {
 											}
 										}
 									} else {
-										essentialList += (role == "\"author\"" ? '*' : ' ') + '\t\t' + itemText;
+										essentialList += (role == "\"author\"" ? '-' : ' ') + '\t\t' + itemText;
 										essentialList += (role == "\"author\"" ? ' (unjustified deviation)\r\n' : '\r\n');
 									}
 								}
