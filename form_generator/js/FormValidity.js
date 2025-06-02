@@ -250,7 +250,7 @@ function saveFile() {
 										essentialList += (locationValue != "" ? locationValue : "");
 										
 										// Determine whether to push item text to new line based on location text length
-										if (locationValue.length < 6) {
+										if (locationValue.length < 8) {
 											essentialList += '\t\t' + itemText + ' (justified deviation)\r\n';
 										} else if (locationValue.length < 14) {
 											essentialList += '\t' + itemText + ' (justified deviation)\r\n';
@@ -306,7 +306,7 @@ function saveFile() {
 									desirableList += (locationValue != "" ? locationValue : "");
 									
 									// Determine whether to push item text to new line based on location text length
-									if (locationValue.length < 6) {
+									if (locationValue.length < 8) {
 										desirableList += '\t\t' + itemText + '\r\n';
 									} else if (locationValue.length < 14) {
 										desirableList += '\t' + itemText + '\r\n';
@@ -325,7 +325,7 @@ function saveFile() {
 								extraordinaryList += (locationValue != "" ? locationValue : "");
 								
 								// Determine whether to push item text to new line based on location text length
-								if (locationValue.length < 6) {
+								if (locationValue.length < 8) {
 									extraordinaryList += '\t\t' + itemText + '\r\n';
 								} else if (locationValue.length < 14) {
 									extraordinaryList += '\t' + itemText + '\r\n';
