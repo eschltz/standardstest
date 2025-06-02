@@ -29,13 +29,13 @@ main .wrapper {
 
 @media screen and (max-width: 850px) {
 	main .wrapper {
-		width: 85%;
+		width: 78%;
 	}
 }
 
-@media screen and (max-width: 630px) {
+@media screen and (max-width: 800px) {
 	main .wrapper {
-		width: 87%;
+		width: 85%;
 	}
 }
 
