@@ -82,11 +82,7 @@ form:active {
 	flex: 0 1 22%;
 }
 
-.author_justification_container {
-	flex: 1 1;
-}
-
-.item_location_textbox {
+.item_location_textbox, .justification_location_textbox {
 	border: 2px solid #bbbbbb;
 	border-radius: 4px;
 	padding: 3px;
@@ -95,19 +91,11 @@ form:active {
 	width: 90%;
 }
 
-.justification_location_textbox {
-	border: 2px solid #bbbbbb;
-	border-radius: 4px;
-	padding: 3px;
-	margin-left: 5px;
-	width: 98%;
-}
-
 .item_location_textbox:invalid, .justification_location_textbox:invalid {
 	border: 2px solid red;
 }
 
-.missing_container {
+.missing_container, span:has(.unjustified_checkbox) {
 	margin-left: auto;
 	margin-right: 3px;
 }
@@ -162,6 +150,7 @@ form:active {
 }
 
 .question_text_container {
+	flex: 0 1 50vw;
 	text-indent: 2.4em;
 }
 
@@ -192,11 +181,6 @@ form:active {
 	text-indent: 0em;
 }
 
-.message_style_4 {
-	padding-left: 2em;
-	text-indent: 0em;
-}
-
 .error_warning {
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -205,6 +189,10 @@ form:active {
 
 .attention {
 	color: red;
+}
+
+#decision_msg {
+	padding-bottom: 20px;
 }
 
 .standard_links {
